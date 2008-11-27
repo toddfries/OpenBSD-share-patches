@@ -1,8 +1,8 @@
-.\"	$OpenBSD: cac.4,v 1.19 2007/05/31 19:19:49 jmc Exp $
+.\"	$OpenBSD: cac.4,v 1.22 2008/10/30 08:14:06 jmc Exp $
 .\"
 .\" Michael Shalayeff, 2000. Public Domain.
 .\"
-.Dd $Mdocdate: May 31 2007 $
+.Dd $Mdocdate: October 30 2008 $
 .Dt CAC 4
 .Os
 .Sh NAME
@@ -57,12 +57,24 @@ All the RAID set volume management is done via the card BIOS.
 Although the controllers are actual RAID controllers the driver makes them
 look just like SCSI controllers.
 All RAID configuration is done through the controllers' BIOSes.
+.Pp
+Monitoring status for the volume and drives in it is done through the
+.Xr bioctl 8
+utility;
+the current status is provided by the
+.Xr sysctl 8
+variable
+.Va hw.sensors .
 .Sh SEE ALSO
+.Xr bio 4 ,
 .Xr eisa 4 ,
 .Xr intro 4 ,
 .Xr pci 4 ,
 .Xr scsi 4 ,
-.Xr sd 4
+.Xr sd 4 ,
+.Xr bioctl 8 ,
+.Xr sensorsd 8 ,
+.Xr sysctl 8
 .Sh HISTORY
 The
 .Nm
@@ -78,9 +90,3 @@ inspired by the
 .Nx
 driver by
 .An Andrew Doran Aq ad@netbsd.org .
-.Sh BUGS
-The card provides a mechanism to receive asynchronous notifications
-about RAID set status change and so forth, unfortunately this
-information is not public.
-.Pp
-Only a few PCI cards were tested, but others should work.

@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.142 2008/06/10 10:31:33 deraadt Exp $
+#	$OpenBSD: Makefile,v 1.146 2008/11/04 21:37:07 deraadt Exp $
 #	$NetBSD: Makefile,v 1.4 1996/01/09 03:23:01 thorpej Exp $
 
 #	Makefile for section 9 (kernel function and variable) manual pages.
@@ -194,7 +194,7 @@ MLINKS+=lock.9 lockinit.9 lock.9 lockmgr.9 lock.9 lockstatus.9 \
 	lock.9 simple_lock_init.9 lock.9 simple_lock.9 \
 	lock.9 simple_lock_try.9 lock.9 simple_unlock.9
 MLINKS+=log.9 addlog.9
-MLINKS+=malloc.9 MALLOC.9 malloc.9 free.9 malloc.9 FREE.9
+MLINKS+=malloc.9 free.9
 MLINKS+=mbuf.9 m_copym2.9 mbuf.9 m_copym.9 mbuf.9 m_free.9 mbuf.9 MFREE.9 \
 	mbuf.9 m_get.9 mbuf.9 MGET.9 mbuf.9 m_getclr.9 mbuf.9 m_gethdr.9 \
 	mbuf.9 MGETHDR.9 mbuf.9 m_prepend.9 mbuf.9 M_PREPEND.9 \
@@ -237,7 +237,7 @@ MLINKS+=pmap.9 pmap_init.9 pmap.9 pmap_enter.9 pmap.9 pmap_remove.9 \
 	pmap.9 pmap_copy.9 pmap.9 pmap_kenter_pa.9 pmap.9 pmap_kremove.9
 MLINKS+=pool.9 pool_init.9 pool.9 pool_destroy.9 \
 	pool.9 pool_get.9 pool.9 pool_put.9 pool.9 pool_prime.9 \
-	pool.9 pool_sethiwat.9 pool.9 pool_setlowat.9 \
+	pool.9 pool_sethiwat.9 pool.9 pool_setipl.9 pool.9 pool_setlowat.9 \
 	pool.9 pool_sethardlimit.9 pool.9 pool_cache_init.9 \
 	pool.9 pool_cache_destroy.9 pool.9 pool_cache_get.9 \
 	pool.9 pool_cache_put.9 pool.9 pool_cache_destruct_object.9 \
@@ -293,15 +293,17 @@ MLINKS+=time.9 boottime.9 time.9 mono_time.9 time.9 runtime.9
 MLINKS+=timeout.9 timeout_add.9 timeout.9 timeout_set.9 \
 	timeout.9 timeout_pending.9 timeout.9 timeout_del.9 \
 	timeout.9 timeout_initialized.9 timeout.9 untimeout.9 \
-	timeout.9 timeout_triggered.9
+	timeout.9 timeout_triggered.9 timeout.9 timeout_add_tv.9 \
+	timeout.9 timeout_add_ts.9 timeout.9 timeout_add_bt.9 \
+	timeout.9 timeout_add_sec.9 timeout.9 timeout_add_usec.9 \
+	timeout.9 timeout_add_nsec.9
 MLINKS+=uiomove.9 uio.9
 MLINKS+=uvm.9 uvm_init.9 uvm.9 uvm_init_limits.9 uvm.9 uvm_setpagesize.9 \
 	uvm.9 uvm_swap_init.9 uvm.9 uvm_map.9 uvm.9 uvm_map_pageable.9 \
 	uvm.9 uvm_map_pageable_all.9 uvm.9 uvm_map_checkprot.9 \
 	uvm.9 uvm_map_protect.9 uvm.9 uvm_deallocate.9 uvm.9 uvmspace_alloc.9 \
 	uvm.9 uvmspace_exec.9 uvm.9 uvmspace_fork.9 uvm.9 uvmspace_free.9 \
-	uvm.9 uvmspace_share.9 uvm.9 uvmspace_unshare.9 uvm.9 UVM_MAPFLAG.9 \
-	uvm.9 uvm_fault.9 \
+	uvm.9 uvmspace_share.9 uvm.9 UVM_MAPFLAG.9 uvm.9 uvm_fault.9 \
 	uvm.9 uvn_attach.9 uvm.9 uvm_vnp_setsize.9 uvm.9 uvm_vnp_sync.9 \
 	uvm.9 uvm_vnp_terminate.9 uvm.9 uvm_vnp_uncache.9 uvm.9 uvm_io.9 \
 	uvm.9 uvm_km_alloc.9 uvm.9 uvm_km_zalloc.9 uvm.9 uvm_km_alloc1.9 \

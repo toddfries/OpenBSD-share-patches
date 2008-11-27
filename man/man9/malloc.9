@@ -1,4 +1,4 @@
-.\"	$OpenBSD: malloc.9,v 1.40 2007/09/07 10:31:10 art Exp $
+.\"	$OpenBSD: malloc.9,v 1.42 2008/09/02 21:42:05 chl Exp $
 .\"	$NetBSD: malloc.9,v 1.2 1996/10/30 05:29:54 lukem Exp $
 .\"
 .\" Copyright (c) 1996 The NetBSD Foundation, Inc.
@@ -15,13 +15,6 @@
 .\" 2. Redistributions in binary form must reproduce the above copyright
 .\"    notice, this list of conditions and the following disclaimer in the
 .\"    documentation and/or other materials provided with the distribution.
-.\" 3. All advertising materials mentioning features or use of this software
-.\"    must display the following acknowledgement:
-.\"        This product includes software developed by the NetBSD
-.\"        Foundation, Inc. and its contributors.
-.\" 4. Neither the name of The NetBSD Foundation nor the names of its
-.\"    contributors may be used to endorse or promote products derived
-.\"    from this software without specific prior written permission.
 .\"
 .\" THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
 .\" ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -35,21 +28,20 @@
 .\" ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: September 7 2007 $
+.Dd $Mdocdate: September 2 2008 $
 .Dt MALLOC 9
 .Os
 .Sh NAME
-.Nm malloc
+.Nm malloc ,
+.Nm free
 .Nd kernel memory allocator
 .Sh SYNOPSIS
 .Fd #include <sys/types.h>
 .Fd #include <sys/malloc.h>
 .Ft void *
 .Fn malloc "unsigned long size" "int type" "int flags"
-.Fn MALLOC "space" "cast" "unsigned long size" "int type" "int flags"
 .Ft void
 .Fn free "void *addr" "int type"
-.Fn FREE "void *addr" "int type"
 .Sh DESCRIPTION
 The
 .Fn malloc
@@ -62,23 +54,6 @@ releases memory at address
 that was previously allocated by
 .Fn malloc
 for re-use.
-The
-.Fn MALLOC
-macro variant is functionally equivalent to
-.Bd -literal -offset indent
-(space) = (cast)malloc((u_long)(size), type, flags)
-.Ed
-.Pp
-and the
-.Fn FREE
-macro variant is equivalent to
-.Bd -literal -offset indent
-free((caddr_t)(addr), type)
-.Ed
-.Pp
-These macros should only be used when the
-.Fa size
-argument is a constant.
 .Pp
 Unlike its standard C library counterpart
 .Pq Xr malloc 3 ,

@@ -1,4 +1,4 @@
-.\"	$OpenBSD: umsm.4,v 1.29 2008/05/28 19:53:04 jmc Exp $
+.\"	$OpenBSD: umsm.4,v 1.38 2008/11/23 14:34:06 fkr Exp $
 .\"
 .\" Copyright (c) 2006 Jonathan Gray <jsg@openbsd.org>
 .\"
@@ -14,7 +14,7 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 28 2008 $
+.Dd $Mdocdate: November 23 2008 $
 .Dt UMSM 4
 .Os
 .Sh NAME
@@ -43,11 +43,19 @@ driver:
 .It Li "Emobile D02HW" Ta Ta USB
 .It Li "Huawei Mobile E172" Ta Ta USB
 .It Li "Huawei Mobile E220" Ta Ta USB
+.It Li "Huawei Mobile Connect E618" Ta Ta USB
+.It Li "Huawei Mobile Connect E619g" Ta Ta USB
+.It Li "Huawei Mobile Connect E620" Ta Ta USB
 .It Li "Kyocera KPC650" Ta Ta CardBus
 .It Li "Novatel Wireless ES620" Ta Ta USB
 .It Li "NTT DoCoMo A2502" Ta Ta USB
 .It Li "ONDA Communication H600" Ta Ta CardBus
 .It Li "Option GlobeTrotter 3G+" Ta Ta CardBus
+.It Li "Option GlobeTrotter GT Fusion" Ta Ta CardBus
+.It Li "Option GlobeSurfer ICON7.2" Ta Ta USB
+.It Li "Option GlobeTrotter GT Max" Ta Ta CardBus
+.It Li "Option GlobeTrotter HSDPA" Ta Ta USB
+.It Li "Option GlobeTrotter HSDPA ICON225" Ta Ta USB
 .It Li "Sierra Wireless MC8755" Ta Ta PCI Express Mini Card
 .It Li "Sierra Wireless AirCard 580" Ta Ta CardBus
 .It Li "Sierra Wireless AirCard 875" Ta Ta CardBus
@@ -69,6 +77,15 @@ Devices suspected of being compatible are:
 .It Li "Sierra Wireless MC8765" Ta Ta PCI Express Mini Card
 .It Li "Sierra Wireless MC8775" Ta Ta PCI Express Mini Card
 .El
+.Pp
+Some modems have multiple serial ports,
+however almost all modems have only one effective serial port
+for PPP connections.
+For example, the Huawei E220 has two serial ports,
+but only the first port can be used to make connections;
+the second one is for management.
+The Option GlobeTrotter HSDPA modem has three serial ports,
+but only the last port can be used to make PPP connections.
 .Sh EXAMPLES
 An example
 .Pa /etc/ppp/ppp.conf
@@ -158,9 +175,15 @@ The
 .Nm
 driver was written by
 .An Jonathan Gray
-.Aq jsg@openbsd.org .
+.Aq jsg@openbsd.org ,
+and
+.An Yojiro UO
+.Aq yuo@nui.org .
 .Sh CAVEATS
 For Verizon Wireless (and possibly other services),
 cards require a one-time activation before they will work;
 .Nm
 does not currently support this.
+.Pp
+The additional IEEE 802.11 wireless chipset found in the Option
+GlobeTrotter GT FUSION is not yet supported.

@@ -1,4 +1,4 @@
-.\"	$OpenBSD: pci.4,v 1.254 2008/06/25 17:52:18 jmc Exp $
+.\"	$OpenBSD: pci.4,v 1.265 2008/10/23 23:32:14 brad Exp $
 .\"	$NetBSD: pci.4,v 1.29 2000/04/01 00:32:23 tsarna Exp $
 .\"
 .\" Copyright (c) 2000 Theo de Raadt.  All rights reserved.
@@ -31,7 +31,7 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: June 25 2008 $
+.Dd $Mdocdate: October 23 2008 $
 .Dt PCI 4
 .Os
 .Sh NAME
@@ -136,7 +136,7 @@ Adaptec SATA/SCSI RAID controller
 .It Xr ami 4
 American Megatrends Inc. MegaRAID PATA/SATA/SCSI RAID controller
 .It Xr arc 4
-Areca Technology Corporation SATA RAID controller
+Areca Technology Corporation SAS/SATA RAID controller
 .It Xr cac 4
 Compaq Smart ARRAY 2/3/4 SCSI RAID controller
 .It Xr ciss 4
@@ -200,6 +200,8 @@ Sun Happy Meal 10/100 Ethernet device
 Intel 82598 PCI Express 10Gb Ethernet device
 .It Xr ixgb 4
 Intel PRO/10GbE 10Gb Ethernet device
+.It Xr jme 4
+JMicron JMC250/JMC260 10/100/Gigabit Ethernet device
 .It Xr lge 4
 Level 1 LXT1001 NetCellerator PCI Gigabit Ethernet device
 .It Xr lii 4
@@ -221,7 +223,7 @@ National Semiconductor PCI 10/100/Gigabit Ethernet device
 .It Xr pcn 4
 AMD PCnet-PCI 10/100 Ethernet device
 .It Xr re 4
-RealTek 8139C+/8169/816xS/811xS/8101E 10/100/Gigabit Ethernet device
+RealTek 8139C+/8169/816xS/811xS/8168/810xE 10/100/Gigabit Ethernet device
 .It Xr rl 4
 Realtek 8129/8139 10/100 Ethernet device
 .It Xr san 4
@@ -275,8 +277,8 @@ Intel PRO/Wireless 2100 IEEE 802.11b wireless network device
 Intel
 PRO/Wireless 2200BG/2225BG/2915ABG IEEE 802.11a/b/g wireless network device
 .It Xr iwn 4
-Intel
-Wireless WiFi Link 4965AGN IEEE 802.11a/b/g/Draft-N wireless network device
+Intel WiFi Link 4965/5100/5300
+IEEE 802.11a/b/g/Draft-N wireless network devices
 .It Xr malo 4
 Marvell Libertas IEEE 802.11b/g wireless network device
 .It Xr pgt 4
@@ -328,12 +330,14 @@ VGA graphics cards
 .El
 .Ss Audio devices
 .Bl -tag -width 10n -offset ind -compact
+.It Xr auacer 4
+Acer Labs I/O Controller Hub integrated AC'97 audio device
 .It Xr auglx 4
 AMD Geode LX CS5536 integrated AC'97 audio device
 .It Xr auich 4
-ICH-based PCI audio device
+Intel ICH integrated AC'97 audio device
 .It Xr auixp 4
-ATI IXP series integrated AC'97 audio device
+ATI SB200/SB300/SB400 integrated AC'97 audio device
 .It Xr autri 4
 Trident 4DWAVE-DX/NX, SiS 7018, ALi M5451 audio device
 .It Xr auvia 4
