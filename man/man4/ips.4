@@ -1,6 +1,6 @@
-.\"	$OpenBSD: ips.4,v 1.4 2007/05/31 19:19:50 jmc Exp $
+.\"	$OpenBSD: ips.4,v 1.10 2009/02/11 15:17:33 jmc Exp $
 .\"
-.\" Copyright (c) 2006 Alexander Yurchenko <grange@openbsd.org>
+.\" Copyright (c) 2006, 2009 Alexander Yurchenko <grange@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,7 +14,7 @@
 .\" TORTIOUS ACTION, ARISING OUT OF
 .\" PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 31 2007 $
+.Dd $Mdocdate: February 11 2009 $
 .Dt IPS 4
 .Os
 .Sh NAME
@@ -30,7 +30,7 @@ driver provides support for IBM ServeRAID controllers, including:
 .Pp
 .Bl -bullet -width Ds -offset indent -compact
 .It
-ServeRAID 3H/3L
+ServeRAID 3H/3HB/3L
 .It
 ServeRAID 4H/4L/4Lx/4M/4Mx
 .It
@@ -43,12 +43,22 @@ ServeRAID 7k/7M/7t
 .Pp
 Although the controllers are actual RAID controllers,
 the driver makes them look just like SCSI controllers.
-All RAID configuration is done through the controllers' BIOSes.
+All RAID configuration and management is done through the bootable
+IBM ServeRAID Support CD;
+a CD image is freely available at the IBM website.
+.Pp
+The driver also provides
+.Xr bio 4
+support, though only volume information querying is available.
 .Sh SEE ALSO
+.Xr bio 4 ,
 .Xr intro 4 ,
 .Xr pci 4 ,
 .Xr scsi 4 ,
-.Xr sd 4
+.Xr sd 4 ,
+.Xr bioctl 8
+.Pp
+.Pa http://www.ibm.com
 .Sh HISTORY
 The
 .Nm
