@@ -1,4 +1,4 @@
-.\"     $OpenBSD: cbus.4,v 1.3 2009/05/12 19:53:34 jmc Exp $
+.\"     $OpenBSD: vcc.4,v 1.2 2009/05/12 19:53:34 jmc Exp $
 .\"
 .\" Copyright (c) 2009 Mark Kettenis <kettenis@openbsd.org>
 .\"
@@ -15,38 +15,36 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: May 12 2009 $
-.Dt CBUS 4 sparc64
+.Dt VCC 4 sparc64
 .Os
 .Sh NAME
-.Nm cbus
-.Nd channel device bus
+.Nm vcc
+.Nd virtual console concentrator
 .Sh SYNOPSIS
-.Cd "cbus* at vbus?"
+.Cd "vcc* at cbus?"
+.Cd "vcctty* at vcc?"
 .Sh DESCRIPTION
 The
 .Nm
-driver provides a virtual bus for channel devices provided by the
-UltraSPARC Hypervisor as found on sun4v logical domains.
-.Pp
-.Ox
-provides support for the following devices:
-.Pp
-.Bl -tag -width "vdisk(4)XX" -offset 3n -compact
-.It Xr vcc 4
-virtual console concentrator
-.It Xr vdsk 4
-virtual disk
-.It Xr vnet 4
-virtual network interface
+driver provides access to the consoles of guest domains from the
+control domain of sun4v systems.
+It provides a standard
+.Xr tty 4
+interface on top of a logical domain channel provided by the
+UltraSPARC Hypervisor.
+.Sh FILES
+.Bl -tag -width /dev/ttyV[0-9a-zA-Z]
+.It /dev/ttyV[0-9a-zA-Z]
 .El
 .Sh SEE ALSO
+.Xr cbus 4 ,
 .Xr intro 4 ,
-.Xr vbus 4
+.Xr tty 4
 .Sh HISTORY
 The
 .Nm
 driver first appeared in
-.Ox 4.5 .
+.Ox 4.6 .
 .Sh AUTHORS
 The
 .Nm
