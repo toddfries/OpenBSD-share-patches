@@ -1,6 +1,6 @@
-.\" $OpenBSD: udl.4,v 1.4 2009/05/18 20:21:40 mglocker Exp $
+.\"	$OpenBSD: owserial.4,v 1.2 2009/05/18 06:55:33 jmc Exp $
 .\"
-.\" Copyright (c) 2009 Marcus Glocker <mglocker@openbsd.org>
+.\" Copyright (c) 2009 Miodrag Vallat.
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -15,28 +15,32 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: May 18 2009 $
-.Dt UDL 4
+.Dt OWSERIAL 4 sgi
 .Os
 .Sh NAME
-.Nm udl
-.Nd DisplayLink DL-120 / DL-160 USB display devices
+.Nm owserial
+.Nd 1-Wire serial number
 .Sh SYNOPSIS
-.Cd "udl* at uhub?"
-.Cd "wsdisplay* at udl?"
+.Cd "owserial* at onewire?"
 .Sh DESCRIPTION
 The
 .Nm
-driver supports USB display devices based on the DisplayLink DL-120 / DL-160
-graphic chip.
-.Sh HARDWARE
-The following devices should work:
+driver provides support for the Dallas DS2505 and DS2506
+add-only memory devices, found on various SGI devices.
 .Pp
-.Bl -tag -width Ds -offset indent -compact
-.It Century Corp. Japan Plus One LCD-8000U
-.It DisplayLink USB<->DVI Adapter
-.El
+These devices are used to store the various serial numbers of the
+system components.
 .Sh SEE ALSO
 .Xr intro 4 ,
-.Xr usb 4 ,
-.Xr wscons 4 ,
-.Xr wsdisplay 4
+.Xr ioc 4 ,
+.Xr onewire 4
+.Sh HISTORY
+The
+.Nm
+driver first appeared in
+.Ox 4.4 .
+.\" .Sh AUTHORS
+.\" The
+.\" .Nm
+.\" driver was written by
+.\" .An Miod Vallat .
