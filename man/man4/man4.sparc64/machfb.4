@@ -1,10 +1,11 @@
-.\" $OpenBSD: udl.4,v 1.8 2009/05/24 11:14:33 mglocker Exp $
+.\"	$OpenBSD: machfb.4,v 1.1 2009/06/02 04:30:37 kettenis Exp $
 .\"
-.\" Copyright (c) 2009 Marcus Glocker <mglocker@openbsd.org>
+.\" Copyright (c) 2009 Mark Kettenis.
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
-.\" copyright notice and this permission notice appear in all copies.
+.\" copyright notice and this permission notice appear in all copies. And
+.\" I won't mind if you keep the disclaimer below.
 .\"
 .\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
 .\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
@@ -14,32 +15,33 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 24 2009 $
-.Dt UDL 4
+.Dd $Mdocdate: June 2 2009 $
+.Dt MACHFB 4 sparc64
 .Os
 .Sh NAME
-.Nm udl
-.Nd DisplayLink DL-120 / DL-160 USB display devices
+.Nm machfb
+.Nd accelerated color frame buffer
 .Sh SYNOPSIS
-.Cd "udl* at uhub?"
-.Cd "wsdisplay* at udl?"
+.Cd "machfb* at pci?"
+.Cd "wsdisplay* at machfb?"
 .Sh DESCRIPTION
 The
 .Nm
-driver supports USB display devices based on the DisplayLink DL-120 / DL-160
-graphic chip.
-.Sh HARDWARE
-The following devices should work:
-.Pp
-.Bl -tag -width Ds -offset indent -compact
-.It Century Corp. Japan Plus One LCD-8000U
-.It DisplayLink USB to DVI
-.It ForwardVideo EasyCAP008 USB to DVI
-.It König CMP-USBVGA10
-.It Unitek Y-2240 USB to DVI
-.El
+driver supports Sun PCI frame buffer cards based on the
+ATI
+.Sq Mach64
+chips, such as the
+Sun
+PGX
+and
+PGX64
+boards.
+It does not provide direct device driver entry points
+but makes its functions available via the internal
+.Xr wsdisplay 4
+interface.
 .Sh SEE ALSO
 .Xr intro 4 ,
-.Xr usb 4 ,
+.Xr pci 4 ,
 .Xr wscons 4 ,
 .Xr wsdisplay 4
