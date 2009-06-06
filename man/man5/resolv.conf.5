@@ -1,4 +1,4 @@
-.\"	$OpenBSD: resolv.conf.5,v 1.30 2008/08/15 14:57:19 djm Exp $
+.\"	$OpenBSD: resolv.conf.5,v 1.32 2009/06/05 06:56:51 jmc Exp $
 .\"	$NetBSD: resolv.conf.5,v 1.7 1996/03/06 18:22:16 scottr Exp $
 .\"
 .\" Copyright (c) 1986, 1991 The Regents of the University of California.
@@ -30,7 +30,7 @@
 .\"
 .\"     @(#)resolver.5	5.12 (Berkeley) 5/10/91
 .\"
-.Dd $Mdocdate: August 15 2008 $
+.Dd $Mdocdate: June 5 2009 $
 .Dt RESOLV.CONF 5
 .Os
 .Sh NAME
@@ -204,6 +204,24 @@ The IP address and optional network pairs are separated by slashes.
 Up to 10 pairs may be specified, e.g.:
 .Pp
 .Sy sortlist 130.155.160.0/255.255.240.0 130.155.0.0
+.It Sy family
+Specify which type of Internet protocol family to prefer,
+if a host is reachable using different address families.
+By default IPv4 addresses are queried first,
+and then IPv6 addresses.
+The syntax is:
+.Pp
+.D1 family family1 [family2]
+.Pp
+A maximum of two families can be specified,
+where family can be any of:
+.Pp
+.Bl -tag -width "inet4XXX" -offset indent -compact
+.It inet4
+IPv4 queries.
+.It inet6
+IPv6 queries.
+.El
 .It Sy options
 Allows certain internal resolver variables to be modified.
 The syntax is:
