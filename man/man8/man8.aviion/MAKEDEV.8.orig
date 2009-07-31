@@ -1,9 +1,9 @@
-.\" $OpenBSD: MAKEDEV.8,v 1.42 2009/07/22 17:46:26 ratchov Exp $
+.\" $OpenBSD$
 .\"
 .\" THIS FILE AUTOMATICALLY GENERATED.  DO NOT EDIT.
 .\" generated from:
 .\"
-.\"	OpenBSD: etc.alpha/MAKEDEV.md,v 1.43 2009/06/03 14:45:39 jj Exp 
+.\"	OpenBSD: etc.aviion/MAKEDEV.md,v 1.8 2009/06/03 14:45:39 jj Exp 
 .\"	OpenBSD: MAKEDEV.common,v 1.43 2009/06/03 14:45:39 jj Exp 
 .\"	OpenBSD: MAKEDEV.man,v 1.7 2009/03/18 17:34:25 sobrado Exp 
 .\"	OpenBSD: MAKEDEV.mansub,v 1.2 2004/02/20 19:13:01 miod Exp 
@@ -23,8 +23,8 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: July 22 2009 $
-.Dt MAKEDEV 8 alpha
+.Dd $Mdocdate: March 18 2009 $
+.Dt MAKEDEV 8 aviion
 .Os
 .Sh NAME
 .Nm MAKEDEV
@@ -53,12 +53,12 @@ If units are expected for a device but not provided,
 .Nm
 will supply the standard numbers in most cases.
 .Pp
-The alpha supports the following devices:
+The aviion supports the following devices:
 .Pp
 .Sy Special device names
 .Bl -tag -width tenletters -compact
 .It Ar all
-Creates special files for all devices on alpha.
+Creates special files for all devices on aviion.
 .It Ar ramdisk
 Ramdisk kernel devices.
 .It Ar std
@@ -80,12 +80,6 @@ Concatenated disk devices, see
 .It Ar cd*
 ATAPI and SCSI CD-ROM drives, see
 .Xr cd 4 .
-.It Ar fd*
-Floppy disk drives (3 1/2", 5 1/4"), see
-.Xr fd 4 .
-.It Ar raid*
-RAIDframe disk devices, see
-.Xr raid 4 .
 .It Ar rd*
 .Dq rd
 pseudo-disks, see
@@ -97,10 +91,6 @@ SCSI disks, including flopticals, see
 .Dq file
 pseudo-disk devices, see
 .Xr vnd 4 .
-.It Ar wd*
-.Dq winchester
-disk drives (ST506, IDE, ESDI, RLL, ...), see
-.Xr wd 4 .
 .El
 .Pp
 .Sy Tapes
@@ -115,15 +105,9 @@ SCSI tape drives, see
 .Pp
 .Sy Terminal ports
 .Bl -tag -width tenletters -compact
-.It Ar tty[0-7][0-9a-f]
-NS16x50 serial ports, see
-.Xr com 4 .
-.It Ar ttyB?
-DEC 3000 ZS8530 ("scc") serial ports, see
-.Xr scc 4 .
-.It Ar ttyc*
-Cyclades serial ports, see
-.Xr cy 4 .
+.It Ar ttya-c
+on-board serial and mouse ports, see
+.Xr dart 4 .
 .El
 .Pp
 .Sy Pseudo terminals
@@ -139,111 +123,29 @@ Set of 62 slave pseudo terminals, see
 .Xr tty 4 .
 .El
 .Pp
-.Sy Console ports
-.Bl -tag -width tenletters -compact
-.It Ar wscons
-Minimal wscons devices, see
-.Xr wscons 4 .
-.It Ar ttyC-J*
-wscons display devices, see
-.Xr wsdisplay 4 .
-.It Ar wskbd*
-wscons keyboards, see
-.Xr wskbd 4 .
-.It Ar wsmux
-wscons keyboard/mouse mux devices, see
-.Xr wsmux 4 .
-.El
-.Pp
-.Sy Pointing devices
-.Bl -tag -width tenletters -compact
-.It Ar wsmouse*
-wscons mice, see
-.Xr wsmouse 4 .
-.El
-.Pp
-.Sy Printers
-.Bl -tag -width tenletters -compact
-.It Ar lpa*
-Polled printer port, see
-.Xr lpt 4 .
-.It Ar lpt*
-IEEE 1284 centronics printer, see
-.Xr lpt 4 .
-.El
-.Pp
-.Sy USB devices
-.Bl -tag -width tenletters -compact
-.It Ar uall
-All USB devices, see
-.Xr usb 4 .
-.It Ar ttyU*
-USB serial ports, see
-.Xr ucom 4 .
-.It Ar ugen*
-Generic USB devices, see
-.Xr ugen 4 .
-.It Ar uhid*
-Generic HID devices, see
-.Xr uhid 4 .
-.It Ar ulpt*
-Printer devices, see
-.Xr ulpt 4 .
-.It Ar usb*
-Bus control devices used by usbd for attach/detach, see
-.Xr usb 4 .
-.El
-.Pp
 .Sy Special purpose devices
 .Bl -tag -width tenletters -compact
-.It Ar audio*
-Audio devices, see
-.Xr audio 4 .
 .It Ar bio
 ioctl tunnel pseudo-device, see
 .Xr bio 4 .
-.It Ar bktr*
-Video frame grabbers, see
-.Xr bktr 4 .
 .It Ar bpf*
 Berkeley Packet Filter, see
 .Xr bpf 4 .
-.It Ar crypto
-Hardware crypto access driver, see
-.Xr crypto 4 .
 .It Ar fd
 fd/* nodes, see
 .Xr fd 4 .
-.It Ar hotplug
-devices hot plugging, see
-.Xr hotplug 4 .
-.It Ar iop*
-I2O controller devices, see
-.Xr iop 4 .
 .It Ar lkm
 Loadable kernel modules interface, see
 .Xr lkm 4 .
-.It Ar music*
-MIDI sequencer, see
-.Xr music 4 .
-.It Ar pci*
-PCI bus devices, see
-.Xr pci 4 .
+.It Ar nvram0
+On-board non-volatile memory, see
+.Xr nvram 4 .
 .It Ar pf*
 Packet Filter, see
 .Xr pf 4 .
-.It Ar radio*
-FM tuner devices, see
-.Xr radio 4 .
-.It Ar rmidi*
-Raw MIDI devices, see
-.Xr midi 4 .
 .It Ar *random
 In-kernel random data source, see
 .Xr random 4 .
-.It Ar speaker
-PC speaker, see
-.Xr spkr 4 .
 .It Ar ss*
 SCSI scanners, see
 .Xr ss 4 .
@@ -253,15 +155,9 @@ System call tracing device, see
 .It Ar tun*
 Network tunnel driver, see
 .Xr tun 4 .
-.It Ar tuner*
-Tuner devices, see
-.Xr bktr 4 .
 .It Ar uk*
 Unknown SCSI devices, see
 .Xr uk 4 .
-.It Ar video*
-Video V4L2 devices, see
-.Xr video 4 .
 .It Ar nnpfs*
 NNPFS filesystem node, see
 .Xr mount_nnpfs 8 .

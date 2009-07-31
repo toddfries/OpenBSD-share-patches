@@ -1,0 +1,75 @@
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   man/man4/Makefile
+#	modified:   man/man4/acpi.4
+#	modified:   man/man4/bio.4
+#	modified:   man/man4/bmtphy.4
+#	modified:   man/man4/brgphy.4
+#	modified:   man/man4/ciphy.4
+#	modified:   man/man4/dcphy.4
+#	modified:   man/man4/eephy.4
+#	modified:   man/man4/exphy.4
+#	modified:   man/man4/iophy.4
+#	modified:   man/man4/ipgphy.4
+#	modified:   man/man4/isa.4
+#	modified:   man/man4/km.4
+#	modified:   man/man4/luphy.4
+#	modified:   man/man4/mpi.4
+#	modified:   man/man4/nsgphy.4
+#	modified:   man/man4/nsphy.4
+#	modified:   man/man4/pci.4
+#	modified:   man/man4/rgephy.4
+#	modified:   man/man4/rlphy.4
+#	modified:   man/man4/run.4
+#	modified:   man/man4/softraid.4
+#	modified:   man/man4/ti.4
+#	modified:   man/man4/tlphy.4
+#	modified:   man/man4/udl.4
+#	modified:   man/man4/urlphy.4
+#	modified:   man/man4/urtw.4
+#	modified:   man/man4/xmphy.4
+#	modified:   man/man5/pf.conf.5
+#	modified:   man/man8/man8.alpha/MAKEDEV.8
+#	modified:   man/man8/man8.amd64/MAKEDEV.8
+#	modified:   man/man8/man8.armish/MAKEDEV.8
+#	modified:   man/man8/man8.i386/MAKEDEV.8
+#	modified:   man/man8/man8.landisk/MAKEDEV.8
+#	modified:   man/man8/man8.zaurus/MAKEDEV.8
+#	modified:   man/man9/Makefile
+#	modified:   man/man9/bus_space.9
+#	modified:   man/man9/fork1.9
+#	modified:   zoneinfo/datfiles/africa
+#	modified:   zoneinfo/datfiles/asia
+#	modified:   zoneinfo/datfiles/europe
+#	modified:   zoneinfo/datfiles/leapseconds
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	man/man4/aibs.4
+#	man/man8/man8.alpha/MAKEDEV.8.orig
+#	man/man8/man8.amd64/MAKEDEV.8.orig
+#	man/man8/man8.armish/MAKEDEV.8.orig
+#	man/man8/man8.aviion/MAKEDEV.8.orig
+#	man/man8/man8.hp300/MAKEDEV.8.orig
+#	man/man8/man8.hppa/MAKEDEV.8.orig
+#	man/man8/man8.hppa64/MAKEDEV.8.orig
+#	man/man8/man8.i386/MAKEDEV.8.orig
+#	man/man8/man8.landisk/MAKEDEV.8.orig
+#	man/man8/man8.luna88k/MAKEDEV.8.orig
+#	man/man8/man8.mac68k/MAKEDEV.8.orig
+#	man/man8/man8.macppc/MAKEDEV.8.orig
+#	man/man8/man8.mvme68k/MAKEDEV.8.orig
+#	man/man8/man8.mvme88k/MAKEDEV.8.orig
+#	man/man8/man8.sgi/MAKEDEV.8.orig
+#	man/man8/man8.socppc/MAKEDEV.8.orig
+#	man/man8/man8.sparc/MAKEDEV.8.orig
+#	man/man8/man8.sparc64/MAKEDEV.8.orig
+#	man/man8/man8.vax/MAKEDEV.8.orig
+#	man/man8/man8.zaurus/MAKEDEV.8.orig
+#	status.log
+#	up.log
+no changes added to commit (use "git add" and/or "git commit -a")

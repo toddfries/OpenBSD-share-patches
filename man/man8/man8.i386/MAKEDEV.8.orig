@@ -1,9 +1,9 @@
-.\" $OpenBSD: MAKEDEV.8,v 1.42 2009/07/22 17:46:26 ratchov Exp $
+.\" $OpenBSD$
 .\"
 .\" THIS FILE AUTOMATICALLY GENERATED.  DO NOT EDIT.
 .\" generated from:
 .\"
-.\"	OpenBSD: etc.alpha/MAKEDEV.md,v 1.43 2009/06/03 14:45:39 jj Exp 
+.\"	OpenBSD: etc.i386/MAKEDEV.md,v 1.52 2009/06/03 14:45:40 jj Exp 
 .\"	OpenBSD: MAKEDEV.common,v 1.43 2009/06/03 14:45:39 jj Exp 
 .\"	OpenBSD: MAKEDEV.man,v 1.7 2009/03/18 17:34:25 sobrado Exp 
 .\"	OpenBSD: MAKEDEV.mansub,v 1.2 2004/02/20 19:13:01 miod Exp 
@@ -23,8 +23,8 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: July 22 2009 $
-.Dt MAKEDEV 8 alpha
+.Dd $Mdocdate: March 18 2009 $
+.Dt MAKEDEV 8 i386
 .Os
 .Sh NAME
 .Nm MAKEDEV
@@ -53,12 +53,12 @@ If units are expected for a device but not provided,
 .Nm
 will supply the standard numbers in most cases.
 .Pp
-The alpha supports the following devices:
+The i386 supports the following devices:
 .Pp
 .Sy Special device names
 .Bl -tag -width tenletters -compact
 .It Ar all
-Creates special files for all devices on alpha.
+Creates special files for all devices on i386.
 .It Ar ramdisk
 Ramdisk kernel devices.
 .It Ar std
@@ -83,6 +83,9 @@ ATAPI and SCSI CD-ROM drives, see
 .It Ar fd*
 Floppy disk drives (3 1/2", 5 1/4"), see
 .Xr fd 4 .
+.It Ar mcd*
+Mitsumi CD-ROM drives, see
+.Xr mcd 4 .
 .It Ar raid*
 RAIDframe disk devices, see
 .Xr raid 4 .
@@ -118,9 +121,6 @@ SCSI tape drives, see
 .It Ar tty[0-7][0-9a-f]
 NS16x50 serial ports, see
 .Xr com 4 .
-.It Ar ttyB?
-DEC 3000 ZS8530 ("scc") serial ports, see
-.Xr scc 4 .
 .It Ar ttyc*
 Cyclades serial ports, see
 .Xr cy 4 .
@@ -141,12 +141,12 @@ Set of 62 slave pseudo terminals, see
 .Pp
 .Sy Console ports
 .Bl -tag -width tenletters -compact
-.It Ar wscons
-Minimal wscons devices, see
-.Xr wscons 4 .
 .It Ar ttyC-J*
 wscons display devices, see
 .Xr wsdisplay 4 .
+.It Ar wscons
+Minimal wscons devices, see
+.Xr wscons 4 .
 .It Ar wskbd*
 wscons keyboards, see
 .Xr wskbd 4 .
@@ -189,13 +189,28 @@ Generic HID devices, see
 .It Ar ulpt*
 Printer devices, see
 .Xr ulpt 4 .
+.It Ar urio*
+Diamond Multimedia Rio 500, see
+.Xr urio 4 .
 .It Ar usb*
 Bus control devices used by usbd for attach/detach, see
 .Xr usb 4 .
+.It Ar uscanner*
+Scanners, see
+.Xr uscanner 4 .
 .El
 .Pp
 .Sy Special purpose devices
 .Bl -tag -width tenletters -compact
+.It Ar agp*
+AGP bridge, see
+.Xr agp 4 .
+.It Ar apm
+Power management device, see
+.Xr apm 4 .
+.It Ar amdmsr
+AMD MSR access device, see
+.Xr amdmsr 4 .
 .It Ar audio*
 Audio devices, see
 .Xr audio 4 .
@@ -208,27 +223,48 @@ Video frame grabbers, see
 .It Ar bpf*
 Berkeley Packet Filter, see
 .Xr bpf 4 .
+.It Ar bthub*
+Bluetooth Hubs, see
+.Xr bthub 4 .
 .It Ar crypto
 Hardware crypto access driver, see
 .Xr crypto 4 .
+.It Ar drm*
+Direct Rendering Manager, see
+.Xr drm 4 .
 .It Ar fd
 fd/* nodes, see
 .Xr fd 4 .
+.It Ar gpio*
+General Purpose Input/Output, see
+.Xr gpio 4 .
+.It Ar gpr*
+GPR400 smartcard reader, see
+.Xr gpr 4 .
 .It Ar hotplug
 devices hot plugging, see
 .Xr hotplug 4 .
 .It Ar iop*
 I2O controller devices, see
 .Xr iop 4 .
+.It Ar joy*
+Joystick driver, see
+.Xr joy 4 .
 .It Ar lkm
 Loadable kernel modules interface, see
 .Xr lkm 4 .
 .It Ar music*
-MIDI sequencer, see
-.Xr music 4 .
+MIDI devices, see
+.Xr midi 4 .
+.It Ar nvram
+NVRAM access, see
+.Xr nvram 4 .
 .It Ar pci*
 PCI bus devices, see
 .Xr pci 4 .
+.It Ar pctr*
+PC Performance Tuning Register access device, see
+.Xr pctr 4 .
 .It Ar pf*
 Packet Filter, see
 .Xr pf 4 .
