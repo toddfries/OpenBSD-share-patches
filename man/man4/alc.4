@@ -1,6 +1,6 @@
-.\"	$OpenBSD: nfe.4,v 1.19 2009/08/08 17:33:26 naddy Exp $
+.\"	$OpenBSD: alc.4,v 1.2 2009/08/08 14:12:41 jmc Exp $
 .\"
-.\" Copyright (c) 2006 Jonathan Gray <jsg@openbsd.org>
+.\" Copyright (c) 2009 Kevin Lo <kevlo@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -15,40 +15,29 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: August 8 2009 $
-.Dt NFE 4
+.Dt ALC 4
 .Os
 .Sh NAME
-.Nm nfe
-.Nd NVIDIA nForce MCP 10/100/Gigabit Ethernet device
+.Nm alc
+.Nd Atheros AR8131/AR8132 10/100/Gigabit Ethernet device
 .Sh SYNOPSIS
-.Cd "nfe* at pci?"
+.Cd "alc* at pci?"
 .Cd "atphy* at mii?"
-.Cd "brgphy* at mii?"
-.Cd "ciphy* at mii?"
-.Cd "eephy* at mii?"
-.Cd "icsphy* at mii?"
-.Cd "rgephy* at mii?"
-.Cd "rlphy* at mii?"
 .Sh DESCRIPTION
 The
 .Nm
-driver supports Fast Ethernet and Gigabit Ethernet adapters based
-on the NVIDIA nForce Media and Communications Processors (MCP),
-the nForce, nForce 2, nForce 3, CK804, MCP04, MCP51, MCP55,
-MCP61, MCP65, MCP67, MCP73, MCP77, MCP79 and MCP89 Ethernet
-controller chips.
+driver provides support for Ethernet interfaces based on the
+Atheros AR8131/AR8132 Ethernet chipset, also known as
+the Attansic L1C/L2C respectively.
 .Pp
 The
 .Nm
-driver supports IPv4 transmit/receive IP/TCP/UDP checksum offload
-with the nForce 3, CK804, MCP55, MCP77, MCP79 and MCP89 chipsets
-and VLAN tag insertion and stripping with the MCP55 chipset.
+driver supports IPv4 receive IP/TCP/UDP checksum offload and VLAN
+tag insertion and stripping.
 .Pp
-The
-.Nm
-driver supports the following
+The following
 .Ar media
-types:
+types are supported:
 .Pp
 .Bl -tag -width autoselect -compact
 .It Cm autoselect
@@ -58,37 +47,39 @@ Set 10Mbps operation.
 .It Cm 100baseTX
 Set 100Mbps (Fast Ethernet) operation.
 .It Cm 1000baseT
-Set 1000Mbps (Gigabit Ethernet) operation (recent models only).
+Set 1000Mbps (Gigabit Ethernet) operation.
 .El
+.Pp
+For more information on configuring this device, see
+.Xr ifconfig 8 .
+To view a list of media types and options supported by the card, try
+.Ic ifconfig <device> media .
+For example,
+.Ic ifconfig alc0 media .
 .Sh SEE ALSO
 .Xr arp 4 ,
 .Xr atphy 4 ,
-.Xr brgphy 4 ,
-.Xr ciphy 4 ,
-.Xr eephy 4 ,
-.Xr icsphy 4 ,
 .Xr ifmedia 4 ,
 .Xr intro 4 ,
 .Xr netintro 4 ,
 .Xr pci 4 ,
-.Xr rgephy 4 ,
-.Xr rlphy 4 ,
 .Xr hostname.if 5 ,
 .Xr ifconfig 8
 .Sh HISTORY
 The
 .Nm
 device driver first appeared in
-.Ox 3.9 .
+.Ox 4.7 .
 .Sh AUTHORS
 .An -nosplit
 The
 .Nm
 driver was written by
-.An Jonathan Gray
-.Aq jsg@openbsd.org
-and
-.An Damien Bergamini
-.Aq damien@openbsd.org .
-.Sh CAVEATS
-NVIDIA refuse to release any documentation on their products.
+.An Pyun YongHyeon
+for
+.Fx
+and ported to
+.Ox
+by
+.An Kevin Lo
+.Aq kevlo@openbsd.org .

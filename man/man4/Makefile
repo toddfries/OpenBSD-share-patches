@@ -1,11 +1,11 @@
-#	$OpenBSD: Makefile,v 1.486 2009/07/23 21:20:05 jmc Exp $
+#	$OpenBSD: Makefile,v 1.489 2009/08/12 14:58:34 cnst Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
 	acpiec.4 acpihpet.4 acpimadt.4 acpiprt.4 acpipwrres.4 \
 	acpithinkpad.4 acpitimer.4 acpivideo.4 acpivout.4 \
 	acpitz.4 acx.4 adc.4 addcom.4 adl.4 admcts.4 admlc.4 admtemp.4 \
-	admtm.4 admtmp.4 admtt.4 adt.4 adtfsm.4 adv.4 age.4 ale.4 agp.4 \
+	admtm.4 admtmp.4 admtt.4 adt.4 adtfsm.4 adv.4 age.4 alc.4 ale.4 agp.4 \
 	aha.4 ahb.4 ahc.4 ahci.4 ahd.4 aibs.4 aic.4 \
 	akbd.4 alipm.4 amas.4 amdiic.4 amdpm.4 ami.4 amphy.4 \
 	ams.4 an.4 andl.4 aps.4 arc.4 aria.4 art.4 \
@@ -28,10 +28,10 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	iopsp.4 ip.4 ip6.4 ipcomp.4 ipgphy.4 ipmi.4 ips.4 ipsec.4 ipw.4 \
 	isa.4 isagpio.4 isapnp.4 isp.4 it.4 iwi.4 iwn.4 ix.4 ixgb.4 \
 	jmb.4 jme.4 jmphy.4 \
-	kate.4 km.4 ksyms.4 kue.4 lc.4 lge.4 lii.4 lkm.4 lm.4 \
+	kate.4 km.4 ksyms.4 kue.4 lc.4 lge.4 lii.4 lisa.4 lkm.4 lm.4 \
 	lmc.4 lmenv.4 lmn.4 lmtemp.4 lo.4 lofn.4 lpt.4 lxtphy.4 luphy.4 \
 	maestro.4 mainbus.4 malo.4 maxds.4 maxtmp.4 mbg.4 midi.4 mii.4 mfi.4 \
-	moscom.4 mos.4 mpe.4 mpi.4 mpu.4 msk.4 msts.4 mtd.4 mtdphy.4 \
+	moscom.4 mos.4 mpe.4 mpath.4 mpi.4 mpu.4 msk.4 msts.4 mtd.4 mtdphy.4 \
 	multicast.4 mtio.4 myx.4 ne.4 neo.4 netintro.4 nfe.4 nge.4 nmea.4 \
 	noct.4 nofn.4 nsclpcsio.4 nsgphy.4 nsphy.4 nsphyter.4 null.4 nviic.4 \
 	ohci.4 opl.4 options.4 onewire.4 oosiop.4 osiop.4 otus.4 \
