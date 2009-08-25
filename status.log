@@ -1,65 +1,15 @@
 # On branch master
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#	deleted:    man/man8/man8.alpha/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.amd64/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.armish/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.aviion/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.hp300/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.hppa/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.hppa64/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.i386/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.landisk/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.luna88k/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.mac68k/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.macppc/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.mvme68k/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.mvme88k/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.sgi/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.socppc/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.sparc/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.sparc64/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.vax/MAKEDEV.8.orig
-#	deleted:    man/man8/man8.zaurus/MAKEDEV.8.orig
-#
 # Changed but not updated:
-#   (use "git add <file>..." to update what will be committed)
+#   (use "git add/rm <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   man/man3/intro.3
-#	modified:   man/man4/ddb.4
-#	modified:   man/man4/man4.sgi/Makefile
-#	modified:   man/man4/man4.sgi/intro.4
-#	modified:   man/man4/man4.sgi/ioc.4
-#	modified:   man/man4/man4.sgi/xbridge.4
-#	modified:   man/man5/bsd.port.mk.5
-#	modified:   man/man8/man8.alpha/MAKEDEV.8
-#	modified:   man/man8/man8.amd64/MAKEDEV.8
-#	modified:   man/man8/man8.armish/MAKEDEV.8
-#	modified:   man/man8/man8.aviion/MAKEDEV.8
-#	modified:   man/man8/man8.hp300/MAKEDEV.8
-#	modified:   man/man8/man8.hppa/MAKEDEV.8
-#	modified:   man/man8/man8.hppa64/MAKEDEV.8
-#	modified:   man/man8/man8.i386/MAKEDEV.8
-#	modified:   man/man8/man8.landisk/MAKEDEV.8
-#	modified:   man/man8/man8.luna88k/MAKEDEV.8
-#	modified:   man/man8/man8.mac68k/MAKEDEV.8
-#	modified:   man/man8/man8.macppc/MAKEDEV.8
-#	modified:   man/man8/man8.mvme68k/MAKEDEV.8
-#	modified:   man/man8/man8.mvme88k/MAKEDEV.8
-#	modified:   man/man8/man8.sgi/MAKEDEV.8
-#	modified:   man/man8/man8.socppc/MAKEDEV.8
-#	modified:   man/man8/man8.sparc/MAKEDEV.8
-#	modified:   man/man8/man8.sparc64/MAKEDEV.8
-#	modified:   man/man8/man8.vax/MAKEDEV.8
-#	modified:   man/man8/man8.zaurus/MAKEDEV.8
+#	modified:   man/man4/man4.sgi/iof.4
+#	deleted:    man/man4/strip.4
+#	modified:   man/man4/udl.4
+#	modified:   man/man7/ports.7
+#	modified:   man/man9/pci_intr_map.9
+#	modified:   misc/airport
 #	modified:   status.log
 #	modified:   up.log
-#	modified:   zoneinfo/datfiles/africa
-#	modified:   zoneinfo/datfiles/australasia
 #
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	man/man4/man4.sgi/iof.4
+no changes added to commit (use "git add" and/or "git commit -a")
