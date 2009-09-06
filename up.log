@@ -1,7 +1,44 @@
+Host key fingerprint is 3f:44:14:35:1b:65:cc:cb:da:17:6d:1d:e1:b4:a6:36
++--[ RSA 1024]----+
+|          oo++oo.|
+|         .   ==..|
+|          . .. =+|
+|         .    =.+|
+|        S .  E ..|
+|         o  o o .|
+|          o    . |
+|           .     |
+|                 |
++-----------------+
+
 ? .git
 ? .gitignore
 ? status.log
 ? up.log
-P man/man4/sbus.4
-P man/man4/ti.4
-P man/man4/udl.4
+P man/man4/acx.4
+P man/man4/an.4
+P man/man4/ath.4
+P man/man4/atu.4
+P man/man4/atw.4
+P man/man4/bwi.4
+P man/man4/ip6.4
+P man/man4/ipw.4
+P man/man4/iwi.4
+P man/man4/iwn.4
+P man/man4/malo.4
+P man/man4/otus.4
+P man/man4/pf.4
+P man/man4/pgt.4
+P man/man4/ral.4
+P man/man4/rtw.4
+P man/man4/rum.4
+P man/man4/run.4
+P man/man4/upgt.4
+P man/man4/ural.4
+P man/man4/urtw.4
+P man/man4/wi.4tbl
+P man/man4/wpi.4
+P man/man4/zyd.4
+P man/man5/pf.conf.5
+P man/man9/Makefile
+P man/man9/workq_add_task.9
