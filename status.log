@@ -3,35 +3,15 @@
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   .gitignore
-#	modified:   man/man4/acx.4
-#	modified:   man/man4/an.4
-#	modified:   man/man4/ath.4
-#	modified:   man/man4/atu.4
-#	modified:   man/man4/atw.4
-#	modified:   man/man4/bwi.4
-#	modified:   man/man4/ip6.4
-#	modified:   man/man4/ipw.4
-#	modified:   man/man4/iwi.4
-#	modified:   man/man4/iwn.4
-#	modified:   man/man4/malo.4
-#	modified:   man/man4/otus.4
-#	modified:   man/man4/pf.4
-#	modified:   man/man4/pgt.4
-#	modified:   man/man4/ral.4
-#	modified:   man/man4/rtw.4
-#	modified:   man/man4/rum.4
-#	modified:   man/man4/run.4
-#	modified:   man/man4/upgt.4
-#	modified:   man/man4/ural.4
-#	modified:   man/man4/urtw.4
-#	modified:   man/man4/wi.4tbl
-#	modified:   man/man4/wpi.4
-#	modified:   man/man4/zyd.4
+#	modified:   man/man4/Makefile
+#	modified:   man/man4/cas.4
+#	modified:   man/man4/vge.4
 #	modified:   man/man5/pf.conf.5
 #	modified:   man/man9/Makefile
-#	modified:   man/man9/workq_add_task.9
+#	modified:   man/man9/mutex.9
 #	modified:   status.log
 #	modified:   up.log
+#	modified:   zoneinfo/datfiles/asia
+#	modified:   zoneinfo/datfiles/australasia
 #
 no changes added to commit (use "git add" and/or "git commit -a")

@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.489 2009/08/12 14:58:34 cnst Exp $
+#	$OpenBSD: Makefile,v 1.491 2009/09/08 17:52:17 michele Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
