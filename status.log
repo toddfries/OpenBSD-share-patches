@@ -3,15 +3,25 @@
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   man/man4/Makefile
-#	modified:   man/man4/cas.4
-#	modified:   man/man4/vge.4
+#	modified:   man/man4/man4.sparc64/Makefile
+#	modified:   man/man4/man4.sparc64/ebus.4
+#	modified:   man/man4/pciide.4
+#	modified:   man/man4/udav.4
+#	modified:   man/man4/umsm.4
+#	modified:   man/man4/urtw.4
+#	modified:   man/man4/usb.4
+#	modified:   man/man4/zyd.4
 #	modified:   man/man5/pf.conf.5
-#	modified:   man/man9/Makefile
-#	modified:   man/man9/mutex.9
+#	modified:   man/man8/Makefile
+#	modified:   mk/bsd.subdir.mk
 #	modified:   status.log
 #	modified:   up.log
 #	modified:   zoneinfo/datfiles/asia
-#	modified:   zoneinfo/datfiles/australasia
+#	modified:   zoneinfo/datfiles/southamerica
 #
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	man/man4/man4.sparc64/lom.4
+#	man/man8/man8.palm/
 no changes added to commit (use "git add" and/or "git commit -a")
