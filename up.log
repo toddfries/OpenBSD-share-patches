@@ -1,20 +1,2 @@
-? .git
-? .gitignore
-? status.log
-? up.log
-P man/man4/pciide.4
-P man/man4/udav.4
-P man/man4/umsm.4
-P man/man4/urtw.4
-P man/man4/usb.4
-P man/man4/zyd.4
-P man/man4/man4.sparc64/Makefile
-P man/man4/man4.sparc64/ebus.4
-U man/man4/man4.sparc64/lom.4
-P man/man5/pf.conf.5
-P man/man8/Makefile
-U man/man8/man8.palm/MAKEDEV.8
-U man/man8/man8.palm/Makefile
-P mk/bsd.subdir.mk
-P zoneinfo/datfiles/asia
-P zoneinfo/datfiles/southamerica
+ssh: connect to host cvs.openbsd.org port 22: Connection timed out
+cvs [update aborted]: end of file from server (consult above messages if any)
