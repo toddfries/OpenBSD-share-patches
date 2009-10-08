@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.491 2009/09/08 17:52:17 michele Exp $
+#	$OpenBSD: Makefile,v 1.493 2009/10/04 16:08:37 michele Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
@@ -15,7 +15,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	boca.4 bpf.4 brgphy.4 bridge.4 btkbd.4 btms.4 btsco.4 bwi.4 \
 	cac.4 cas.4 cardbus.4 carp.4 ccd.4 cd.4 cdce.4 cdcef.4 che.4 cfxga.4 \
 	ch.4 ciphy.4 ciss.4 clcs.4 clct.4 cmpci.4 cnw.4 \
-	com.4 crypto.4 cue.4 cy.4 cz.4 dc.4 dcphy.4 ddb.4 de.4 dpt.4 \
+	com.4 crypto.4 cue.4 cy.4 cz.4 dc.4 dcphy.4 ddb.4 de.4 divert.4 dpt.4 \
 	drm.4 eap.4 ec.4 eephy.4 ef.4 eg.4 ehci.4 eisa.4 el.4 em.4 \
 	emu.4 enc.4 endrun.4 envy.4 ep.4 epic.4 esa.4 \
 	eso.4 ess.4 et.4 etphy.4 ex.4 exphy.4 \
@@ -59,9 +59,9 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	uts.4 uvideo.4 uvisor.4 uvscom.4 uyap.4 vga.4 vgafb.4 vge.4 \
 	viaenv.4 viapm.4 viasio.4 vic.4 video.4 vlan.4 vmt.4 vnd.4 vr.4 \
 	vscsi.4 \
-	watchdog.4 wb.4 wbenv.4 wbng.4 wbsio.4 wd.4 wdc.4 we.4 wi.4tbl wpi.4 \
-	wscons.4 wsdisplay.4 wskbd.4 wsmouse.4 wsmux.4 xe.4 xf86.4 xge.4 \
-	xl.4 xmphy.4 yds.4 ym.4 zero.4 zyd.4
+	watchdog.4 wb.4 wbenv.4 wbng.4 wbsd.4 wbsio.4 wd.4 wdc.4 we.4 \
+	wi.4tbl wpi.4 wscons.4 wsdisplay.4 wskbd.4 wsmouse.4 wsmux.4 \
+	xe.4 xf86.4 xge.4 xl.4 xmphy.4 yds.4 ym.4 zero.4 zyd.4
 
 MLINKS+=adv.4 advansys.4 adv.4 adw.4
 MLINKS+=art.4 musycc.4

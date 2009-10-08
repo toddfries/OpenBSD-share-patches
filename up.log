@@ -1,2 +1,13 @@
-ssh: connect to host cvs.openbsd.org port 22: Connection timed out
-cvs [update aborted]: end of file from server (consult above messages if any)
+? .git
+? .gitignore
+? status.log
+? up.log
+P man/man4/Makefile
+P man/man4/bge.4
+U man/man4/divert.4
+U man/man4/wbsd.4
+P man/man4/man4.alpha/tsc.4
+P man/man4/man4.sparc64/ebus.4
+P man/man5/pf.conf.5
+P tmac/mdoc/doc-common
+P tmac/mdoc/doc-syms
