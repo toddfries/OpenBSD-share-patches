@@ -2,12 +2,6 @@
 ? .gitignore
 ? status.log
 ? up.log
-P man/man4/Makefile
-P man/man4/bge.4
-U man/man4/divert.4
-U man/man4/wbsd.4
-P man/man4/man4.alpha/tsc.4
-P man/man4/man4.sparc64/ebus.4
-P man/man5/pf.conf.5
-P tmac/mdoc/doc-common
-P tmac/mdoc/doc-syms
+P man/man4/softraid.4
+P man/man4/man4.sgi/iof.4
+P man/man4/man4.sgi/xbridge.4
