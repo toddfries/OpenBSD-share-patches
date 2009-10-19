@@ -2,12 +2,3 @@
 ? .gitignore
 ? status.log
 ? up.log
-P man/man4/auixp.4
-P man/man4/pci.4
-P man/man4/umsm.4
-P man/man5/bsd.port.mk.5
-P man/man5/pf.conf.5
-P man/man5/port-modules.5
-P man/man7/ports.7
-P termtypes/Makefile
-cvs server: termtypes/README is no longer in the repository
