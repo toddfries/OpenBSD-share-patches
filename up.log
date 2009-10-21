@@ -2,3 +2,6 @@
 ? .gitignore
 ? status.log
 ? up.log
+P man/man4/azalia.4
+P zoneinfo/datfiles/asia
+P zoneinfo/datfiles/australasia

@@ -3,7 +3,10 @@
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
+#	modified:   man/man4/azalia.4
 #	modified:   status.log
 #	modified:   up.log
+#	modified:   zoneinfo/datfiles/asia
+#	modified:   zoneinfo/datfiles/australasia
 #
 no changes added to commit (use "git add" and/or "git commit -a")
