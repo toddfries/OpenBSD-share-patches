@@ -3,10 +3,16 @@
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   man/man4/azalia.4
+#	modified:   man/man4/bio.4
+#	modified:   man/man4/options.4
+#	modified:   man/man4/trunk.4
+#	modified:   man/man4/umsm.4
+#	modified:   man/man5/port-modules.5
+#	modified:   man/man5/remote.5
+#	modified:   man/man8/afterboot.8
+#	modified:   man/man8/compat_freebsd.8
+#	modified:   man/man8/compat_linux.8
 #	modified:   status.log
 #	modified:   up.log
-#	modified:   zoneinfo/datfiles/asia
-#	modified:   zoneinfo/datfiles/australasia
 #
 no changes added to commit (use "git add" and/or "git commit -a")
