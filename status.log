@@ -3,24 +3,11 @@
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   man/man4/ath.4
-#	modified:   man/man4/cz.4
-#	modified:   man/man4/iop.4
-#	modified:   man/man4/lmc.4
-#	modified:   man/man4/man4.sgi/Makefile
-#	modified:   man/man4/man4.sgi/intro.4
+#	modified:   man/man4/man4.sgi/iec.4
 #	modified:   man/man4/man4.sgi/ioc.4
+#	modified:   man/man4/man4.sgi/iof.4
 #	modified:   man/man4/man4.sgi/mec.4
-#	modified:   man/man4/man4.sparc/scf.4
-#	modified:   man/man4/pci.4
-#	modified:   man/man4/speaker.4
-#	modified:   man/man4/sv.4
-#	modified:   man/man4/vge.4
 #	modified:   status.log
 #	modified:   up.log
 #
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	man/man4/man4.sgi/iec.4
 no changes added to commit (use "git add" and/or "git commit -a")
