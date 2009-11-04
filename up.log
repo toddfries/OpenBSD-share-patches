@@ -2,7 +2,3 @@
 ? .gitignore
 ? status.log
 ? up.log
-P man/man4/man4.sgi/iec.4
-P man/man4/man4.sgi/ioc.4
-P man/man4/man4.sgi/iof.4
-P man/man4/man4.sgi/mec.4
