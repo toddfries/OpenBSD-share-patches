@@ -1,18 +1,24 @@
-Host key fingerprint is 3f:44:14:35:1b:65:cc:cb:da:17:6d:1d:e1:b4:a6:36
-+--[ RSA 1024]----+
-|          oo++oo.|
-|         .   ==..|
-|          . .. =+|
-|         .    =.+|
-|        S .  E ..|
-|         o  o o .|
-|          o    . |
-|           .     |
-|                 |
-+-----------------+
-
 ? .git
 ? .gitignore
 ? status.log
 ? up.log
-P man/man5/pf.conf.5
+? man/man4/obj
+? man/man4/man4.alpha/obj
+? man/man4/man4.amd64/obj
+? man/man4/man4.armish/obj
+? man/man4/man4.aviion/obj
+? man/man4/man4.hp300/obj
+? man/man4/man4.hppa/obj
+? man/man4/man4.i386/obj
+? man/man4/man4.landisk/obj
+? man/man4/man4.luna88k/obj
+? man/man4/man4.mac68k/obj
+? man/man4/man4.macppc/obj
+? man/man4/man4.mvme68k/obj
+? man/man4/man4.mvme88k/obj
+? man/man4/man4.sgi/obj
+? man/man4/man4.socppc/obj
+? man/man4/man4.sparc/obj
+? man/man4/man4.sparc64/obj
+? man/man4/man4.vax/obj
+? man/man4/man4.zaurus/obj
