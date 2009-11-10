@@ -22,3 +22,10 @@
 ? man/man4/man4.sparc64/obj
 ? man/man4/man4.vax/obj
 ? man/man4/man4.zaurus/obj
+P man/man4/man4.sgi/ioc.4
+U man/man4/man4.sgi/iockbc.4
+P man/man5/pf.conf.5
+P zoneinfo/datfiles/antarctica
+P zoneinfo/datfiles/asia
+P zoneinfo/datfiles/europe
+P zoneinfo/datfiles/zone.tab
