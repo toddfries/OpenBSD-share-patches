@@ -3,6 +3,8 @@
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
+#	modified:   lkm/misc/module/miscmod.c
+#	modified:   lkm/syscall/module/newsyscall.c
 #	modified:   status.log
 #	modified:   up.log
 #

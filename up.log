@@ -22,3 +22,5 @@
 ? man/man4/man4.sparc64/obj
 ? man/man4/man4.vax/obj
 ? man/man4/man4.zaurus/obj
+P lkm/misc/module/miscmod.c
+P lkm/syscall/module/newsyscall.c
