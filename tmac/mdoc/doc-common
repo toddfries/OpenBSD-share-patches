@@ -1,4 +1,4 @@
-.\"	$OpenBSD: doc-common,v 1.63 2009/10/04 07:20:54 jmc Exp $
+.\"	$OpenBSD: doc-common,v 1.65 2010/01/26 23:04:28 miod Exp $
 .\"
 .\" Copyright (c) 1991, 1993
 .\"	The Regents of the University of California.  All rights reserved.
@@ -178,6 +178,7 @@
 .	if "\\$3"hppa64" .as vT \ (HPPA64)
 .	if "\\$3"i386"  .as vT \ (i386)
 .	if "\\$3"landisk"  .as vT \ (LANDISK)
+.	if "\\$3"loongson"  .as vT \ (Loongson)
 .	if "\\$3"luna88k" .as vT \ (Luna88K)
 .	if "\\$3"mac68k" .as vT \ (Mac68K)
 .	if "\\$3"macppc"  .as vT \ (MacPPC)
@@ -203,7 +204,7 @@
 .de Os
 .ds oS Null
 .if "\\$1"" \{\
-.	ds oS OpenBSD 4.6
+.	ds oS OpenBSD 4.7
 .\}
 .if "\\$2"" \{\
 .	ds aa Non-Null
@@ -288,6 +289,7 @@
 .	if "\\$2"4.4"  .as oS \04.4
 .	if "\\$2"4.5"  .as oS \04.5
 .	if "\\$2"4.6"  .as oS \04.6
+.	if "\\$2"4.7"  .as oS \04.7
 .\}
 .if "\\*(oS"Null" .ds oS \0\\$1
 .if "\\*(aa"Non-Null" .as oS \0\\$2
