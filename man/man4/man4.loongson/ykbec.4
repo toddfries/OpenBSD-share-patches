@@ -1,6 +1,6 @@
-.\"	$OpenBSD: auglx.4,v 1.2 2010/02/25 00:18:12 schwarze Exp $
+.\"	$OpenBSD: ykbec.4,v 1.2 2010/02/24 13:48:43 jmc Exp $
 .\"
-.\" Copyright (c) 2008 Marc Balmer <mbalmer@openbsd.org>
+.\" Copyright (c) 2010 Otto Moerbeek
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,27 +14,39 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: February 25 2010 $
-.Dt AUGLX 4
+.Dd $Mdocdate: February 24 2010 $
+.Dt YKBEC 4 loongson
 .Os
 .Sh NAME
-.Nm auglx
-.Nd AMD Geode LX CS5536 integrated AC'97 audio device
+.Nm ykbec
+.Nd Ene Technology KB3110B Embedded Controller Chip
 .Sh SYNOPSIS
-.Cd "auglx* at pci?"
-.Cd "audio* at auglx?"
+.Cd "ykbec0 at isa?"
 .Sh DESCRIPTION
 The
 .Nm
-device driver supports the integrated AC'97 audio controller
-of the AMD Geode LX CS5536 companion chip.
+driver supports the Ene Technology KB3110B Embedded Controller chip found
+in the Lemote Yeeloong.
+.Pp
+This chip provides general purpose I/O and handles several
+dedicated functions, including:
+.Pp
+.Bl -dash -compact -offset indent
+.It
+Fan control
+.It
+Battery control
+.It
+Button events
+.It
+Power management
+.El
+.Pp
+Fan and battery information is made available via the
+.Xr sysctl 3
+hardware sensor interface.
+Not all the device interfaces are supported under
+.Ox .
 .Sh SEE ALSO
-.Xr ac97 4 ,
-.Xr audio 4 ,
 .Xr intro 4 ,
-.Xr pci 4
-.Sh HISTORY
-The
-.Nm
-device driver first appeared in
-.Ox 4.4 .
+.Xr isa 4
