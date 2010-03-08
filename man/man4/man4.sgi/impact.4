@@ -1,4 +1,4 @@
-.\"     $OpenBSD: odyssey.4,v 1.2 2010/03/07 14:13:58 jsing Exp $
+.\"     $OpenBSD: impact.4,v 1.1 2010/03/07 21:26:24 miod Exp $
 .\"
 .\" Copyright (c) 2010 Joel Sing <jsing@openbsd.org>
 .\"
@@ -15,23 +15,21 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: March 7 2010 $
-.Dt ODYSSEY 4 sgi
+.Dt IMPACT 4 sgi
 .Os
 .Sh NAME
-.Nm odyssey
-.Nd SGI VPro (aka Odyssey) graphics
+.Nm impact
+.Nd SGI Impact (aka Mardigras) graphics
 .Sh SYNOPSIS
-.Cd "odyssey* at xbow?"
-.Cd "wsdisplay* at odyssey?"
+.Cd "impact* at xbow?"
+.Cd "wsdisplay* at impact?"
 .Sh DESCRIPTION
 The
 .Nm
-driver provides support for the VPro (aka Odyssey) graphics card, which can be
-found in SGI
+driver provides support for the Impact (aka Mardigras) graphics card,
+which can be found in SGI
 .Tn Octane ,
 .Tn Octane2 ,
-.Tn Fuel ,
-.Tn Tezro
 and
 .Tn Onyx
 systems.
@@ -48,8 +46,8 @@ The
 .Nm
 driver first appeared in
 .Ox 4.7 .
-.Sh AUTHORS
-The
-.Nm
-driver was written by
-.An Joel Sing .
+.\" .Sh AUTHORS
+.\" The
+.\" .Nm
+.\" driver was written by
+.\" .An Miod Vallat .
