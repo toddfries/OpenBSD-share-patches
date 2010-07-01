@@ -1,4 +1,4 @@
-.\"	$OpenBSD: hier.7,v 1.80 2010/06/29 20:30:32 guenther Exp $
+.\"	$OpenBSD: hier.7,v 1.83 2010/07/01 18:45:08 jmc Exp $
 .\"	$NetBSD: hier.7,v 1.7 1994/11/30 19:07:10 jtc Exp $
 .\"
 .\" Copyright (c) 1990, 1993
@@ -30,7 +30,7 @@
 .\"
 .\"	@(#)hier.7	8.1 (Berkeley) 6/5/93
 .\"
-.Dd $Mdocdate: June 29 2010 $
+.Dd $Mdocdate: July 1 2010 $
 .Dt HIER 7
 .Os
 .Sh NAME
@@ -81,9 +81,7 @@ and the system compat pages:
 .Xr compat_aout 8 ,
 .Xr compat_bsdos 8 ,
 .Xr compat_freebsd 8 ,
-.Xr compat_ibcs2 8 ,
 .Xr compat_linux 8 ,
-.Xr compat_osf1 8 ,
 .Xr compat_sunos 8 ,
 and
 .Xr compat_svr4 8 ) .
@@ -198,10 +196,7 @@ X11 archive libraries.
 .Pp
 .Bl -tag -width "pkgconfig/" -compact
 .It X11/
-Default configuration files for X11 and companion applications (see
-.Xr xdm 1 ,
-.Xr xkb 1 ,
-.Xr twm 1 ) .
+Default configuration files for X11 and companion applications.
 .It modules/
 Various libraries and drivers for the X11 window system.
 .It pkgconfig/
