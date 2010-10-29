@@ -1,4 +1,4 @@
-.\"	$OpenBSD: hier.7,v 1.88 2010/10/18 14:48:49 jmc Exp $
+.\"	$OpenBSD: hier.7,v 1.91 2010/10/28 21:38:16 jmc Exp $
 .\"	$NetBSD: hier.7,v 1.7 1994/11/30 19:07:10 jtc Exp $
 .\"
 .\" Copyright (c) 1990, 1993
@@ -30,7 +30,7 @@
 .\"
 .\"	@(#)hier.7	8.1 (Berkeley) 6/5/93
 .\"
-.Dd $Mdocdate: October 18 2010 $
+.Dd $Mdocdate: October 28 2010 $
 .Dt HIER 7
 .Os
 .Sh NAME
@@ -137,6 +137,10 @@ configuration files (see
 .It raddb/servers/
 List of radius servers and their associated shared secrets for
 .Xr login_radius 8 .
+.It rc.d/
+.Xr packages 7
+start/stop scripts and subroutines for
+.Xr rc 8 .
 .It skel/
 Example
 .Sq .\&
@@ -365,7 +369,7 @@ System daemons and utilities (executed by users).
 .It share/
 Architecture independent data files.
 .Pp
-.Bl -tag -width "groff_font/" -compact
+.Bl -tag -width "calendar/" -compact
 .It calendar/
 Variety of pre-fab calendar files (see
 .Xr calendar 1 ) .
@@ -397,8 +401,7 @@ Additional words from Webster's.
 .It words
 Common words.
 .It papers/
-Reference databases (see
-.Xr refer 1 ) .
+Reference databases.
 .It special/
 Custom word lists.
 .El
@@ -416,8 +419,6 @@ HTML documentation.
 .Pp
 .It games/
 ASCII text files used by various games.
-.It groff_font/
-GNU troff shared fonts.
 .It info/
 Texinfo source files.
 .It lkm/
@@ -499,11 +500,6 @@ the termcap file (see
 .It texinfo/
 Templates for
 .Xr texinfo 5 .
-.It tmac/
-Text processing macros (see
-.Xr nroff 1
-and
-.Xr troff 1 ) .
 .It vi/catalog/
 Catalog files for the
 .Xr vi 1
