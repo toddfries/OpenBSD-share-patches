@@ -1,6 +1,6 @@
-.\" $OpenBSD: run.4,v 1.28 2010/11/06 20:21:33 damien Exp $
+.\" $OpenBSD: urtwn.4,v 1.6 2010/11/06 20:07:22 damien Exp $
 .\"
-.\" Copyright (c) 2008 Damien Bergamini <damien.bergamini@free.fr>
+.\" Copyright (c) 2010 Damien Bergamini <damien.bergamini@free.fr>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -15,28 +15,30 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: November 6 2010 $
-.Dt RUN 4
+.Dt URTWN 4
 .Os
 .Sh NAME
-.Nm run
-.Nd Ralink Technology USB IEEE 802.11a/g/n wireless network device
+.Nm urtwn
+.Nd Realtek RTL8188CU/RTL8192CU USB IEEE 802.11b/g/n wireless network device
 .Sh SYNOPSIS
-.Cd "run* at uhub? port ?"
+.Cd "urtwn* at uhub? port ?"
 .Sh DESCRIPTION
 The
 .Nm
-driver supports USB 2.0 wireless adapters based on the Ralink RT2700U,
-RT2800U and RT3000U chipsets.
+driver supports USB 2.0 wireless network devices based on Realtek
+RTL8188CUS, RTL8188CE-VAU, RTL8188RU and RTL8192CU chipsets.
 .Pp
-The RT2700U chipset consists of two integrated chips, an RT2770 MAC/BBP and
-an RT2720 (1T2R) or RT2750 (dual-band 1T2R) radio transceiver.
+The RTL8188CUS is a highly integrated 802.11n adapter that combines
+a MAC, a 1T1R capable baseband and an RF in a single chip.
+It operates in the 2GHz spectrum only.
+The RTL8188RU is a high-power variant of the RTL8188CUS.
+The RTL8188CE-VAU is a PCI Express Mini Card adapter that attaches
+to the USB interface.
 .Pp
-The RT2800U chipset consists of two integrated chips, an RT2870 MAC/BBP and
-an RT2820 (2T3R) or RT2850 (dual-band 2T3R) radio transceiver.
-.Pp
-The RT3000U is a single-chip solution based on an RT3070 MAC/BBP and
-an RT3020 (1T1R), RT3021 (1T2R), RT3022 (2T2R) or RT3052 (dual-band 2T2R)
-radio transceiver.
+The RTL8192CU is a highly integrated multiple-in, multiple-out (MIMO)
+802.11n adapter that combines a MAC, a 2T2R capable baseband and an
+RF in a single chip.
+It operates in the 2GHz spectrum only.
 .Pp
 These are the modes the
 .Nm
@@ -66,10 +68,6 @@ It is strongly recommended that WEP
 not be used as the sole mechanism
 to secure wireless communication,
 due to serious weaknesses in it.
-The
-.Nm
-driver offloads both encryption and decryption of data frames to the
-hardware for the WEP40, WEP104, TKIP(+MIC) and CCMP ciphers.
 .Pp
 The
 .Nm
@@ -78,71 +76,36 @@ driver can be configured at runtime with
 or on boot with
 .Xr hostname.if 5 .
 .Sh FILES
-The driver needs the following firmware files,
-which are loaded when an interface is brought up:
+The driver needs at least version 1.0 of the following firmware files,
+which are loaded when an interface is attached:
 .Pp
 .Bl -tag -width Ds -offset indent -compact
-.It /etc/firmware/run-rt2870
-.It /etc/firmware/run-rt3071
+.It /etc/firmware/urtwn-rtl8192cfwT
+.It /etc/firmware/urtwn-rtl8192cfwU
 .El
+.Pp
+A prepackaged version of the firmware, designed to be used with
+.Xr pkg_add 1 ,
+can be found at:
+.Bd -literal -offset 3n
+http://damien.bergamini.free.fr/packages/openbsd/urtwn-firmware-1.0.tgz
+.Ed
 .Sh HARDWARE
 The following adapters should work:
 .Pp
 .Bl -tag -width Ds -offset indent -compact
-.It Airlink101 AWLL6090
-.It ASUS USB-N11
-.It ASUS USB-N13
-.It ASUS WL-160N
-.It Belkin F5D8051 ver 3000
-.It Belkin F5D8053
-.It Belkin F5D8055
-.It Belkin F6D4050 ver 1
-.It Belkin F6D4050 ver 2
-.It Buffalo WLI-UC-AG300N
-.It Buffalo WLI-UC-G300N
-.It Buffalo WLI-UC-GN
-.It Buffalo WLI-UC-GNM
-.It Corega CG-WLUSB2GNL
-.It Corega CG-WLUSB2GNR
-.It Corega CG-WLUSB300AGN
-.It Corega CG-WLUSB300GNM
-.It D-Link DWA-130 rev B1
-.It D-Link DWA-140
-.It DrayTek Vigor N61
-.It Edimax EW-7711UAn
-.It Edimax EW-7711UTn
-.It Edimax EW-7717Un
-.It Edimax EW-7718Un
-.It Gigabyte GN-WB30N
-.It Gigabyte GN-WB31N
-.It Gigabyte GN-WB32L
-.It Hawking HWDN1
-.It Hawking HWUN1
-.It Hawking HWUN2
-.It Hercules HWNU-300
-.It Linksys WUSB54GC v3
-.It Linksys WUSB600N
-.It Logitec gLAN-W150NU2BK
-.It Mvix Nubbin MS-811N
-.It Planex GW-USMicroN
-.It Planex GW-US300MiniS
-.It Sitecom WL-182
-.It Sitecom WL-188
-.It Sitecom WL-301
-.It Sitecom WL-302
-.It Sitecom WL-315
-.It SMC SMCWUSBS-N2
-.It Sweex LW303
-.It Sweex LW313
-.It Unex DNUR-81
-.It Unex DNUR-82
-.It ZyXEL NWD210N
-.It ZyXEL NWD270N
+.It AirLink101 AWLL5088
+.It Aus. Linx AL-9604R1S
+.It Edimax EW-7811Un
+.It EDUP EP-N8508
+.It Full River FR-W100NUL
+.It Hercules Wireless N USB Pico HWNUp-150
+.It Planex GW-USValue-EZ
 .El
 .Sh EXAMPLES
 The following
 .Xr hostname.if 5
-example configures run0 to join whatever network is available on boot,
+example configures urtwn0 to join whatever network is available on boot,
 using WEP key
 .Dq 0x1deadbeef1 ,
 channel 11, obtaining an IP address using DHCP:
@@ -150,29 +113,26 @@ channel 11, obtaining an IP address using DHCP:
 dhcp NONE NONE NONE nwkey 0x1deadbeef1 chan 11
 .Ed
 .Pp
-Configure run0 to join network
+Configure urtwn0 to join network
 .Dq my_net
 using WPA with passphrase
 .Dq my_passphrase :
 .Bd -literal -offset indent
-# ifconfig run0 nwid my_net wpakey my_passphrase
+# ifconfig urtwn0 nwid my_net wpakey my_passphrase
 .Ed
 .Pp
 Join an existing BSS network,
 .Dq my_net :
 .Bd -literal -offset indent
-# ifconfig run0 192.168.1.1 netmask 0xffffff00 nwid my_net
+# ifconfig urtwn0 192.168.1.1 netmask 0xffffff00 nwid my_net
 .Ed
 .Sh DIAGNOSTICS
 .Bl -diag
-.It "run%d: error %d, could not read firmware %s"
+.It "urtwn%d: error %d, could not read firmware %s"
 For some reason, the driver was unable to read the microcode file from the
 filesystem.
 The file might be missing or corrupted.
-.It "run%d: could not load 8051 microcode"
-An error occurred while attempting to upload the microcode to the onboard 8051
-microcontroller unit.
-.It "run%d: device timeout"
+.It "urtwn%d: device timeout"
 A frame dispatched to the hardware for transmission did not complete in time.
 The driver will reset the hardware.
 This should not happen.
@@ -185,24 +145,22 @@ This should not happen.
 .Xr usb 4 ,
 .Xr hostname.if 5 ,
 .Xr ifconfig 8
-.Pp
-Ralink Technology:
-.Pa http://www.ralinktech.com/
 .Sh HISTORY
 The
 .Nm
 driver first appeared in
-.Ox 4.5 .
+.Ox 4.9 .
 .Sh AUTHORS
 The
 .Nm
 driver was written by
-.An Damien Bergamini Aq damien@openbsd.org .
+.An Damien Bergamini Aq damien@openbsd.org
+.
 .Sh CAVEATS
 The
 .Nm
 driver does not support any of the 802.11n capabilities offered by the
-RT2800 and RT3000 chipsets.
+adapters.
 Additional work is required in
 .Xr ieee80211 9
 before those features can be supported.
