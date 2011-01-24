@@ -1,6 +1,6 @@
-.\"	$OpenBSD: radeonfb.4,v 1.2 2011/01/04 19:25:36 kettenis Exp $
+.\"	$OpenBSD: rdcphy.4,v 1.1 2011/01/15 04:35:34 kevlo Exp $
 .\"
-.\" Copyright (c) 2009 Mark Kettenis.
+.\" Copyright (c) 2011 Kevin Lo <kevlo@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,33 +14,20 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: January 4 2011 $
-.Dt RADEONFB 4 sparc64
+.Dd $Mdocdate: January 15 2011 $
+.Dt RDCPHY 4
 .Os
 .Sh NAME
-.Nm radeonfb
-.Nd accelerated color frame buffer
+.Nm rdcphy
+.Nd RDC Semiconductor R6040 10/100 Ethernet PHY
 .Sh SYNOPSIS
-.Cd "radeonfb* at pci?"
-.Cd "wsdisplay* at radeonfb?"
+.Cd "rdcphy* at mii?"
 .Sh DESCRIPTION
 The
 .Nm
-driver supports Sun PCI frame buffer cards based on the
-ATI
-.Sq Radeon
-chips, such as the
-Sun
-XVR-100
-and
-XVR-300
-boards.
-It does not provide direct device driver entry points
-but makes its functions available via the internal
-.Xr wsdisplay 4
-interface.
+driver supports the RDC Semiconductor R6040 10/100 Ethernet PHY.
 .Sh SEE ALSO
+.Xr ifmedia 4 ,
 .Xr intro 4 ,
-.Xr pci 4 ,
-.Xr wscons 4 ,
-.Xr wsdisplay 4
+.Xr mii 4 ,
+.Xr ifconfig 8
