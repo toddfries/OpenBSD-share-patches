@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.163 2011/03/08 00:13:41 bluhm Exp $
+#	$OpenBSD: Makefile,v 1.165 2011/04/05 21:37:07 deraadt Exp $
 #	$NetBSD: Makefile,v 1.4 1996/01/09 03:23:01 thorpej Exp $
 
 #	Makefile for section 9 (kernel function and variable) manual pages.
@@ -6,7 +6,7 @@
 MAN=	altq.9 aml_evalnode.9 atomic.9 audio.9 autoconf.9 bio_register.9 \
 	boot.9 \
 	buffercache.9 bus_dma.9 bus_space.9 copy.9 crypto.9 delay.9 \
-	disk.9 disklabel.9 dohooks.9 dopowerhooks.9 \
+	disk.9 disklabel.9 dma_alloc.9 dohooks.9 dopowerhooks.9 \
 	domountroothooks.9 doshutdownhooks.9 dostartuphooks.9 \
 	evcount.9 file.9 \
 	fork1.9 extent.9 getdevvp.9 getnewvnode.9 hash.9 hashinit.9 \
@@ -15,7 +15,8 @@ MAN=	altq.9 aml_evalnode.9 atomic.9 audio.9 autoconf.9 bio_register.9 \
 	ieee80211_node.9 ieee80211_output.9 ieee80211_proto.9 \
 	ieee80211_radiotap.9 \
 	iic.9 intro.9 inittodr.9 \
-	kern.9 knote.9 kthread.9 ktrace.9 loadfirmware.9 lock.9 log.9 \
+	kern.9 km_alloc.9 knote.9 kthread.9 ktrace.9 \
+	loadfirmware.9 lock.9 log.9 \
 	malloc.9 mbuf.9 mbuf_tags.9 md5.9 mi_switch.9 microtime.9 \
 	mountroothook_establish.9 mutex.9 namei.9 \
 	panic.9 pci_conf_read.9 pci_intr_map.9 pfind.9 physio.9 pmap.9 \
@@ -184,6 +185,7 @@ MLINKS+=kern.9 imax.9 kern.9 imin.9 kern.9 lmax.9 kern.9 lmin.9 \
 	kern.9 strlen.9 kern.9 strncpy.9 kern.9 strlcpy.9 kern.9 strlcat.9 \
 	kern.9 strcmp.9 kern.9 strncmp.9 kern.9 strncasecmp.9 \
 	kern.9 timingsafe_bcmp.9 kern.9 getsn.9
+MLINKS+=km_alloc.9 km_free.9
 MLINKS+=knote.9 KNOTE.9
 MLINKS+=kthread.9 kthread_create.9 kthread.9 kthread_exit.9 \
 	kthread.9 kthread_create_deferred.9
@@ -243,6 +245,7 @@ MLINKS+=pool.9 pool_init.9 pool.9 pool_destroy.9 \
 	pool.9 pool_get.9 pool.9 pool_put.9 pool.9 pool_prime.9 \
 	pool.9 pool_sethiwat.9 pool.9 pool_setipl.9 pool.9 pool_setlowat.9 \
 	pool.9 pool_sethardlimit.9
+MLINKS+=dma_alloc.9 dma_free.9
 MLINKS+=powerhook_establish.9 powerhook_disestablish.9
 MLINKS+=printf.9 snprintf.9 printf.9 vsnprintf.9 printf.9 vprintf.9 \
 	printf.9 uprintf.9 printf.9 ttyprintf.9 printf.9 db_printf.9
