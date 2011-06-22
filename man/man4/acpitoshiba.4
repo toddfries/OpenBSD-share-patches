@@ -1,6 +1,6 @@
-.\"	$OpenBSD: atphy.4,v 1.4 2011/06/17 10:02:18 kevlo Exp $
+.\"	$OpenBSD: acpitoshiba.4,v 1.2 2011/06/17 11:52:31 jmc Exp $
 .\"
-.\" Copyright (c) 2008 Brad Smith <brad@comstyle.com>
+.\" Copyright (c) 2011 Paul Irofti <pirofti@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,21 +14,36 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
+.\"
 .Dd $Mdocdate: June 17 2011 $
-.Dt ATPHY 4
+.Dt ACPITOSHIBA 4
 .Os
 .Sh NAME
-.Nm atphy
-.Nd Attansic Technology F1/F2 10/100/Gigabit Ethernet PHY
+.Nm acpitoshiba
+.Nd Toshiba ACPI support
 .Sh SYNOPSIS
-.Cd "atphy* at mii?"
+.Cd "acpitoshiba* at acpi?"
 .Sh DESCRIPTION
 The
 .Nm
-driver supports the Attansic Technology F1 10/100/Gigabit Ethernet PHY and
-F2 10/100 Ethernet PHY.
+driver provides ACPI support for Toshiba laptops.
+It supports output switching and brightness adjustment.
+Brightness can be adjusted either using a brightness hotkey or the
+.Xr wsconsctl 8
+variable
+.Va display.brightness ,
+while output switching is achieved only through the hotkey.
 .Sh SEE ALSO
-.Xr ifmedia 4 ,
-.Xr intro 4 ,
-.Xr mii 4 ,
-.Xr ifconfig 8
+.Xr acpi 4 ,
+.Xr intro 4
+.Sh HISTORY
+The
+.Nm
+driver first appeared in
+.Ox 5.0 .
+.Sh AUTHORS
+.An -nosplit
+The
+.Nm
+driver was written by
+.An Hiroyuki Aizu <aizu@navi.org>
