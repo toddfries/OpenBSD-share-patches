@@ -1,4 +1,4 @@
-.\"	$OpenBSD: options.4,v 1.211 2011/04/22 21:49:29 krw Exp $
+.\"	$OpenBSD: options.4,v 1.219 2011/07/05 15:36:13 jmc Exp $
 .\"	$NetBSD: options.4,v 1.21 1997/06/25 03:13:00 thorpej Exp $
 .\"
 .\" Copyright (c) 1998 Theo de Raadt
@@ -34,7 +34,7 @@
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
 .\"
-.Dd $Mdocdate: April 22 2011 $
+.Dd $Mdocdate: July 5 2011 $
 .Dt OPTIONS 4
 .Os
 .Sh NAME
@@ -55,8 +55,7 @@ flags to the C compiler.
 .Sh COMPATIBILITY OPTIONS
 .Bl -ohang
 .It Cd option COMPAT_43
-Use of this option is discouraged.
-It enables compatibility with
+This option enables compatibility with
 .Bx 4.3 .
 It adds an old syscall for
 .Fn lseek
@@ -100,16 +99,6 @@ applications built for the same architecture.
 This option is supported on the i386 architecture.
 See
 .Xr compat_linux 8 .
-.It Cd option COMPAT_SVR4
-On those architectures that support it, this enables binary
-compatibility with
-.At V.4
-binaries built for the same architecture.
-This currently includes the sparc and i386.
-Possibly the most widely known operating system
-based on this binary architecture is Sun's Solaris 2.x.
-See
-.Xr compat_svr4 8 .
 .El
 .Sh DEBUGGING OPTIONS
 .Bl -ohang
@@ -215,7 +204,7 @@ Removes some features and some optimizations from the kernel to reduce the
 size of the resulting kernel binary.
 This option is used on some installation media and should not be used
 for general purpose kernels.
-.It Cd option VFSDEBUG
+.It Cd option VFSLCKDEBUG
 Turns on debugging for the Virtual File System interface.
 See
 .Xr vfs 9
@@ -290,7 +279,6 @@ See
 for details on NFS.
 .It Cd option NTFS
 Includes support for reading NTFS file systems.
-Experimental and read only.
 See
 .Xr mount_ntfs 8
 for details.
@@ -411,18 +399,6 @@ Adds support for the
 boot option (User Kernel Config).
 Allows modification of kernel settings (e.g., device parameters) before
 booting the system.
-.It Cd option CCDNBUF= Ns Ar integer
-The
-.Xr ccd 4
-device driver uses
-.Dq component buffers
-to distribute I/O requests to the components of a concatenated disk.
-It keeps a freelist of buffer
-headers in order to reduce use of the kernel memory allocator.
-.Em CCDNBUF
-is the number of buffer headers allocated on the freelist for
-each component buffer.
-It defaults to 8.
 .It Cd option CRYPTO
 Enables support for the kernel cryptographic framework.
 See
@@ -540,22 +516,6 @@ in
 See
 .Xr altq 9
 for details on ALTQ.
-.It Cd option ALTQ_NOPCC
-Disables use of processor cycle counter (e.g., Pentium TSC on i386 and
-PCC on alpha) to measure time in ALTQ.
-This option should be defined for a non-Pentium i386 CPU which does not
-have TSC, SMP (per-CPU counters are not in sync), or power management
-which affects processor cycle counter.
-.It Cd option ALTQ_RIO
-Enables ALTQ's RIO (RED with In/Out) module.
-The original RIO has 2 sets of RED parameters; one for in-profile
-packets and the other for out-of-profile packets.
-At the ingress of the network, profile meters tag packets as IN or
-OUT based on contracted profiles for customers.
-Inside the network, IN packets receive preferential treatment by
-the RIO dropper.
-ALTQ/RIO has 3 drop precedence levels defined for the Assured Forwarding
-PHB of DiffServ (RFC 2597).
 .It Cd option ENCDEBUG
 This option enables debugging information to be conditionally logged
 in case IPSEC encounters errors.
@@ -672,15 +632,6 @@ routing daemon that supports this option in order to actually use it.
 .El
 .Sh OPERATION RELATED OPTIONS
 .Bl -ohang -compact
-.It Cd option APM_NOPRINT
-This option is supported on the i386 architecture.
-When enabled, kernel messages regarding the status of the automatic power
-management system (APM) are suppressed.
-APM status can still be obtained using
-.Xr apm 8
-and/or
-.Xr apmd 8 .
-.Pp
 .It Cd option BUFPAGES= Ns Ar value
 .It Cd option NBUF= Ns Ar value
 These options set the number of pages available for the buffer cache.

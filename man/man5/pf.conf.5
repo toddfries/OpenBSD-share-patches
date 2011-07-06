@@ -1,4 +1,4 @@
-.\"	$OpenBSD: pf.conf.5,v 1.495 2011/06/23 20:35:22 sthen Exp $
+.\"	$OpenBSD: pf.conf.5,v 1.499 2011/07/04 05:59:38 tedu Exp $
 .\"
 .\" Copyright (c) 2002, Daniel Hartmeier
 .\" All rights reserved.
@@ -27,7 +27,7 @@
 .\" ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: June 23 2011 $
+.Dd $Mdocdate: July 4 2011 $
 .Dt PF.CONF 5
 .Os
 .Sh NAME
@@ -874,10 +874,11 @@ to be modified (source with
 .Ar nat-to ,
 destination with
 .Ar rdr-to ) .
-.It Ar random Op Ar sticky-address
+.It Ar least-states Op Ar sticky-address
 The
-.Ar random
-option selects an address at random within the defined block of addresses.
+.Ar least-states
+option selects the address with the least active states from
+a given address pool.
 .Pp
 .Ar sticky-address
 can be specified to ensure that multiple connections from the
@@ -888,6 +889,12 @@ in order to make the mappings last
 beyond the lifetime of the states,
 increase the global options with
 .Ar set timeout src.track .
+.It Ar random Op Ar sticky-address
+The
+.Ar random
+option selects an address at random within the defined block of addresses.
+.Ar sticky-address
+is as described above.
 .It Ar round-robin Op Ar sticky-address
 The
 .Ar round-robin
@@ -1135,17 +1142,6 @@ instead of being dropped;
 the reassembled packet will have the
 .Ar dont-fragment
 bit cleared.
-.It Ar set require-order
-If set to
-.Ar yes ,
-.Xr pfctl 8
-will enforce that statement types in the ruleset are listed in the
-following order, to match the operation of the underlying packet
-filtering engine:
-.Em options ,
-.Em queueing ,
-.Em filtering .
-This option is disabled by default.
 .It Ar set ruleset-optimization
 .Bl -tag -width xxxxxxxx -compact
 .It Ar basic
@@ -1494,10 +1490,6 @@ ECN implies RED.
 Enables Random Early Detection (RED) on this queue.
 RED drops packets with a probability proportional to the average
 queue length.
-.\" .It Ar rio
-.\" Enables RIO on this queue.
-.\" RIO is RED with IN/OUT, thus running
-.\" RED two times more than RIO would achieve the same effect.
 .El
 .Pp
 The
@@ -1657,6 +1649,13 @@ can be used to add or remove addresses from the table at any time, even
 when running with
 .Xr securelevel 7
 = 2.
+.It Ar cost
+The
+.Ar cost
+flag adds a state counter to every address in the table.
+The flag is necessary if the table is used with the
+.Ar least-states
+option.
 .It Ar counters
 The
 .Ar counters
@@ -2652,7 +2651,6 @@ option         = "set" ( [ "timeout" ( timeout | "{" timeout-list "}" ) ] |
                  [ "block-policy" ( "drop" | "return" ) ] |
                  [ "state-policy" ( "if-bound" | "floating" ) ]
                  [ "state-defaults" state-opts ]
-                 [ "require-order" ( "yes" | "no" ) ]
                  [ "fingerprints" filename ] |
                  [ "skip on" ifspec ] |
                  [ "debug" ( "none" | "urgent" | "misc" | "loud" ) ] |
@@ -2819,9 +2817,9 @@ queue-list     = string [ [ "," ] string ]
 cbq-def        = "cbq" [ "(" cbq-opt [ [ "," ] cbq-opt ] ")" ]
 priq-def       = "priq" [ "(" priq-opt [ [ "," ] priq-opt ] ")" ]
 hfsc-def       = "hfsc" [ "(" hfsc-opt [ [ "," ] hfsc-opt ] ")" ]
-cbq-opt        = ( "default" | "borrow" | "red" | "ecn" | "rio" )
-priq-opt       = ( "default" | "red" | "ecn" | "rio" )
-hfsc-opt       = ( "default" | "red" | "ecn" | "rio" |
+cbq-opt        = ( "default" | "borrow" | "red" | "ecn" )
+priq-opt       = ( "default" | "red" | "ecn" )
+hfsc-opt       = ( "default" | "red" | "ecn" |
                  linkshare-sc | realtime-sc | upperlimit-sc )
 linkshare-sc   = "linkshare" sc-spec
 realtime-sc    = "realtime" sc-spec

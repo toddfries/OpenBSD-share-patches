@@ -1,7 +1,6 @@
-.\"     $OpenBSD: power.4,v 1.5 2011/06/24 19:47:48 naddy Exp $
+.\"	$OpenBSD: nvt.4,v 1.2 2011/07/04 05:38:50 jmc Exp $
 .\"
-.\"
-.\" Copyright (c) 2007 Martin Reindl
+.\" Copyright (c) 2011 Mark Kettenis <kettenis@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -15,36 +14,37 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: June 24 2011 $
-.Dt POWER 4 landisk
+.Dd $Mdocdate: July 4 2011 $
+.Dt NVT 4
 .Os
 .Sh NAME
-.Nm power
-.Nd power switch
+.Nm nvt
+.Nd Nuvoton W83795G/ADG temperature, voltage, and fan sensor
 .Sh SYNOPSIS
-.Cd "power0 at obio?"
+.Cd "nvt* at iic?"
 .Sh DESCRIPTION
-Landisk models provide an interrupt when the power switch is flipped to the
-Off position.
 The
 .Nm
-driver catches that interrupt.
-If the
-.Va hw.allowpowerdown
+driver provides support for the
+.Tn Nuvoton
+W83795G and W83795ADG hardware monitors.
+These devices possess several voltage, temperature and fan speed sensors.
+Sensor values are made available through the
 .Xr sysctl 8
-is set to 1,
-.Nm power
-will signal
-.Xr init 8
-to do a clean shutdown.
+interface.
 .Sh SEE ALSO
+.Xr iic 4 ,
 .Xr intro 4 ,
-.Xr obio 4 ,
-.Xr init 8 ,
-.Xr rc.shutdown 8 ,
+.Xr sensorsd 8 ,
 .Xr sysctl 8
 .Sh HISTORY
-Support for the
+The
 .Nm
 driver first appeared in
-.Ox 4.1 .
+.Ox 5.0 .
+.Sh AUTHORS
+.An -nosplit
+The
+.Nm
+driver was written by
+.An Mark Kettenis Aq kettenis@openbsd.org .

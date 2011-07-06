@@ -1,4 +1,4 @@
-#	$OpenBSD: bsd.man.mk,v 1.34 2011/06/24 14:17:41 naddy Exp $
+#	$OpenBSD: bsd.man.mk,v 1.38 2011/07/06 20:40:32 schwarze Exp $
 #	$NetBSD: bsd.man.mk,v 1.23 1996/02/10 07:49:33 jtc Exp $
 #	@(#)bsd.man.mk	5.2 (Berkeley) 5/11/90
 
@@ -10,45 +10,67 @@
 .MAIN: all
 .endif
 
-.if defined(MANSUBDIR)
-# Add / so that we don't have to specify it. Better arch -> MANSUBDIR mapping
-MANSUBDIR:=${MANSUBDIR:S,^,/,}
+BEFOREMAN?=
+MANLINT=${MAN:S/$/.manlint/}
+CLEANFILES+=.man-linted ${MANLINT}
+
+# Add / so that we don't have to specify it.
+.if defined(MANSUBDIR) && !empty(MANSUBDIR)
+MANSUBDIR:=${MANSUBDIR:S,^,/,:S,$,/,}
 .else
-# XXX MANSUBDIR must be non empty for the mlink loops to work
-MANSUBDIR=''
+MANSUBDIR=/
 .endif
 
-CLEANFILES+= .man-linted
+# Files contained in ${BEFOREMAN} must be built before generating any
+# manual page source code.  However, static manual page files contained
+# in the source tree must not appear as targets, or the ${.IMPSRC} in
+# the .man.manlint suffix rule below will not find them in the .PATH.
+.for page in ${MAN}
+.  if target(${page})
+${page}: ${BEFOREMAN}
+.  endif
+.endfor
 
-.if defined(MAN) && !empty(MAN)
-.man-linted: ${MAN}
-	mandoc -Tlint -Wfatal ${.ALLSRC}
+# In any case, ${BEFOREMAN} must be finished before linting any manuals.
+.if !empty(MANLINT)
+${MANLINT}: ${BEFOREMAN}
+.endif
+
+# Set up the suffix rules for checking manuals.
+_MAN_SUFFIXES=1 2 3 3p 4 5 6 7 8 9
+.for s in ${_MAN_SUFFIXES}
+.SUFFIXES: .${s} .${s}.manlint
+.${s}.${s}.manlint:
+	mandoc -Tlint -Wfatal ${.IMPSRC}
 	@touch ${.TARGET}
+.endfor
 
-all: .man-linted
-.endif
-
+# Install the real manuals.
 .for page in ${MAN}
 .  for sub in ${MANSUBDIR}
-${DESTDIR}${MANDIR}${page:E}${sub}/${page:T}: ${page}
+_MAN_INST=${DESTDIR}${MANDIR}${page:E}${sub}${page:T}
+${_MAN_INST}: ${page}
 	${INSTALL} ${INSTALL_COPY} -o ${MANOWN} -g ${MANGRP} -m ${MANMODE} \
 		${.ALLSRC} ${.TARGET}
 
-maninstall: ${DESTDIR}${MANDIR}${page:E}${sub}/${page:T}
+maninstall: ${_MAN_INST}
+
+.PHONY: ${_MAN_INST}
 .  endfor
 .endfor
 
+# Install the manual hardlinks, if any.
 maninstall:
 .if defined(MLINKS) && !empty(MLINKS)
 .  for sub in ${MANSUBDIR}
 .     for lnk file in ${MLINKS}
-	@l=${DESTDIR}${MANDIR}${lnk:E}${sub}/${lnk}; \
-	t=${DESTDIR}${MANDIR}${file:E}${sub}/${file}; \
+	@l=${DESTDIR}${MANDIR}${lnk:E}${sub}${lnk}; \
+	t=${DESTDIR}${MANDIR}${file:E}${sub}${file}; \
 	echo $$t -\> $$l; \
 	rm -f $$t; ln $$l $$t;
 .     endfor
 .  endfor
 .endif
 
-BEFOREMAN?=
-all: ${BEFOREMAN} ${MAN}
+# Explicitly list ${BEFOREMAN} to get it done even if ${MAN} is empty.
+all: ${BEFOREMAN} ${MAN} ${MANLINT}
