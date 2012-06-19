@@ -1,4 +1,4 @@
-.\" $OpenBSD: bsd.port.mk.5,v 1.335 2012/04/28 10:51:19 ajacoutot Exp $
+.\" $OpenBSD: bsd.port.mk.5,v 1.342 2012/06/18 12:16:19 espie Exp $
 .\"
 .\" Copyright (c) 2000-2008 Marc Espie
 .\"
@@ -24,7 +24,7 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: April 28 2012 $
+.Dd $Mdocdate: June 18 2012 $
 .Dt BSD.PORT.MK 5
 .Os
 .Sh NAME
@@ -180,7 +180,7 @@ Clean ports contents.
 By default, it will clean the work directory.
 It can be invoked as
 make clean='[depends build bulk work fake flavors dist install sub package
-packages plist readme]'.
+packages plist]'.
 .Bl -tag -width packages
 .It Va work
 Clean work directory.
@@ -206,10 +206,6 @@ Uninstall package.
 Remove all copies of package file.
 .It Va plist
 Remove registered packing lists of all subpackages.
-.It Va readmes
-Clean files generated through the
-.Ar readme
-targets (html files).
 .It Va sub
 With
 .Va install
@@ -418,6 +414,12 @@ Debug target: generate the
 makefile fragment and use it
 to fetch files, see
 .Xr mirroring-ports 7 .
+.It Ar no-lib-depends-args
+Degenerate form of
+.Ar lib-depends-args
+that does not do anthing.
+See
+.Ar print-package-args .
 .It Ar no-wantlib-args
 Degenerate form of
 .Ar wantlib-args
@@ -639,12 +641,6 @@ It also handles
 and
 .Ev WANTLIB ,
 so that the packing-list is complete.
-.It Ar readme
-Create an html description of the current subpackage, including comments,
-description, and dependencies.
-.It Ar readmes
-Create an html description of packages, including comments, description,
-and dependencies.
 .It Ar rebuild
 Force rebuild of the port.
 .It Ar regress
@@ -952,6 +948,13 @@ Use in conjunction with
 .Ev INTERACTIVE
 to simplify bulk-package builds.
 .Pq See IGNORE .
+.It Ev BE_ARCHS
+Set to the list of big-endian architectures.
+Read-only.
+Use with
+.Ev NOT_FOR_ARCHS
+and
+.Ev ONLY_FOR_ARCHS .
 .It Ev BUILD_PACKAGES
 The actual list of packages that will be built, once architecture problems
 and pseudo-flavors have been taken into account.
@@ -1142,6 +1145,26 @@ and
 .Ar makesum .
 Defaults to
 .Pa distinfo .
+.It Ev CHECKSUM_PACKAGES
+User settings.
+Choose whether or not to checksum packages while building.
+Deposits result in
+.Pa ${PACKAGE_REPOSITORY}/${MACHINE_ARCH}/cksums/${FULLPKGNAME}.sha256 .
+Can be set to
+.Sq Yes
+to compute a checksum for all packages,
+.Sq cdrom
+to compute it only for
+.Ev PERMIT_PACKAGE_CDROM
+packages
+or to
+.Sq ftp
+to compute it only for
+.Ev PERMIT_PACKAGE_FTP
+packages.
+Defaults to
+.Sq no ,
+which does not compute a checksum at all.
 .It Ev CLEANDEPENDS
 If set to
 .Sq Yes ,
@@ -1595,6 +1618,13 @@ ports, by using
 .Ev FLAVORS
 for multiple choice ports, and by postponing human intervention
 to package installation time.
+.It Ev LE_ARCHS
+Set to the list of little-endian architectures.
+Read-only.
+Use with
+.Ev NOT_FOR_ARCHS
+and
+.Ev ONLY_FOR_ARCHS .
 .It Ev LIB_DEPENDS
 Libraries this port depends upon.
 Each item has the form
@@ -2214,11 +2244,15 @@ Possible properties include
 .Bl -tag -width no_shared
 .It apm
 architecture possesses suspend (apm) support.
+.It be
+architecture is big-endian.
 .It gccN
 gccN architecture.
 .It elf
 .Xr elf 5
 architecture.
+.It le
+architecture is little-endian.
 .It lp64
 lp64 architecture.
 .It no_shared
@@ -2322,11 +2356,6 @@ which default to
 and
 .Sq check
 respectively.
-.It Ev README_NAME
-User settings.
-Path to the template used to generate a readme html file.
-Defaults to
-.Pa ${TEMPLATES}/README.port .
 .It Ev REORDER_DEPENDENCIES
 Points to a list of files that specify inter-dependencies for
 .Xr make 1 .
@@ -2418,6 +2447,18 @@ if port can only be built on architectures with shared libraries.
 .It Ev SKIPDIR
 See
 .Xr ports 7 .
+.It Ev STATIC_PLIST
+Normally set to
+.Sq yes .
+Can be set to no for ports that do not have a static plist.
+Do not change without a very good reason.
+Note that the only good reason to not have a static plist is for ports such
+as
+.Pa databases/ports-readmes
+which actually build a bunch of files depending on the current ports tree.
+This breaks all introspection mechanisms within the ports tree, including
+.Pa databases/pkglocatedb
+which will not include that port.
 .It Ev STARTAFTER
 See
 .Xr ports 7 .
@@ -2950,7 +2991,7 @@ Specification used for populating ${WRKINST} at the start of
 Use
 .Ar pre-fake
 if this is incomplete.
-.It Pa ${PORTSDIR}/packages/${MACHINE_ARCH}/cdrom
+.It Pa ${PORTSDIR}/packages/${MACHINE_ARCH}
 Default setup of ${PACKAGE_REPOSITORY}.
 .It Pa ${PACKAGE_REPOSITORY}/no-arch
 Location of arch-independent packages.
@@ -2958,9 +2999,12 @@ Location of arch-independent packages.
 Location of all built packages.
 .It Pa ${PACKAGE_REPOSITORY}/${MACHINE_ARCH}/cache
 Location of packages retrieved through the network.
+.It Pa ${PACKAGE_REPOSITORY}/${MACHINE_ARCH}/cksums
+Location of checksums, see
+.Ev CHECKSUM_PACKAGES .
 .It Pa ${PACKAGE_REPOSITORY}/${MACHINE_ARCH}/cdrom
 Location of packages suitable for the CD.
-.It Pa ${PORTSDIR}/packages/${MACHINE_ARCH}/ftp
+.It Pa ${PACkAGE_REPOSITORY}/${MACHINE_ARCH}/ftp
 Location of packages suitable for FTP.
 .It Pa ${PORTSDIR}/bulk/${MACHINE_ARCH}
 Default setup of ${BULK_COOKIES_DIR}.
@@ -3148,6 +3192,7 @@ The following variables are subpackage dependent:
 .Ev UNMESSAGE ,
 .Ev DESCR ,
 .Ev PLIST ,
+.Ev STATIC_PLIST ,
 .Ev PKGSPEC .
 .Pp
 The usual non-MULTI_PACKAGES variables are simply used as default values
@@ -3430,6 +3475,14 @@ Renamed into
 .It Ar print-package-depends
 Renamed into
 .Ar print-run-depends
+.It Ar readme , readmes
+replaced by the
+.Pa databases/ports-readmes
+port, using the Template Toolkit
+.Po
+.Pa textproc/p5-Template
+.Pc
+instead of hand-coded substitutions.
 .El
 .Sh OBSOLETE VARIABLES
 .Bl -tag -width MASTER_SITES
@@ -3803,6 +3856,7 @@ or in a subdirectory of
 .Xr pkg_create 1 ,
 .Xr OpenBSD::Intro 3p ,
 .Xr bsd.port.arch.mk 5 ,
+.Xr mk.conf 5 ,
 .Xr port-modules 5 ,
 .Xr library-specs 7 ,
 .Xr mirroring-ports 7 ,

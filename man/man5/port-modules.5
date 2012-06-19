@@ -1,4 +1,4 @@
-.\"	$OpenBSD: port-modules.5,v 1.127 2012/04/19 21:42:14 sthen Exp $
+.\"	$OpenBSD: port-modules.5,v 1.136 2012/06/11 10:09:07 espie Exp $
 .\"
 .\" Copyright (c) 2008 Marc Espie
 .\"
@@ -24,12 +24,12 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: April 19 2012 $
+.Dd $Mdocdate: June 11 2012 $
 .Dt PORT-MODULES 5
 .Os
 .Sh NAME
 .Nm port-modules
-.Nd format and conventions used in port modules
+.Nd documentation and conventions used in port modules
 .Sh DESCRIPTION
 The
 .Ox
@@ -569,6 +569,10 @@ By default, only C language support is included by this module.
 If other languages are needed, they must be listed in
 .Ev MODCLANG_LANGS
 (e.g. c++).
+Sets
+.Ev MODCLANG_VERSION
+which is also appended to
+.Ev SUBST_VARS .
 .It lang/ghc
 Sets
 .Ev ONLY_FOR_ARCHS ,
@@ -625,9 +629,11 @@ and
 .Ev MODGHC_SETUP_CONF_ENV .
 .It lang/lua
 Sets
-.Ev MODLUA_VERSION ,
+.Ev MODLUA_DATADIR ,
+.Ev MODLUA_DOCDIR ,
+.Ev MODLUA_EXAMPLEDIR ,
 .Ev MODLUA_LIBDIR ,
-.Ev MODLUA_DATADIR .
+.Ev MODLUA_VERSION .
 Appends to
 .Ev CATEGORIES .
 Also appends to
@@ -645,6 +651,10 @@ Also affects
 when
 .Ev SHARED_ONLY
 is not set or set to No.
+Appends
+.Ev MODLUA_VERSION
+to
+.Ev SUBST_VARS .
 .It lang/mono
 Sets
 .Ev MODMONO_ONLY_FOR_ARCHS ,
@@ -686,6 +696,59 @@ defines in which files the module will substitute hardcoded
 shared library versions using a
 .Ar post-configure
 target.
+.It lang/node
+Adds common dependencies to
+.Ev RUN_DEPENDS
+and
+.Ev BUILD_DEPENDS .
+Recognizes two additional types of
+.Ev CONFIGURE_STYLE Ns s ,
+"npm" and "npm ext".
+"npm ext" should be used for npm packages that contain C++ extensions which
+need to be compiled.
+"npm" should be used for other npm packages.
+If regression tests are included that can be run using
+.Pa devel/node-expresso ,
+append "expresso" to
+.Ev CONFIGURE_STYLE .
+.Pa devel/node-expresso
+will be appened to
+.Ev REGRESS_DEPENDS
+and a default
+.Ev MODNODE_REGRESS_TARGET
+will be defined, along with a do-regress target if it has not
+already been set.
+If "expresso" isn't appended to
+.Ev CONFIGURE_STYLE ,
+.Ev REGRESS_TARGET
+will be set to "test".
+One of these two
+.Ev CONFIGURE_STYLE Ns s
+should be used or the module doesn't affect anything except
+.Ev RUN_DEPENDS
+and
+.Ev BUILD_DEPENDS .
+Requires
+.Ev NPM_NAME
+to be set to the name of the npm package.
+Uses
+.Ev NPM_NAME
+and
+.Ev NPM_VERSION
+to set
+.Ev DISTNAME ,
+and
+.Ev PKGNAME ,
+and
+.Ev MASTER_SITES .
+If the npm package depends on other npm packages, the npm package names it
+depends on should be listed in
+.Ev MODNODE_DEPENDS .
+Adds default do_build and do_install tasks, and you can reference the default
+implementations via
+.Ev MODNODE_BUILD_TARGET
+and
+.Ev MODNODE_INSTALL_TARGET .
 .It lang/ocaml
 Sets
 .Ev OCAML_VERSION ,
@@ -838,6 +901,59 @@ by appending
 .Ev MODINTLTOOL_OVERRIDE
 to them.
 .It www/drupal6
+This module is legacy.
+drupal6 is still supported, but new work should mostly happen in drupal7 land.
+.It www/drupal7
+Can be used to install plugins (default), themes if
+.Ev MODDRUPAL_THEME
+is yes, or languages packs if
+.Ev DRUPAL_LANG
+is set to the desired language.
+.Pp
+The module will set or add to default values for
+.Ev HOMEPAGE ,
+.Ev MASTER_SITES ,
+.Ev PREFIX ,
+.Ev DIST_SUBDIR ,
+.Ev CATEGORIES ,
+.Ev PKG_ARCH ,
+.Ev WRKDIST ,
+.Ev RUN_DEPENDS .
+Drupal modules normally don't have any build part, just an installation part
+that defaults to copying the plugin/theme/language files into the right
+location through
+.Ev MODDRUPAL_INSTALL .
+.Pp
+The module sets
+.Ev DRUPAL
+to drupal7,
+.Ev DRUPAL_ROOT
+to htdocs/${DRUPAL}
+.Ev DRUPAL_MODS
+to ${DRUPAL_ROOT}/site/all/modules
+.Ev DRUPAL_THEMES
+to ${DRUPAL_ROOT}/site/all/themes
+and
+.Ev DRUPAL_TRANSLATIONS
+to ${DRUPAL_ROOT}/profiles/standard/translations.
+So, by default, modules and themes are installed for all sites,
+and translations are activated at install.
+.Pp
+.Ev DRUPAL_OWNER , DRUPAL_GROUP
+are set to root, daemon, since drupal doesn't need to write
+to any file except the files/ directory and the site settings (those
+belong to www instead).
+.Pp
+Translations are handled by setting
+.Ev DRUPAL_LANG
+to the language letter code, and by setting
+.Ev LANGFILES
+to a list of module names/version pairs.
+.Pp
+With drupal7, all translations have been put in separate .po files.
+It has been deemed simplest to pack all translations for a given language
+into a single package, since translations for non installed modules won't
+affect anything.
 .It www/horde
 .It www/mozilla
 Sets
@@ -894,44 +1010,6 @@ contains the list of dirs where
 .Ev AUTOCONF
 will be run during
 .Ar pre-configure .
-.It www/node
-Adds common dependencies to
-.Ev RUN_DEPENDS
-and
-.Ev BUILD_DEPENDS .
-Recognizes two additional types of
-.Ev CONFIGURE_STYLE Ns s ,
-"npm" and "npm ext".
-"npm ext" should be used for npm packages that contain C++ extensions which
-need to be compiled.
-"npm" should be used for other npm packages.
-One of these these two
-.Ev CONFIGURE_STYLE Ns s
-should be used or the module doesn't affect anything except
-.Ev RUN_DEPENDS
-and
-.Ev BUILD_DEPENDS .
-Requires
-.Ev NPM_NAME
-to be set to the name of the npm package.
-Uses
-.Ev NPM_NAME
-and
-.Ev NPM_VERSION
-to set
-.Ev DISTNAME ,
-and
-.Ev PKGNAME ,
-and
-.Ev MASTER_SITES .
-If the npm package depends on other npm packages, the npm package names it
-depends on should be listed in
-.Ev MODNODE_DEPENDS .
-Adds default do_build and do_install tasks, and you can reference the default
-implementations via
-.Ev MODNODE_BUILD_TARGET
-and
-.Ev MODNODE_INSTALL_TARGET .
 .It www/pear
 Used for PHP PEAR ports.
 Sets default
