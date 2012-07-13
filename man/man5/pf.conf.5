@@ -1,4 +1,4 @@
-.\"	$OpenBSD: pf.conf.5,v 1.518 2012/07/09 20:52:59 jmc Exp $
+.\"	$OpenBSD: pf.conf.5,v 1.520 2012/07/10 17:22:52 jmc Exp $
 .\"
 .\" Copyright (c) 2002, Daniel Hartmeier
 .\" All rights reserved.
@@ -27,7 +27,7 @@
 .\" ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: July 9 2012 $
+.Dd $Mdocdate: July 10 2012 $
 .Dt PF.CONF 5
 .Os
 .Sh NAME
@@ -622,6 +622,33 @@ For example, the following rule will drop 20% of incoming ICMP packets:
 .Pp
 .Dl block in proto icmp probability 20%
 .Pp
+.It Xo Ar queue Aq Ar queue
+.No \*(Ba ( Aq Ar queue ,
+.Aq Ar queue )
+.Xc
+Packets matching this rule will be assigned to the specified queue.
+If two queues are given, packets which have a TOS of
+.Ar lowdelay
+and TCP ACKs with no data payload will be assigned to the second one.
+See
+.Sx QUEUEING
+for setup details.
+.Pp
+For example:
+.Bd -literal -offset indent
+pass in proto tcp to port 25 queue mail
+pass in proto tcp to port 22 queue(ssh_bulk, ssh_prio)
+.Ed
+.Pp
+.It Ar received-on Aq Ar interface
+Only match packets which were received on the specified
+.Ar interface
+(or interface group).
+.Pp
+.It Ar rtable Aq Ar number
+Used to select an alternate routing table for the routing lookup.
+Only effective before the route lookup happened, i.e. when filtering inbound.
+.Pp
 .It Xo Ar set prio Aq Ar priority
 .No \*(Ba ( Aq Ar priority ,
 .Aq Ar priority )
@@ -650,32 +677,24 @@ configuration, unlike the queues described below and in the
 .Sx QUEUEING
 section.
 .Pp
-.It Xo Ar queue Aq Ar queue
-.No \*(Ba ( Aq Ar queue ,
-.Aq Ar queue )
+.It Xo Ar set tos Aq Ar string
+.No \*(Ba Aq Ar number
 .Xc
-Packets matching this rule will be assigned to the specified queue.
-If two queues are given, packets which have a TOS of
-.Ar lowdelay
-and TCP ACKs with no data payload will be assigned to the second one.
-See
-.Sx QUEUEING
-for setup details.
-.Pp
-For example:
-.Bd -literal -offset indent
-pass in proto tcp to port 25 queue mail
-pass in proto tcp to port 22 queue(ssh_bulk, ssh_prio)
-.Ed
-.Pp
-.It Ar received-on Aq Ar interface
-Only match packets which were received on the specified
-.Ar interface
-(or interface group).
-.Pp
-.It Ar rtable Aq Ar number
-Used to select an alternate routing table for the routing lookup.
-Only effective before the route lookup happened, i.e. when filtering inbound.
+Enforces a TOS for matching packets.
+.Ar string
+may be one of
+.Ar critical ,
+.Ar inetcontrol ,
+.Ar lowdelay ,
+.Ar netcontrol ,
+.Ar throughput ,
+.Ar reliability ,
+or one of the DiffServ Code Points:
+.Ar ef ,
+.Ar af11 ... af43 ,
+.Ar cs0 ... cs7 ;
+.Ar number
+may be either a hex or decimal number.
 .Pp
 .It Ar tag Aq Ar string
 Packets matching this rule will be tagged with the
@@ -2359,24 +2378,6 @@ artificially extends the security of TCP sequence numbers by 10 to 18
 bits when the host uses appropriately randomized timestamps, since a
 blind attacker would have to guess the timestamp as well.
 .El
-.It Xo Ar set tos Aq Ar string
-.No \*(Ba Aq Ar number
-.Xc
-Enforces a TOS for matching packets.
-.Ar string
-may be one of
-.Ar critical ,
-.Ar inetcontrol ,
-.Ar lowdelay ,
-.Ar netcontrol ,
-.Ar throughput ,
-.Ar reliability ,
-or one of the DiffServ Code Points:
-.Ar ef ,
-.Ar af11 ... af43 ,
-.Ar cs0 ... cs7 ;
-.Ar number
-may be either a hex or decimal number.
 .El
 .Pp
 For example:
@@ -2802,12 +2803,12 @@ filteropt      = user | group | flags | icmp-type | icmp6-type |
 		 [ portspec ] [ pooltype ] |
 		 "nat-to" ( redirhost | "{" redirhost-list "}" )
 		 [ portspec ] [ pooltype ] [ "static-port" ] |
-		 [ route ] |
+		 [ route ] | [ "set tos" tos ] |
 		 [ "received-on" ( interface-name | interface-group ) ]
 
 scrubopts      = scrubopt [ [ "," ] scrubopts ]
 scrubopt       = "no-df" | "min-ttl" number | "max-mss" number |
-                 "set tos" tos | "reassemble tcp" | "random-id"
+                 "reassemble tcp" | "random-id"
 
 antispoof-rule = "antispoof" [ "log" ] [ "quick" ]
                  "for" ifspec [ af ] [ "label" string ]
