@@ -1,6 +1,6 @@
-.\"	$OpenBSD: sii.4,v 1.3 2012/08/14 01:08:19 dlg Exp $
+.\"	$OpenBSD: mfii.4,v 1.1 2012/08/14 00:46:28 dlg Exp $
 .\"
-.\" Copyright (c) 2008 Miodrag Vallat.
+.\" Copyright (c) 2012 David Gwynne <dlg@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -15,27 +15,43 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: August 14 2012 $
-.Dt SII 4 vax
+.Dt MFII 4
 .Os
 .Sh NAME
-.Nm sii
-.Nd SII DSSI and SCSI controller
+.Nm mfii
+.Nd LSI Logic MegaRAID SAS Fusion RAID controller
 .Sh SYNOPSIS
-.Cd "sii* at fwio?"
+.Cd "mfii* at pci?"
 .Sh DESCRIPTION
 The
 .Nm
-driver supports the SII controller, found on the I/O module on
-VAXstation 35x0 and 38x0 series.
-The SII controller can act as a DSSI or a SCSI controller, but not both.
-Only SCSI operation is supported under
-.Ox .
+driver provides support for the MegaRAID SAS Fusion family of RAID controllers,
+including:
+.Pp
+.Bl -dash -offset indent -compact
+.It
+Dell PERC H710P Mini
+.El
+.Pp
+These controllers support RAID 0, RAID 1, RAID 5, RAID 6, RAID 10, RAID 50 and
+RAID 60 using either SAS or SATA II drives.
+.Pp
+Although the controllers are actual RAID controllers,
+the driver makes them look just like SCSI controllers.
+All RAID configuration is done through the controllers' BIOSes.
 .Sh SEE ALSO
-.Xr cd 4 ,
-.Xr ch 4 ,
-.Xr fwio 4 ,
 .Xr intro 4 ,
+.Xr pci 4 ,
 .Xr scsi 4 ,
-.Xr sd 4 ,
-.Xr st 4 ,
-.Xr uk 4
+.Xr sd 4
+.Sh HISTORY
+The
+.Nm
+driver first appeared in
+.Ox 5.3 .
+.Sh AUTHORS
+.An -nosplit
+The
+.Nm
+driver was written by
+.An David Gwynne Aq dlg@openbsd.org .
