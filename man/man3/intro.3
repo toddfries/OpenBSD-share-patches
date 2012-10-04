@@ -1,4 +1,4 @@
-.\"	$OpenBSD: intro.3,v 1.51 2012/09/01 16:40:53 pascal Exp $
+.\"	$OpenBSD: intro.3,v 1.53 2012/09/25 19:54:02 brad Exp $
 .\"	$NetBSD: intro.3,v 1.5 1995/05/10 22:46:24 jtc Exp $
 .\"
 .\" Copyright (c) 1980, 1991, 1993
@@ -30,7 +30,7 @@
 .\"
 .\"     @(#)intro.3	8.1 (Berkeley) 6/5/93
 .\"
-.Dd $Mdocdate: September 1 2012 $
+.Dd $Mdocdate: September 25 2012 $
 .Dt INTRO 3
 .Os
 .Sh NAME
@@ -331,16 +331,11 @@ See
 Support routines for
 .Xr perl 1 .
 .Pp
-.It libpthread Pq Fl pthread
+.It libpthread Pq Fl lpthread
 .St -p1003.1-2001
-threads API and thread scheduler.
-Threaded applications should use
-.Fl pthread
-not
-.Fl lpthread .
+threads API.
 See
 .Xr pthreads 3 .
-Note: users do not normally have to explicitly link with this library.
 .Pp
 .It libreadline Pq Fl lreadline
 Command line editing interface.
@@ -417,6 +412,7 @@ These are currently
 .Xr opendisk 3 ,
 .Xr openpty 3 ,
 .Xr pidfile 3 ,
+.Xr pkcs5_pbkdf2 3 ,
 .Xr pw_init 3 ,
 .Xr pw_lock 3 ,
 .Xr readlabelfs 3
