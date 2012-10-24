@@ -1,6 +1,6 @@
-.\"     $OpenBSD: cbus.4,v 1.6 2012/10/17 14:26:33 jmc Exp $
+.\"     $OpenBSD: vldc.4,v 1.1 2012/10/17 12:10:07 kettenis Exp $
 .\"
-.\" Copyright (c) 2009 Mark Kettenis <kettenis@openbsd.org>
+.\" Copyright (c) 2012 Mark Kettenis <kettenis@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -15,44 +15,29 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: October 17 2012 $
-.Dt CBUS 4 sparc64
+.Dt VLDC 4 sparc64
 .Os
 .Sh NAME
-.Nm cbus
-.Nd channel device bus
+.Nm vldc
+.Nd virtual channel driver
 .Sh SYNOPSIS
-.Cd "cbus* at vbus?"
+.Cd "vldc* at cbus?"
+.Cd "vldcp* at vldc?"
 .Sh DESCRIPTION
 The
 .Nm
-driver provides a virtual bus for channel devices provided by the
-UltraSPARC Hypervisor as found on sun4v logical domains.
-.Pp
-.Ox
-provides support for the following devices:
-.Pp
-.Bl -tag -width "vdisk(4)XX" -offset 3n -compact
-.It Xr vcc 4
-virtual console concentrator
-.It Xr vds 4
-virtual disk server
-.It Xr vdsk 4
-virtual disk
-.It Xr vldc 4
-virtual channel driver
-.It Xr vnet 4
-virtual network interface
-.It Xr vsw 4
-virtual network switch
-.El
+driver provides access to services provided over virtual channels provided by
+the UltraSPARC Hypervisor as found on sun4v systems.
+Examples of such services are the Hypervisor Control Interface and the
+Variable Configuration domain service.
 .Sh SEE ALSO
-.Xr intro 4 ,
-.Xr vbus 4
+.Xr cbus 4 ,
+.Xr intro 4
 .Sh HISTORY
 The
 .Nm
 driver first appeared in
-.Ox 4.5 .
+.Ox 5.3 .
 .Sh AUTHORS
 The
 .Nm
