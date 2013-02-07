@@ -1,6 +1,6 @@
-.\"     $OpenBSD: virtio.4,v 1.6 2013/01/16 00:30:48 brad Exp $
+.\"	$OpenBSD: glxclk.4,v 1.4 2013/02/05 10:06:08 dlg Exp $
 .\"
-.\" Copyright (c) 2012 Stefan Fritsch <sf@sfritsch.de>
+.\" Copyright (c) 2013 Paul Irofti.
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,35 +14,35 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: January 16 2013 $
-.Dt VIRTIO 4
+.Dd $Mdocdate: February 5 2013 $
+.Dt GLXCLK 4 loongson
 .Os
 .Sh NAME
-.Nm virtio
-.Nd VirtIO support driver
+.Nm glxclk
+.Nd AMD Geode CS5536 multi-function general purpose timer
 .Sh SYNOPSIS
-.Cd "virtio* at pci?"
+.Cd "glxclk* at glxpcib?"
 .Sh DESCRIPTION
 The
 .Nm
-driver provides support service for paravirtualized devices using the VirtIO
-protocol.
-Such devices are provided by bhyve, KVM, QEMU, and VirtualBox.
+driver enables two of the multi-function general purpose timers found on the
+Geode companion chip to be used as the system clock and the statistics clock.
 .Pp
-Currently there are drivers for the following
-.Nm
-devices:
-.Pp
-.Bl -tag -width "vioblk(4)XXX" -offset indent -compact
-.It Xr vio 4
-VirtIO network device
-.It Xr vioblk 4
-VirtIO disk
-.It Xr viomb 4
-VirtIO memory ballooning driver
-.El
+The statistics clock is implemented with interval variance support based on
+Chris Torek's paper on randomized sampling.
 .Sh SEE ALSO
+.Xr glxpcib 4 ,
 .Xr intro 4
+.Rs
+.%A Steven McCanne
+.%A Chris Torek
+.%T "A Randomized Sampling Clock for CPU Utilization Estimation and Code Profiling"
+.%B "In Proc. Winter 1993 USENIX Conference"
+.%D 1993
+.%P 387-394
+.%I USENIX Association
+.%U ftp://ftp.ee.lbl.gov/papers/statclk-usenix93.ps.Z
+.Re
 .Sh HISTORY
 The
 .Nm
@@ -52,11 +52,5 @@ driver first appeared in
 .An -nosplit
 The
 .Nm
-driver was ported to
-.Ox
-and improved by
-.An Stefan Fritsch Aq sf@sfritsch.de .
-It is based on the
-.Nx
-driver by
-.An Minoura Makoto .
+driver was written by
+.An Paul Irofti Aq pirofti@openbsd.org .

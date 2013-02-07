@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.541 2012/11/29 23:40:03 stsp Exp $
+#	$OpenBSD: Makefile,v 1.543 2013/01/29 15:42:20 yasuoka Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
@@ -44,7 +44,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	owtemp.4 pcagpio.4 pcaled.4 pcdisplay.4 pchb.4 pci.4 pcib.4 pcfadc.4 \
 	pcfiic.4 pciide.4 pckbc.4 pckbd.4 pcmcia.4 pcn.4 pcppi.4 pcscp.4 \
 	pf.4 pflog.4 pflow.4 pfsync.4 pgt.4 piixpm.4 pim.4 pipex.4 \
-	pms.4 ppb.4 ppp.4 pppoe.4 pty.4 puc.4 pwdog.4 qsphy.4 radio.4 \
+	pms.4 ppb.4 ppp.4 pppoe.4 pppx.4 pty.4 puc.4 pwdog.4 qsphy.4 radio.4 \
 	ral.4 random.4 ray.4 rd.4 rdac.4 re.4 rdcphy.4 rgephy.4 ricohrtc.4 \
 	rl.4 rlphy.4 route.4 rsu.4 rt.4 rtsx.4 rum.4 run.4 \
 	rtfps.4 rtii.4 rtw.4 safe.4 safte.4 san.4 sbt.4 sbus.4 schsio.4 \
@@ -66,7 +66,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	uthum.4 uticom.4 utwitch.4 utrh.4 uts.4 uvideo.4 uvisor.4 uvscom.4 \
 	uyap.4 \
 	vether.4 vga.4 vgafb.4 vge.4 \
-	viapm.4 viasio.4 vic.4 video.4 vio.4 vioblk.4 virtio.4 vlan.4 \
+	viapm.4 viasio.4 vic.4 video.4 vio.4 vioblk.4 viomb.4 virtio.4 vlan.4 \
 	vmt.4 vnd.4 vr.4 \
 	vscsi.4 vte.4 \
 	watchdog.4 wb.4 wbenv.4 wbng.4 wbsd.4 wbsio.4 wd.4 wdc.4 we.4 \
