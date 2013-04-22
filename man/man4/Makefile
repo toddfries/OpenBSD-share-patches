@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.543 2013/01/29 15:42:20 yasuoka Exp $
+#	$OpenBSD: Makefile,v 1.545 2013/03/15 09:10:52 ratchov Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
@@ -22,7 +22,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	eap.4 ec.4 eephy.4 ef.4 eg.4 ehci.4 eisa.4 el.4 em.4 emc.4 gcu.4 \
 	emu.4 enc.4 endrun.4 envy.4 ep.4 epic.4 esa.4 \
 	eso.4 ess.4 et.4 etphy.4 ex.4 exphy.4 \
-	faith.4 fd.4 fdc.4 fins.4 fintek.4 fms.4 fpa.4 fxp.4 gdt.4 \
+	fd.4 fdc.4 fins.4 fintek.4 fms.4 fpa.4 fxp.4 gdt.4 \
 	gentbi.4 gem.4 gif.4 \
 	glenv.4 gpio.4 gpiodcf.4 gpioiic.4 gpioow.4 gpr.4 gre.4 gscsio.4 gtp.4 \
 	hds.4 hifn.4 hil.4 hilid.4 hilkbd.4 hilms.4 hme.4 hotplug.4 hsq.4 \
@@ -50,7 +50,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	rtfps.4 rtii.4 rtw.4 safe.4 safte.4 san.4 sbt.4 sbus.4 schsio.4 \
 	scsi.4 sd.4 \
 	sdmmc.4 sdhc.4 se.4 ses.4 \
-	sequencer.4 sf.4 sf2r.4 sfr.4 sili.4 siop.4 sis.4 sk.4 sl.4 sli.4 \
+	sf.4 sf2r.4 sfr.4 sili.4 siop.4 sis.4 sk.4 sl.4 sli.4 \
 	sm.4 smsc.4 softraid.4 spdmem.4 sdtemp.4 speaker.4 sppp.4 sqphy.4 \
 	st.4 ste.4 stge.4 sti.4 \
 	stp.4 sv.4 sym.4 systrace.4 tcic.4 tcp.4 termios.4 tht.4 ti.4 tl.4 \
@@ -88,7 +88,6 @@ MLINKS+=pty.4 ptm.4
 MLINKS+=random.4 arandom.4
 MLINKS+=random.4 srandom.4 random.4 urandom.4
 MLINKS+=scsi.4 scsibus.4
-MLINKS+=sequencer.4 music.4
 MLINKS+=sk.4 skc.4 msk.4 mskc.4
 MLINKS+=speaker.4 spkr.4
 MLINKS+=tht.4 thtc.4
