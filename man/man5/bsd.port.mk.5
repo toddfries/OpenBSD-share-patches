@@ -1,4 +1,4 @@
-.\" $OpenBSD: bsd.port.mk.5,v 1.376 2013/05/09 15:05:52 rpe Exp $
+.\" $OpenBSD: bsd.port.mk.5,v 1.382 2013/07/16 18:38:51 schwarze Exp $
 .\"
 .\" Copyright (c) 2000-2008 Marc Espie
 .\"
@@ -24,7 +24,7 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: May 9 2013 $
+.Dd $Mdocdate: July 16 2013 $
 .Dt BSD.PORT.MK 5
 .Os
 .Sh NAME
@@ -333,6 +333,13 @@ which will also retrieve
 to fill with supplementary distribution files which are not needed for
 every configuration.
 .Pp
+Note that fetching a significant number of distfiles, or fetching all distfiles
+relevant to a port and dependencies is better accomplished using
+.Xr dpb 1
+with the
+.Fl F
+option.
+.Pp
 Use of
 .Ar {pre,do,post}-fetch
 hooks is forbidden, as this would make mirroring of distfiles very complicated.
@@ -363,7 +370,8 @@ Top-level target, see
 .Xr ports 7 .
 .It Ar install
 Install the package after building.
-See the description of THE FAKE FRAMEWORK
+See the description of
+.Qq THE FAKE FRAMEWORK
 for the non-intuitive details of the way
 .Ar {pre,do,post}-install
 hooks are actually used by the ports tree.
@@ -949,7 +957,7 @@ Read-only.
 User settings.
 Base location for system-wide state directory.
 Defaults to
-.Pa /var .
+.Pa ${VARBASE} .
 See
 .Ev LOCALSTATEDIR .
 .It Ev BASESYSCONFDIR
@@ -1507,7 +1515,7 @@ cd ${WRKDIR}
 for archive in ${EXTRACT_ONLY}
 do
     case $$archive in
-    	*.tar.xz)
+	*.tar.xz)
 	  xzcat ${FULLDISTDIR}/$$archive| tar xf -;;
 	*.zip)
 	  unzip -q ${FULLDISTDIR}/$$archive -d ${WRKDIR};;
@@ -1541,6 +1549,14 @@ fake invocation.
 Empty by default.
 Also see
 .Ev ALL_FAKE_FLAGS .
+.It Ev FAKE_SETUP
+List of environment values normally set during fake invocations.
+Exposed so that modules may provide their own
+.Ar do-install .
+Read-only,
+see
+.Qq THE FAKE FRAMEWORK
+for details.
 .It Ev FAKE_TARGET
 Target built by ${MAKE_PROGRAM} on fake invocation.
 Defaults to ${INSTALL_TARGET}.
@@ -1785,7 +1801,8 @@ Use with
 .Ev NOT_FOR_ARCHS .
 .It Ev MAINTAINER
 E-mail address with full name of the port's maintainer.
-Defaults to ports@openbsd.org.
+Defaults to
+.Mt ports@openbsd.org .
 .It Ev MAKE_ENV
 Environment variables passed to make invocations.
 Sets at least PATH, PREFIX, LOCALBASE, X11BASE, CFLAGS, TRUEPREFIX, DESTDIR,
@@ -2219,6 +2236,12 @@ lines obtained from
 the ports tree with
 .Cm @wantlib
 lines that come from the installed system.
+Set to
+.Sq Warn
+to have the differences printed as a warning instead of an error
+.Po
+the default
+.Pc .
 .It Ev PKG_DBDIR
 User settings.
 Path to package installation records.
@@ -2336,8 +2359,10 @@ The first cipher that matches in ${CHECKSUM_FILE} is verified.
 .It Ev PREFIX
 Base directory for the current port installation.
 Usually ${LOCALBASE}, though some ports may elect a location under
-.Pa /var ,
+.Pa ${VARBASE} ,
 and some multi-package ports may install under several locations.
+Additionally, firmware files generally install under
+.Pa ${BASESYSCONFDIR} .
 .It Ev PREPARE_CHECK_ONLY
 Build settings.
 Prevent the
@@ -2871,6 +2896,12 @@ automatically based on
 .Ev WANTLIB
 values, there are a few ports (about 20) that require X11 components without
 any library telltale.
+.It Ev VARBASE
+User settings.
+Base location for ports that install stuff outside of
+.Pa ${LOCALBASE} .
+Defaults to
+.Pa /var .
 .It Ev VMEM_WARNING
 Set to
 .Sq Yes
@@ -3037,15 +3068,6 @@ resulting in a double inclusion.
 This would lead to weird results, such as
 .Ev PKG_ARGS
 being defined twice.
-.It "Fatal: <PORTSDIR> is a symlink. Please set to the real directory"
-A few ports get lost if
-.Pa /usr/ports
-points elsewhere.
-You should set
-.Ev PORTSDIR
-in
-.Pa /etc/mk.conf
-to the real location of the ports directory.
 .It "Fatal: SUBPACKAGES should always begin with -: <offending list>"
 That is the only way to differentiate between
 .Ev FLAVOR
@@ -3054,6 +3076,14 @@ and
 in
 .Xr pkgpath 7
 specifications.
+.It "Fatal: building ports requires correctly installed X11"
+All file sets of the base OS, including xenocara, must be installed
+before building ports.
+.It "Fatal: /usr/local/lib/X11/app-defaults should exist and be a symlink"
+/usr/local/lib/X11/app-defaults is distributed as a symlink in the
+xshare*.tgz file set.
+If xenocara was not fully installed before packages were added, it may
+have been created as a directory instead.
 .It "Fatal: the licencing info for <pkgname> is incomplete..."
 Every port must have explicit defines of all
 .Ev PERMIT_*
@@ -3255,8 +3285,14 @@ it would be installed if the port's dependencies were present).
 If
 .Ar {pre,do,post}-install
 overrides are present, they are used with some
-important changes: PREFIX is set to ${WRKINST}${PREFIX}, ${DESTDIRNAME}
-is set to ${WRKINST}, and TRUEPREFIX is set to ${PREFIX}.
+important changes, listed in
+.Ev FAKE_SETUP :
+.Bd -literal -offset indent
+TRUEPREFIX=${PREFIX}
+PREFIX=${WRKINST}${PREFIX}
+${DESTDIRNAME}=${WRKINST}
+.Ed
+.Pp
 Essentially, old install targets work transparently, except for a need to
 change PREFIX to TRUEPREFIX for symbolic links and similar path lookups.
 Specific traditional post install work can be simply removed, as it will
@@ -3267,9 +3303,7 @@ If no
 .Ar do-install
 override is present, the port is installed using
 .Bd -literal -offset 2n
-env -i ${MAKE_ENV}
-PREFIX=${WRKINST}${PREFIX} ${DESTDIRNAME}=${WRKINST} TRUEPREFIX=${PREFIX}
-${MAKE_PROGRAM} ${ALL_FAKE_FLAGS} -f ${MAKE_FILE} ${FAKE_TARGET}
+env -i ${MAKE_ENV} ${FAKE_SETUP} ${MAKE_PROGRAM} ${ALL_FAKE_FLAGS} -f ${MAKE_FILE} ${FAKE_TARGET}
 .Ed
 .Pp
 Note that this does set both PREFIX and ${DESTDIRNAME}.

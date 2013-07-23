@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.178 2013/05/17 14:54:04 mpi Exp $
+#	$OpenBSD: Makefile,v 1.182 2013/07/11 01:24:12 jsg Exp $
 #	$NetBSD: Makefile,v 1.4 1996/01/09 03:23:01 thorpej Exp $
 
 #	Makefile for section 9 (kernel function and variable) manual pages.
@@ -8,8 +8,8 @@ MAN=	altq.9 aml_evalnode.9 atomic.9 audio.9 autoconf.9 bio_register.9 \
 	buffercache.9 bus_dma.9 bus_space.9 copy.9 crypto.9 delay.9 \
 	disk.9 disklabel.9 dma_alloc.9 dohooks.9 dopowerhooks.9 \
 	domountroothooks.9 doshutdownhooks.9 dostartuphooks.9 \
-	evcount.9 file.9 \
-	fork1.9 extent.9 getdevvp.9 getnewvnode.9 hash.9 hashinit.9 \
+	evcount.9 file.9 fork1.9 \
+	fusebuf.9 extent.9 getdevvp.9 getnewvnode.9 hash.9 hashinit.9 \
 	hardclock.9 hook_establish.9 hz.9 hzto.9 idgen32.9 \
 	ieee80211.9 ieee80211_crypto.9 ieee80211_input.9 ieee80211_ioctl.9 \
 	ieee80211_node.9 ieee80211_output.9 ieee80211_proto.9 \
@@ -189,7 +189,7 @@ MLINKS+=kern.9 imax.9 kern.9 imin.9 kern.9 lmax.9 kern.9 lmin.9 \
 	kern.9 max.9 kern.9 min.9 kern.9 ulmax.9 kern.9 ulmin.9 kern.9 abs.9 \
 	kern.9 assert.9 kern.9 KASSERT.9 kern.9 KDASSERT.9 \
 	kern.9 skpc.9 kern.9 scanc.9 kern.9 bcmp.9 \
-	kern.9 memchr.9 kern.9 memcmp.9 kern.9 ffs.9 \
+	kern.9 memchr.9 kern.9 memcmp.9 kern.9 ffs.9 kern.9 fls.9 kern.9 flsl.9 \
 	kern.9 strlen.9 kern.9 strncpy.9 kern.9 strlcpy.9 kern.9 strlcat.9 \
 	kern.9 strcmp.9 kern.9 strncmp.9 kern.9 strncasecmp.9 \
 	kern.9 strnlen.9 \
@@ -213,8 +213,8 @@ MLINKS+=mbuf.9 m_copym2.9 mbuf.9 m_copym.9 mbuf.9 m_free.9 mbuf.9 MFREE.9 \
 	mbuf.9 m_pulldown.9 mbuf.9 m_pullup.9 \
 	mbuf.9 m_split.9 \
 	mbuf.9 m_inject.9 mbuf.9 m_getptr.9 mbuf.9 m_adj.9 mbuf.9 m_copyback.9 \
-	mbuf.9 m_freem.9 mbuf.9 m_reclaim.9 mbuf.9 m_copydata.9 \
-	mbuf.9 m_cat.9 mbuf.9 m_devget.9 mbuf.9 m_apply.9 \
+	mbuf.9 m_defrag.9 mbuf.9 m_freem.9 mbuf.9 m_reclaim.9 \
+	mbuf.9 m_copydata.9 mbuf.9 m_cat.9 mbuf.9 m_devget.9 mbuf.9 m_apply.9 \
 	mbuf.9 MCLGET.9 mbuf.9 MCLGETI.9  \
 	mbuf.9 MEXTADD.9 mbuf.9 M_ALIGN.9 mbuf.9 MH_ALIGN.9 \
 	mbuf.9 M_READONLY.9 mbuf.9 M_LEADINGSPACE.9 \
@@ -235,7 +235,8 @@ MLINKS+=mountroothook_establish.9 mountroothook_disestablish.9
 MLINKS+=mutex.9 mtx_init.9 mutex.9 mtx_enter.9 mutex.9 mtx_leave.9 \
 	mutex.9 MUTEX_ASSERT_LOCKED.9 mutex.9 MUTEX_ASSERT_UNLOCKED.9
 MLINKS+=mutex.9 mtx_enter_try.9
-MLINKS+=namei.9 lookup.9 namei.9 relookup.9 namei.9 NDINIT.9
+MLINKS+=namei.9 vfs_lookup.9 namei.9 vfs_relookup.9 namei.9 NDINIT.9
+MLINKS+=namei.9 NDINITAT.9
 MLINKS+=pci_conf_read.9 pci_conf_write.9 pci_conf_read.9 pci_make_tag.9 \
 	pci_conf_read.9 pci_decompose_tag.9
 MLINKS+=pci_intr_map.9 pci_intr_map_msi.9 pci_intr_map.9 pci_intr_string.9 \

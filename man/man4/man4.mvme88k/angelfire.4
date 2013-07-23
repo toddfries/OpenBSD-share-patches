@@ -1,4 +1,4 @@
-.\"	$OpenBSD: angelfire.4,v 1.2 2013/05/18 11:26:01 miod Exp $
+.\"	$OpenBSD: angelfire.4,v 1.4 2013/05/24 07:02:53 jmc Exp $
 .\"
 .\" Copyright (c) 2013 Miodrag Vallat.
 .\"
@@ -14,7 +14,7 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 18 2013 $
+.Dd $Mdocdate: May 24 2013 $
 .Dt ANGELFIRE 4 mvme88k
 .Os
 .Sh NAME
@@ -23,6 +23,7 @@
 .Sh SYNOPSIS
 .Cd "angelfire0 at mainbus0 addr 0xff800000"
 .Cd "dart0      at angelfire0 offset 0x640000 ipl 5"
+.Cd "dsrtc0     at angelfire0 offset 0x10000"
 .Cd "vme0       at angelfire0 offset 0x680000"
 .Sh DESCRIPTION
 The
@@ -37,9 +38,10 @@ are:
 .Bl -tag -compact -width 8n -offset indent
 .It Xr dart 4
 MC68681 or MC68692 dual UART
+.It Xr dsrtc 4
+DS1216 SmartWatch ROM
 .It Xr vme 4
 VMEbus interface
 .El
 .Sh SEE ALSO
-.Xr intro 4 ,
-.Xr vme 4
+.Xr intro 4

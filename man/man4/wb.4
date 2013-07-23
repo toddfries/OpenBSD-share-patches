@@ -1,4 +1,4 @@
-.\"	$OpenBSD: wb.4,v 1.18 2008/05/08 03:30:17 brad Exp $
+.\"	$OpenBSD: wb.4,v 1.21 2013/07/16 16:05:49 schwarze Exp $
 .\"
 .\" Copyright (c) 1997, 1998
 .\"	Bill Paul <wpaul@ctr.columbia.edu>. All rights reserved.
@@ -32,7 +32,7 @@
 .\"
 .\"	$FreeBSD: wb.4,v 1.2 1998/12/05 09:31:25 rnordier Exp $
 .\"
-.Dd $Mdocdate: May 8 2008 $
+.Dd $Mdocdate: July 16 2013 $
 .Dt WB 4
 .Os
 .Sh NAME
@@ -108,38 +108,18 @@ For more information on configuring this device, see
 .Xr ifconfig 8 .
 .Sh DIAGNOSTICS
 .Bl -diag
-.It "wb%d: couldn't map memory"
+.It "wb0: couldn't map memory"
 A fatal initialization error has occurred.
-.It "wb%d: couldn't map interrupt"
+.It "wb0: couldn't map interrupt"
 A fatal initialization error has occurred.
-.It "wb%d: watchdog timeout"
+.It "wb0: watchdog timeout"
 The device has stopped responding to the network, or there is a problem with
 the network connection (cable).
-.It "wb%d: no memory for rx list"
+.It "wb0: no memory for rx list"
 The driver failed to allocate an mbuf for the receiver ring.
-.It "wb%d: no memory for tx list"
+.It "wb0: no memory for tx list"
 The driver failed to allocate an mbuf for the transmitter ring when
 allocating a pad buffer or collapsing an mbuf chain into a cluster.
-.It "wb%d: chip is in D3 power state -- setting to D0"
-This message applies only to adapters which support power management.
-Some operating systems place the controller in low power
-mode when shutting down, and some PCI BIOSes fail to bring the chip
-out of this state before configuring it.
-The controller loses all of its PCI configuration in the D3 state, so if the
-BIOS does not set it back to full power mode in time, it won't be able
-to configure it correctly.
-The driver tries to detect this condition and bring
-the adapter back to the D0 (full power) state, but this may not be
-enough to return the driver to a fully operational condition.
-If this message appears at boot time and the driver fails to attach
-the device as a network interface, a second warm boot will have to be
-performed to have the device properly configured.
-.Pp
-Note that this condition only occurs when warm booting from another
-operating system.
-If the system is powered down prior to booting
-.Ox ,
-the card should be configured correctly.
 .El
 .Sh SEE ALSO
 .Xr amphy 4 ,
@@ -162,7 +142,7 @@ support first appeared in
 The
 .Nm
 driver was written by
-.An Bill Paul Aq wpaul@ctr.columbia.edu .
+.An Bill Paul Aq Mt wpaul@ctr.columbia.edu .
 .Sh BUGS
 The Winbond chip seems to behave strangely in some cases when the
 link partner switches modes.

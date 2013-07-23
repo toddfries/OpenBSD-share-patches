@@ -1,4 +1,4 @@
-.\"	$OpenBSD: mbuf_tags.9,v 1.28 2013/05/17 22:42:20 jmc Exp $
+.\"	$OpenBSD: mbuf_tags.9,v 1.31 2013/07/17 20:21:54 schwarze Exp $
 .\"
 .\" The author of this man page is Angelos D. Keromytis (angelos@cis.upenn.edu)
 .\"
@@ -15,14 +15,14 @@
 .\" MERCHANTABILITY OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR
 .\" PURPOSE.
 .\"
-.Dd $Mdocdate: May 17 2013 $
+.Dd $Mdocdate: July 17 2013 $
 .Dt MBUF_TAGS 9
 .Os
 .Sh NAME
 .Nm mbuf_tags
 .Nd a framework for generic packet attributes
 .Sh SYNOPSIS
-.Fd #include <sys/mbuf.h>
+.In sys/mbuf.h
 .Ft "struct m_tag *"
 .Fn m_tag_get "int type" "int len" "int flags"
 .Ft "struct m_tag *"
@@ -236,7 +236,7 @@ to packet
 .Va mbuf2 .
 On success, it returns 0.
 Otherwise, it returns
-.Er ENOMEM .
+.Er ENOBUFS .
 .Pp
 .Fn m_tag_first
 returns the first tag attached to packet
@@ -271,4 +271,4 @@ The tag-manipulating code is contained in the file
 The packet tags first appeared in
 .Ox 2.9
 and were written by
-.An Angelos D. Keromytis Aq angelos@openbsd.org .
+.An Angelos D. Keromytis Aq Mt angelos@openbsd.org .

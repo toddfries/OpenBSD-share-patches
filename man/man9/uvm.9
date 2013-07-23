@@ -1,4 +1,4 @@
-.\"	$OpenBSD: uvm.9,v 1.44 2013/01/17 21:54:18 jmc Exp $
+.\"	$OpenBSD: uvm.9,v 1.50 2013/07/20 06:25:33 jmc Exp $
 .\"	$NetBSD: uvm.9,v 1.14 2000/06/29 06:08:44 mrg Exp $
 .\"
 .\" Copyright (c) 1998 Matthew R. Green
@@ -30,15 +30,15 @@
 .\" XXX this manual sets nS to 1 or 0 in the description, to obtain
 .\" synopsis-like function prototypes.  any better way?
 .\"
-.Dd $Mdocdate: January 17 2013 $
+.Dd $Mdocdate: July 20 2013 $
 .Dt UVM 9
 .Os
 .Sh NAME
 .Nm uvm
 .Nd virtual memory system external interface
 .Sh SYNOPSIS
-.Fd #include <sys/param.h>
-.Fd #include <uvm/uvm.h>
+.In sys/param.h
+.In uvm/uvm.h
 .Sh DESCRIPTION
 The UVM virtual memory system manages access to the computer's memory
 resources.
@@ -72,8 +72,12 @@ recently used.
 The swapper process swaps in runnable processes that are currently swapped out,
 if there is room.
 .Pp
-There are also several miscellaneous functions.
+UVM has a machine independent and a machine dependent layer.
+See
+.Xr pmap 9
+for the machine dependent layer.
 .Sh INITIALISATION
+.nr nS 1
 .Ft void
 .Fn uvm_init "void"
 .Ft void
@@ -82,6 +86,7 @@ There are also several miscellaneous functions.
 .Fn uvm_setpagesize "void"
 .Ft void
 .Fn uvm_swap_init "void"
+.nr nS 0
 .Pp
 The
 .Fn uvm_init
@@ -558,9 +563,7 @@ causes no pages to be allocated, only a virtual address.
 .Dv UVM_KMF_TRYLOCK
 causes
 .Fn uvm_km_kmemalloc
-to use
-.Fn simple_lock_try
-when locking maps.
+to only try and not sleep when locking maps.
 .Pp
 The
 .Fn uvm_km_valloc
@@ -608,7 +611,7 @@ bytes of memory in the kernel map, starting at address
 .Fa addr .
 .Fn uvm_km_free_wakeup
 calls
-.Fn thread_wakeup
+.Fn wakeup
 on the map before unlocking the map.
 .Sh ALLOCATION OF PHYSICAL MEMORY
 .nr nS 1
@@ -633,8 +636,7 @@ function allocates a page of memory at virtual address
 in either the object
 .Fa uobj
 or the anonymous memory
-.Fa anon ,
-which must be locked by the caller.
+.Fa anon .
 Only one of
 .Fa anon
 and
@@ -769,6 +771,7 @@ The
 .Fn uvm_swapin
 function swaps in the named process.
 .Sh MISCELLANEOUS FUNCTIONS
+.nr nS 1
 .Ft struct uvm_object *
 .Fn uao_create "vsize_t size" "int flags"
 .Ft void
@@ -796,6 +799,7 @@ function swaps in the named process.
 .Fn uvm_grow "struct proc *p" "vaddr_t sp"
 .Ft int
 .Fn uvm_coredump "struct proc *p" "struct vnode *vp" "struct ucred *cred" "struct core *chdr"
+.nr nS 0
 .Pp
 The
 .Fn uao_create ,
@@ -940,7 +944,7 @@ int swapins;		/* swapins */
 int swapouts;		/* swapouts */
 int pgswapin;		/* pages swapped in */
 int pgswapout;		/* pages swapped out */
-int forks;  		/* forks */
+int forks;		/* forks */
 int forks_ppwait;	/* forks where parent waits */
 int forks_sharevm;	/* forks where vmspace is shared */
 int pga_zerohit;	/* pagealloc where zero wanted and zero
@@ -1036,8 +1040,6 @@ The structure and types whose names begin with
 .Dq vm_
 were named so UVM could coexist with BSD VM during the early
 development stages.
-They will be renamed to
-.Dq uvm_ .
 .Sh SEE ALSO
 .Xr getloadavg 3 ,
 .Xr kvm 3 ,
@@ -1045,9 +1047,15 @@ They will be renamed to
 .Xr ddb 4 ,
 .Xr options 4 ,
 .Xr pmap 9
+.Rs
+.%A Charles D. Cranor
+.%D August 1998
+.%C St. Louis, Missouri
+.%Q Department of Computer Science, Sever Institute of Technology, Washington University
+.%T Design and Implementation of the UVM Virtual Memory System, D.Sc. dissertation
+.Re
 .Sh HISTORY
-UVM is a new VM system developed at Washington University in St. Louis
-(Missouri).
+The UVM virtual memory system was developed at Washington University in St. Louis.
 UVM's roots lie partly in the Mach-based
 .Bx 4.4
 VM system, the
@@ -1064,24 +1072,22 @@ new to
 .Bx
 including page loanout, map entry passing, simplified
 copy-on-write, and clustered anonymous memory pageout.
-UVM is also further documented in an August 1998 dissertation
-by Charles D. Cranor.
 .Pp
 UVM appeared in
 .Ox 2.9 .
 .Sh AUTHORS
 .An -nosplit
-.An Charles D. Cranor Aq chuck@ccrc.wustl.edu
+.An Charles D. Cranor Aq Mt chuck@ccrc.wustl.edu
 designed and implemented UVM.
 .Pp
-.An Matthew Green Aq mrg@eterna.com.au
+.An Matthew Green Aq Mt mrg@eterna.com.au
 wrote the swap-space management code.
 .Pp
-.An Chuck Silvers Aq chuq@chuq.com
+.An Chuck Silvers Aq Mt chuq@chuq.com
 implemented the aobj pager, thus allowing
 UVM to support System V shared memory and process swapping.
 .Pp
-.An Artur Grabowski Aq art@openbsd.org
+.An Artur Grabowski Aq Mt art@openbsd.org
 handled the logistical issues involved with merging UVM into the
 .Ox
 source tree.

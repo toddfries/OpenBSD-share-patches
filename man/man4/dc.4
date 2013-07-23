@@ -1,4 +1,4 @@
-.\"	$OpenBSD: dc.4,v 1.48 2012/08/18 08:44:25 jmc Exp $
+.\"	$OpenBSD: dc.4,v 1.51 2013/07/16 16:05:48 schwarze Exp $
 .\"
 .\" Copyright (c) 1997, 1998, 1999
 .\"	Bill Paul <wpaul@ee.columbia.edu>. All rights reserved.
@@ -32,7 +32,7 @@
 .\"
 .\" $FreeBSD: src/share/man/man4/dc.4,v 1.1 1999/12/04 17:41:24 wpaul Exp $
 .\"
-.Dd $Mdocdate: August 18 2012 $
+.Dd $Mdocdate: July 16 2013 $
 .Dt DC 4
 .Os
 .Sh NAME
@@ -227,19 +227,19 @@ For more information on configuring this device, see
 .Xr ifconfig 8 .
 .Sh DIAGNOSTICS
 .Bl -diag
-.It "dc%d: couldn't map ports/memory"
+.It "dc0: couldn't map ports/memory"
 A fatal initialization error has occurred.
-.It "dc%d: couldn't map interrupt"
+.It "dc0: couldn't map interrupt"
 A fatal initialization error has occurred.
-.It "dc%d: watchdog timeout"
+.It "dc0: watchdog timeout"
 A packet was queued for transmission and a transmit command was
 issued, however the device failed to acknowledge the transmission
 before a timeout expired.
 This can happen if the device is unable to deliver interrupts for some
 reason, or if there is a problem with the network connection (cable).
-.It "dc%d: no memory for rx list"
+.It "dc0: no memory for rx list"
 The driver failed to allocate an mbuf for the receiver ring.
-.It "dc%d: TX underrun -- increasing TX threshold"
+.It "dc0: TX underrun -- increasing TX threshold"
 The device generated a transmit underrun error while attempting to
 DMA and transmit a packet.
 This happens if the host is not able to DMA the packet data into the NIC's
@@ -247,32 +247,12 @@ FIFO fast enough.
 The driver will dynamically increase the transmit start threshold so that
 more data must be DMAed into the FIFO before the NIC will start
 transmitting it onto the wire.
-.It "dc%d: TX underrun -- using store and forward mode"
+.It "dc0: TX underrun -- using store and forward mode"
 The device continued to generate transmit underruns even after all
 possible transmit start threshold settings had been tried, so the
 driver programmed the chip for store and forward mode.
 In this mode, the NIC will not begin transmission until the entire packet
 has been transferred into its FIFO memory.
-.It "dc%d: chip is in D3 power state -- setting to D0"
-This message applies only to adapters which support power management.
-Some operating systems place the controller in low power
-mode when shutting down, and some PCI BIOSes fail to bring the chip
-out of this state before configuring it.
-The controller loses all of its PCI configuration in the D3 state,
-so if the BIOS does not set it back to full power mode in time,
-it won't be able to configure it correctly.
-The driver tries to detect this condition and bring
-the adapter back to the D0 (full power) state, but this may not be
-enough to return the driver to a fully operational condition.
-If you see this message at boot time and the driver fails to attach
-the device as a network interface, you will have to perform a second
-warm boot to have the device properly configured.
-.Pp
-Note that this condition only occurs when warm booting from another
-operating system.
-If you power down your system prior to booting
-.Ox ,
-the card should be configured correctly.
 .El
 .Sh SEE ALSO
 .Xr amphy 4 ,
@@ -330,11 +310,11 @@ support was added in
 The
 .Nm
 driver was written by
-.An Bill Paul Aq wpaul@ee.columbia.edu
+.An Bill Paul Aq Mt wpaul@ee.columbia.edu
 and ported to
 .Ox
 by
-.An Aaron Campbell Aq aaron@openbsd.org .
+.An Aaron Campbell Aq Mt aaron@openbsd.org .
 .Sh BUGS
 The Macronix application notes claim that in order to put the
 chips in normal operation, the driver must write a certain magic

@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.546 2013/05/19 20:32:47 miod Exp $
+#	$OpenBSD: Makefile,v 1.550 2013/06/06 15:30:51 bmercer Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
@@ -22,7 +22,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	eap.4 ec.4 eephy.4 ef.4 eg.4 ehci.4 eisa.4 el.4 em.4 emc.4 gcu.4 \
 	emu.4 enc.4 endrun.4 envy.4 ep.4 epic.4 esa.4 \
 	eso.4 ess.4 et.4 etphy.4 ex.4 exphy.4 \
-	fd.4 fdc.4 fins.4 fintek.4 fms.4 fpa.4 fxp.4 gdt.4 \
+	fd.4 fdc.4 fins.4 fintek.4 fms.4 fpa.4 fuse.4 fxp.4 gdt.4 \
 	gentbi.4 gem.4 gif.4 \
 	glenv.4 gpio.4 gpiodcf.4 gpioiic.4 gpioow.4 gpr.4 gre.4 gscsio.4 gtp.4 \
 	hds.4 hifn.4 hil.4 hilid.4 hilkbd.4 hilms.4 hme.4 hotplug.4 hsq.4 \
@@ -63,11 +63,11 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	unix.4 uow.4 uoaklux.4 uoakrh.4 uoakv.4 \
 	upgt.4 upl.4 uplcom.4 ural.4 urio.4 url.4 urlphy.4 \
    	urndis.4 urtw.4 urtwn.4 usb.4  usbf.4 uscanner.4 uslcom.4 usps.4 \
-	uthum.4 uticom.4 utwitch.4 utrh.4 uts.4 uvideo.4 uvisor.4 uvscom.4 \
-	uyap.4 \
+	uthum.4 uticom.4 utpms.4 utwitch.4 utrh.4 uts.4 uvideo.4 uvisor.4 \
+	uvscom.4 uyap.4 \
 	vether.4 vga.4 vgafb.4 vge.4 \
 	viapm.4 viasio.4 vic.4 video.4 vio.4 vioblk.4 viomb.4 virtio.4 vlan.4 \
-	vmt.4 vnd.4 vr.4 \
+	vmt.4 vmx.4 vnd.4 vr.4 \
 	vscsi.4 vte.4 \
 	watchdog.4 wb.4 wbenv.4 wbng.4 wbsd.4 wbsio.4 wd.4 wdc.4 wdsc.4 we.4 \
 	wi.4 wpi.4 wscons.4 wsdisplay.4 wskbd.4 wsmouse.4 wsmux.4 \
@@ -96,7 +96,7 @@ MLINKS+=usb.4 uhub.4
 MLINKS+=vlan.4 svlan.4
 
 # man4.hppa64
-SUBDIR=	man4.alpha man4.amd64 man4.armish man4.aviion man4.hp300 \
+SUBDIR=	man4.alpha man4.amd64 man4.armish man4.aviion man4.beagle man4.hp300 \
 	man4.hppa man4.i386 man4.landisk man4.loongson man4.luna88k \
 	man4.macppc man4.mvme68k man4.mvme88k \
 	man4.sgi man4.socppc man4.sparc man4.sparc64 man4.vax man4.zaurus

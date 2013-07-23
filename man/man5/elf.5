@@ -1,4 +1,4 @@
-.\"	$OpenBSD: elf.5,v 1.20 2013/01/17 21:54:18 jmc Exp $
+.\"	$OpenBSD: elf.5,v 1.23 2013/07/15 22:59:12 schwarze Exp $
 .\"Copyright (c) 1999 Jeroen Ruigrok van der Werven
 .\"All rights reserved.
 .\"
@@ -25,7 +25,7 @@
 .\"
 .\"	$FreeBSD: src/share/man/man5/elf.5,v 1.21 2001/10/01 16:09:23 ru Exp $
 .\"
-.Dd $Mdocdate: January 17 2013 $
+.Dd $Mdocdate: July 15 2013 $
 .Dt ELF 5
 .Os
 .Sh NAME
@@ -311,14 +311,22 @@ HPPA.
 SPARC with enhanced instruction set.
 .It Dv EM_PPC
 PowerPC.
+.It Dv EM_ARM
+Advanced RISC Machines ARM.
 .It Dv EM_ALPHA
 Compaq [DEC] Alpha.
+.It Dv EM_SH
+Hitachi/Renesas Super-H.
 .It Dv EM_SPARCV9
 SPARC v9 64-bit.
-.It Dv EM_ALPHA_EXP
-Compaq [DEC] Alpha with enhanced instruction set.
+.It Dv EM_IA_64
+Intel IA-64.
+.It Dv EM_AMD64
+AMD64.
 .It Dv EM_VAX
 DEC Vax.
+.It Dv EM_ALPHA_EXP
+Compaq [DEC] Alpha with enhanced instruction set.
 .El
 .It Dv e_version
 This member identifies the file version:
@@ -1355,16 +1363,16 @@ Each string is aligned on a 4-byte boundary.
 .Sh HISTORY
 .Ox
 ELF support first appeared in
-.Ox 1.2 ,
-although not all supported platforms use it as the native
-binary file format.
+.Ox 1.2 .
+Starting with
+.Ox 5.4 ,
+all supported platforms use it as the native binary file format.
 ELF in itself first appeared in
 .At V .
 The ELF format is an adopted standard.
 .Sh AUTHORS
 This manual page was written by
-.An Jeroen Ruigrok van der Werven
-.Aq asmodai@FreeBSD.org
+.An Jeroen Ruigrok van der Werven Aq Mt asmodai@FreeBSD.org
 with inspiration from BSDi's
 .Bsx
 .Nm elf
