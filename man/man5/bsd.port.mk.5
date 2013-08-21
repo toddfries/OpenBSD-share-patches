@@ -1,4 +1,4 @@
-.\" $OpenBSD: bsd.port.mk.5,v 1.382 2013/07/16 18:38:51 schwarze Exp $
+.\" $OpenBSD: bsd.port.mk.5,v 1.385 2013/08/14 08:39:28 jmc Exp $
 .\"
 .\" Copyright (c) 2000-2008 Marc Espie
 .\"
@@ -24,7 +24,7 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: July 16 2013 $
+.Dd $Mdocdate: August 14 2013 $
 .Dt BSD.PORT.MK 5
 .Os
 .Sh NAME
@@ -45,7 +45,9 @@ Those live under
 and they do have manpages under
 .Pa ${PORTSDIR}/infrastructure/man .
 .Pp
-Other BSD variants, as well as older versions of
+Other
+.Bx
+variants, as well as older versions of
 .Nm bsd.port.mk ,
 include other targets and variables.
 Conversion methods are outlined here.
@@ -1123,8 +1125,7 @@ If set to
 .Sq Auto ,
 it will apply to dependencies, but not to the current port itself.
 See
-.Ev BULK_COOKIES_DIR ,
-.Ev TRUST_PACKAGES .
+.Ev BULK_COOKIES_DIR .
 Defaults to
 .Sq Auto .
 .It Ev BULK_COOKIES_DIR
@@ -1657,8 +1658,8 @@ Path to the current port's directory, relative to ${PORTSDIR},
 including flavors and subpackages.
 See
 .Xr pkgpath 7 .
-.It Ev GCC2_ARCHS , GCC3_ARCHS , GCC4_ARCHS
-List of architectures using gcc 2.95.3, gcc 3.3.5, or gcc 4.2.1.
+.It Ev GCC3_ARCHS , GCC4_ARCHS
+List of architectures using gcc 3.3.6, or gcc 4.2.1.
 Read-only.
 Use with
 .Ev NOT_FOR_ARCHS
@@ -2799,14 +2800,6 @@ during
 Refer to
 .Qq THE FAKE FRAMEWORK
 for details.
-.It Ev TRUST_PACKAGES
-User settings.
-If set to
-.Sq Yes ,
-dependency mechanisms will assume the database of installed packages is
-correct.
-See also
-.Ev BULK .
 .It Ev TRY_BROKEN
 User settings.
 If set to
@@ -4039,7 +4032,9 @@ Likewise, offensive to introspection too.
 .It Pa ${FILESDIR}/md5
 Renamed to
 .Pa distinfo
-to match other BSD, and save directories.
+to match other
+.Bx ,
+and save directories.
 .It Pa ${SCRIPTDIR}/{pre,do,post}-*
 Identical functionality can be obtained through a {pre,do,post}-* target,
 invoking the script manually if necessary.
@@ -4121,7 +4116,8 @@ inconsistencies.
 FLAVORS, MULTI_PACKAGES and FAKE are
 .Ox
 improvements.
-Most recent additions do not come from another BSD.
+Most recent additions do not come from another
+.Bx .
 .\" Voluntarily undocumented:
 .\" AUTOCONF_ENV: probably not needed anyway, should be internal.
 .Sh BUGS AND LIMITATIONS
