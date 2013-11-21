@@ -1,6 +1,6 @@
-.\" $OpenBSD: fuse.4,v 1.10 2013/11/04 06:33:13 stsp Exp $
+.\"	$OpenBSD: omgpio.4,v 1.1 2013/11/20 21:50:35 rapha Exp $
 .\"
-.\" Copyright (c) 2013 Sylvestre Gallon <ccna.syl@gmail.com>
+.\" Copyright (c) 2013 Raphael Graf <r@undefined.ch>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,34 +14,37 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: November 4 2013 $
-.Dt FUSE 4
+.Dd $Mdocdate: November 20 2013 $
+.Dt OMGPIO 4 armv7
 .Os
 .Sh NAME
-.Nm fuse
-.Nd file system in userland
+.Nm omgpio
+.Nd omap3, omap4 and am335x GPIO controller
 .Sh SYNOPSIS
-.Cd "option FUSE"
-.Cd "pseudo-device fuse"
+.Cd "omgpio* at omap?"
+.Cd "gpio* at omgpio?"
 .Sh DESCRIPTION
 The
 .Nm
-device provides a FUSE interface for implementing a file system in userland.
-.Pp
-This device does not support partial reads and writes.
-.Sh FILES
-.Bl -tag -width /dev/fuse* -compact
-.It Pa /dev/fuse*
-.Nm
-device special files
-.El
+driver provides support for the GPIO controllers found on omap3, omap4 and
+am334x SoCs.
+The devices have 32 pins which can be configured as either inputs or outputs,
+and accessed using
+.Xr gpioctl 8 .
+.\" Both values are made available through the
+.\" .Xr sysctl 8
+.\" interface.
 .Sh SEE ALSO
-.\".Xr fuse_main 3 ,
-.Xr intro 4 ,
-.Xr fb_setup 9
+.Xr gpio 4 ,
+.Xr gpioctl 8
 .Sh HISTORY
 The
 .Nm
-driver
-first appeared in
-.Ox 5.4 .
+driver first appeared in
+.Ox 5.5 .
+.Sh AUTHORS
+.An -nosplit
+The
+.Nm
+driver was written by
+.An Dale Rahn Aq Mt drahn@dalerahn.com .

@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.560 2013/10/20 08:43:43 mlarkin Exp $
+#	$OpenBSD: Makefile,v 1.563 2013/11/18 00:27:37 deraadt Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
@@ -22,13 +22,13 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	eap.4 ec.4 eephy.4 ef.4 eg.4 ehci.4 eisa.4 el.4 em.4 emc.4 gcu.4 \
 	emu.4 enc.4 endrun.4 envy.4 ep.4 epic.4 esa.4 \
 	eso.4 ess.4 et.4 etphy.4 ex.4 exphy.4 \
-	fd.4 fdc.4 fins.4 fintek.4 fms.4 fpa.4 fuse.4 fxp.4 gdt.4 \
+	fd.4 fdc.4 fins.4 fintek.4 fms.4 fuse.4 fxp.4 gdt.4 \
 	gentbi.4 gem.4 gif.4 \
 	glenv.4 gpio.4 gpiodcf.4 gpioiic.4 gpioow.4 gpr.4 gre.4 gscsio.4 gtp.4 \
 	hds.4 hifn.4 hil.4 hilid.4 hilkbd.4 hilms.4 hme.4 hotplug.4 hsq.4 \
 	ichiic.4 ichwdt.4 icmp.4 icmp6.4 icsphy.4 ifmedia.4 \
-	iha.4 iic.4 inet.4 inet6.4 inphy.4 iop.4 iophy.4 ioprbs.4 \
-	iopsp.4 ip.4 ip6.4 ipcomp.4 ipgphy.4 ipmi.4 ips.4 ipsec.4 ipw.4 \
+	iha.4 iic.4 inet.4 inet6.4 inphy.4 iophy.4 \
+	ip.4 ip6.4 ipcomp.4 ipgphy.4 ipmi.4 ips.4 ipsec.4 ipw.4 \
 	isa.4 isagpio.4 isapnp.4 isp.4 it.4 itherm.4 iwi.4 iwn.4 ix.4 ixgb.4 \
 	jmb.4 jme.4 jmphy.4 \
 	kate.4 km.4 ksyms.4 kue.4 lc.4 lge.4 lii.4 lisa.4 lkm.4 lm.4 \
@@ -57,8 +57,8 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	tlphy.4 thmc.4 tqphy.4 trm.4 trunk.4 tsl.4 tty.4 tun.4 twe.4 txp.4 \
 	txphy.4 uaudio.4 uark.4 uath.4 uberry.4 ubsa.4 ubsec.4 ubt.4 \
 	ucom.4 uchcom.4 ucycom.4 udav.4 udcf.4 udfu.4 udl.4 udp.4 udsbr.4 \
-	uftdi.4 ugen.4 ugold.4 uguru.4 uhci.4 uhid.4 uhidev.4 uipaq.4 uk.4 \
-	ukbd.4 \
+	uftdi.4 ugen.4 ugl.4 ugold.4 uguru.4 uhci.4 uhid.4 uhidev.4 uipaq.4 \
+	uk.4 ukbd.4 \
 	ukphy.4 ulpt.4 umass.4 umbg.4 umct.4 umidi.4 umodem.4 ums.4 umsm.4 \
 	unix.4 uow.4 uoaklux.4 uoakrh.4 uoakv.4 \
 	upgt.4 upl.4 uplcom.4 ural.4 urio.4 url.4 urlphy.4 \
@@ -79,7 +79,6 @@ MLINKS+=audio.4 mixer.4
 MLINKS+=cardbus.4 cbb.4
 MLINKS+=drm.4 inteldrm.4 drm.4 radeondrm.4
 MLINKS+=fd.4 stderr.4 fd.4 stdin.4 fd.4 stdout.4
-MLINKS+=fpa.4 fea.4 fpa.4 fta.4
 MLINKS+=isa.4 isadma.4
 MLINKS+=isapnp.4 pnp.4
 MLINKS+=netintro.4 networking.4
