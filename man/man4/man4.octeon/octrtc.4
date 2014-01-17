@@ -1,6 +1,6 @@
-.\"     $OpenBSD: virtio.4,v 1.8 2013/12/20 22:10:19 matthew Exp $
+.\"	$OpenBSD: octrtc.4,v 1.2 2014/01/15 15:06:17 jmc Exp $
 .\"
-.\" Copyright (c) 2012 Stefan Fritsch <sf@sfritsch.de>
+.\" Copyright (c) 2014 Paul Irofti <pirofti@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,51 +14,49 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: December 20 2013 $
-.Dt VIRTIO 4
+.\"
+.Dd $Mdocdate: January 15 2014 $
+.Dt OCTRTC 4 octeon
 .Os
 .Sh NAME
-.Nm virtio
-.Nd VirtIO support driver
+.Nm octrtc
+.Nd time-of-day clock
 .Sh SYNOPSIS
-.Cd "virtio* at pci?"
+.Cd "octrtc* at mainbus?"
 .Sh DESCRIPTION
 The
 .Nm
-driver provides support service for paravirtualized devices using the VirtIO
-protocol.
-Such devices are provided by bhyve, KVM, QEMU, and VirtualBox.
+driver supports the low resolution DS1337 time-of-day clock found on some
+of the octeon models.
+The clock has a resolution of 1 second.
 .Pp
-Currently there are drivers for the following
+The
 .Nm
-devices:
+driver is used for getting and setting the system time.
+.Sh HARDWARE
+Supported models:
+.Bl -tag -width Ds -offset indent -compact
+.It D-Link DSR-500
+.It Portwell CAM-0100
+.El
 .Pp
-.Bl -tag -width "vioscsi(4)XXX" -offset indent -compact
-.It Xr vio 4
-VirtIO network device
-.It Xr vioblk 4
-VirtIO disk
-.It Xr viomb 4
-VirtIO memory ballooning driver
-.It Xr vioscsi 4
-VirtIO SCSI adapter
+Known models missing a DS1377 clock:
+.Bl -tag -width Ds -offset indent -compact
+.It Ubiquiti Networks EdgeRouter Lite
 .El
 .Sh SEE ALSO
-.Xr intro 4
+.Xr intro 4 ,
+.Xr inittodr 9 ,
+.Xr resettodr 9 ,
+.Xr time 9
 .Sh HISTORY
 The
 .Nm
 driver first appeared in
-.Ox 5.3 .
+.Ox 5.5 .
 .Sh AUTHORS
 .An -nosplit
 The
 .Nm
-driver was ported to
-.Ox
-and improved by
-.An Stefan Fritsch Aq Mt sf@sfritsch.de .
-It is based on the
-.Nx
-driver by
-.An Minoura Makoto .
+driver was written by
+.An Paul Irofti Aq Mt pirofti@openbsd.org .

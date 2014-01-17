@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.188 2013/10/31 04:36:21 deraadt Exp $
+#	$OpenBSD: Makefile,v 1.193 2013/12/29 03:16:42 guenther Exp $
 #	$NetBSD: Makefile,v 1.4 1996/01/09 03:23:01 thorpej Exp $
 
 #	Makefile for section 9 (kernel function and variable) manual pages.
@@ -134,7 +134,7 @@ MLINKS+=extent.9 extent_create.9 extent.9 extent_destroy.9 \
 	extent.9 extent_alloc.9 extent.9 extent_alloc_subregion.9 \
 	extent.9 extent_alloc_region.9 extent.9 extent_free.9 \
 	extent.9 extent_print.9
-MLINKS+=fb_setup.9 fb_queue.9
+MLINKS+=fb_setup.9 fb_queue.9 fb_setup.9 fb_delete.9
 MLINKS+=file.9 falloc.9 file.9 fdrelease.9 file.9 FREF.9 file.9 FRELE.9 \
 	file.9 fd_getfile.9 file.9 getvnode.9 file.9 getsock.9
 MLINKS+=getdevvp.9 bdevvp.9 getdevvp.9 cdevvp.9
@@ -236,7 +236,8 @@ MLINKS+=microtime.9 getmicrotime.9 microtime.9 microuptime.9 \
 	microtime.9 binuptime.9
 MLINKS+=mountroothook_establish.9 mountroothook_disestablish.9
 MLINKS+=mutex.9 mtx_init.9 mutex.9 mtx_enter.9 mutex.9 mtx_leave.9 \
-	mutex.9 MUTEX_ASSERT_LOCKED.9 mutex.9 MUTEX_ASSERT_UNLOCKED.9
+	mutex.9 MUTEX_ASSERT_LOCKED.9 mutex.9 MUTEX_ASSERT_UNLOCKED.9 \
+	mutex.9 MUTEX_INITIALIZER.9
 MLINKS+=mutex.9 mtx_enter_try.9
 MLINKS+=namei.9 vfs_lookup.9 namei.9 vfs_relookup.9 namei.9 NDINIT.9
 MLINKS+=namei.9 NDINITAT.9
@@ -263,7 +264,8 @@ MLINKS+=pool.9 pool_init.9 pool.9 pool_destroy.9 \
 MLINKS+=dma_alloc.9 dma_free.9
 MLINKS+=powerhook_establish.9 powerhook_disestablish.9
 MLINKS+=printf.9 snprintf.9 printf.9 vsnprintf.9 printf.9 vprintf.9 \
-	printf.9 uprintf.9 printf.9 ttyprintf.9 printf.9 db_printf.9
+	printf.9 uprintf.9 printf.9 ttyprintf.9 printf.9 db_printf.9 \
+	printf.9 db_vprintf.9
 MLINKS+=psignal.9 pgsignal.9 psignal.9 gsignal.9
 MLINKS+=arc4random.9 add_true_randomness.9 \
 	arc4random.9 add_timer_randomness.9 \
@@ -296,7 +298,8 @@ MLINKS+=rwlock.9 rw_init.9 rwlock.9 rw_enter.9 rwlock.9 rw_exit.9 \
 	rwlock.9 rw_enter_read.9 rwlock.9 rw_enter_write.9 \
 	rwlock.9 rw_exit_read.9 rwlock.9 rw_exit_write.9 \
 	rwlock.9 rw_assert_wrlock.9 rwlock.9 rw_assert_rdlock.9 \
-	rwlock.9 rw_assert_unlocked.9
+	rwlock.9 rw_assert_unlocked.9 \
+	rwlock.9 RWLOCK_INITIALIZER.9
 	
 MLINKS+=sensor_attach.9 sensordev_install.9 \
 	sensor_attach.9 sensordev_deinstall.9 \
@@ -326,7 +329,8 @@ MLINKS+=systrace.9 systrace_redirect.9 \
 MLINKS+=task_add.9 taskq_create.9 \
 	task_add.9 taskq_destroy.9 \
 	task_add.9 task_set.9 \
-	task_add.9 task_del.9
+	task_add.9 task_del.9 \
+	task_add.9 TASK_INITIALIZER.9
 MLINKS+=time.9 boottime.9 time.9 mono_time.9 time.9 runtime.9
 MLINKS+=timeout.9 timeout_add.9 timeout.9 timeout_set.9 \
 	timeout.9 timeout_pending.9 timeout.9 timeout_del.9 \

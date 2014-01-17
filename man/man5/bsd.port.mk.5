@@ -1,4 +1,4 @@
-.\" $OpenBSD: bsd.port.mk.5,v 1.386 2013/11/07 01:25:27 juanfra Exp $
+.\" $OpenBSD: bsd.port.mk.5,v 1.392 2014/01/04 00:14:08 espie Exp $
 .\"
 .\" Copyright (c) 2000-2008 Marc Espie
 .\"
@@ -24,7 +24,7 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: November 7 2013 $
+.Dd $Mdocdate: January 4 2014 $
 .Dt BSD.PORT.MK 5
 .Os
 .Sh NAME
@@ -315,14 +315,14 @@ to
 instead.
 After stripping that extension if necessary,
 if the entry parses as
-.Sq Ar filename Ns { Ns Ar url Ns }
+.Sq Ar filename Ns { Ns Ar url Ns } Ns Ar sufx
 it will be fetched as
-.Ar url
+.Ar url Ns Ar sufx
 instead, yet still stored as
-.Ar filename .
+.Ar filename Ns Ar sufx .
 .Pp
 Transfers in progress will be stored as
-.Ar filename.part .
+.Ar filenamesufx.part .
 .Pp
 The ports framework uses
 .Pa ${DISTDIR}/${DIST_SUBDIR}
@@ -727,6 +727,11 @@ suitable for
 .It Ar show-prepare-results
 Print the list of actual installed packages found out by
 .Ar prepare .
+.It Ar show-prepare-test-results
+Print the list of actual installed packages found out by
+.Ar prepare
+and
+.Ar test-depends .
 .It Ar show-required-by
 Print the list of
 .Xr pkgpath 7
@@ -1420,13 +1425,26 @@ to
 .Sq :9
 appended to select a different
 .Ev MASTER_SITES .
+.Pp
 Each entry may optionally be of the form
-.Sq Ar filename Ns { Ns Ar url Ns }
+.Sq Ar filename Ns { Ns Ar url Ns } Ns Ar sufx
 to deal with sites that only offer archives as weird urls, doing the transfer
 of
-.Ar url
+.Ar url Ns Ar sufx
 into result file
-.Ar filename .
+.Ar filename Ns Ar sufx .
+For instance, if
+.Bd -literal
+DISTFILES = minetest-{minetest/archive/}${V}${EXTRACT_SUFX}
+.Ed
+.Pp
+then
+.Ar fetch
+will retrieve from url
+.Sq minetest/archive/${V}${EXTRACT_SUFX}
+into
+.Sq minetest-${V}${EXTRACT_SUFX} .
+.Pp
 If ${DISTFILES} varies depending on FLAVORS or architecture,
 use
 .Ev SUPDISTFILES
@@ -1535,8 +1553,6 @@ do
     esac
 done
 .Ed
-The use of xz archives is discouraged, as it makes things impossible to
-build on vax.
 .It Ev EXTRACT_ONLY
 Set to the list of distfiles to actually extract if some distfiles
 should not be extracted during the
@@ -2225,6 +2241,8 @@ User settings.
 Path to
 .Xr pkg_create 1
 command, with possible options.
+Signature options should be set separately in
+.Ev SIGNING_PARAMETERS .
 .It Ev PKG_CREATE_NO_CHECKS
 Porters switch.
 Set to
@@ -2619,6 +2637,13 @@ This should be enough in most cases.
 Set to
 .Sq Yes
 if port can only be built on architectures with shared libraries.
+.It Ev SIGNING_PARAMETERS
+User settings.
+Set to
+.Xr pkg_create 1
+options for signing packages directly during their creation.
+In particular, home-made packages should set
+.Li -DSIGNER=name .
 .It Ev SKIPDIR
 See
 .Xr ports 7 .
@@ -2899,13 +2924,6 @@ Base location for ports that install stuff outside of
 .Pa ${LOCALBASE} .
 Defaults to
 .Pa /var .
-.It Ev VMEM_WARNING
-Set to
-.Sq Yes
-if the port requires a lot of memory to compile, and the user is
-likely to see a message like
-.Qq virtual memory exhausted
-with the default process limits.
 .It Ev WANTLIB
 Extra list of library specifications that a package will need.
 May include system and X11 libraries.
