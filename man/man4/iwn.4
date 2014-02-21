@@ -1,4 +1,4 @@
-.\" $OpenBSD: iwn.4,v 1.40 2013/08/20 13:46:53 millert Exp $
+.\" $OpenBSD: iwn.4,v 1.46 2014/02/15 20:28:19 tedu Exp $
 .\"
 .\" Copyright (c) 2007,2008
 .\"	Damien Bergamini <damien.bergamini@free.fr>. All rights reserved.
@@ -15,12 +15,12 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: August 20 2013 $
+.Dd $Mdocdate: February 15 2014 $
 .Dt IWN 4
 .Os
 .Sh NAME
 .Nm iwn
-.Nd Intel WiFi Link 4965/5000/1000/6000 IEEE 802.11a/g/n wireless network devices
+.Nd Intel WiFi Link and Centrino IEEE 802.11a/g/n wireless network devices
 .Sh SYNOPSIS
 .Cd "iwn* at pci?"
 .Sh DESCRIPTION
@@ -28,8 +28,8 @@ The
 .Nm
 driver provides support for
 .Tn Intel
-Wireless WiFi Link 4965/5000/1000 and 6000 Series PCIe Mini Card network
-adapters.
+Wireless WiFi Link 4965/5000/1000 and Centrino Wireless-N 1000/2000/6000
+Series PCIe Mini Card network adapters.
 .Pp
 The Intel Wireless WiFi Link 4965AGN (codenamed Kedron) is a PCIe
 Mini Card network adapter that operates in the 2GHz and 5GHz spectra.
@@ -68,6 +68,14 @@ It has 2 transmit paths and 2 receiver paths (2T2R).
 These adapters are part of the sixth-generation Centrino platform
 (codenamed Calpella).
 .Pp
+The Intel Centrino Wireless-N 2230 (codename Jackson Peak) and Intel
+Centrino Wireless-N 2200 (codename Marble Peak) are wireless network
+adapters that operate in the 2GHz spectrum.
+These adapters have 2 transmit paths and 2 receiver paths (2T2R).
+The Intel Centrino Wireless-N 135 and Intel Centrino Wireless-N 105
+(codename Canyon Peak) also operate in the 2GHz spectrum.
+These adapters have 1 transmit path and 1 receiver path (1T1R).
+.Pp
 These are the modes the
 .Nm
 driver can operate in:
@@ -91,7 +99,7 @@ The
 driver can be configured to use
 Wired Equivalent Privacy (WEP) or
 Wi-Fi Protected Access (WPA-PSK and WPA2-PSK).
-WPA is the de facto encryption standard for wireless networks.
+WPA is the current encryption standard for wireless networks.
 It is strongly recommended that WEP
 not be used as the sole mechanism
 to secure wireless communication,
@@ -120,6 +128,10 @@ which are loaded when an interface is brought up:
 .It Pa /etc/firmware/iwn-6050
 .It Pa /etc/firmware/iwn-6005
 .It Pa /etc/firmware/iwn-6030
+.It Pa /etc/firmware/iwn-2030
+.It Pa /etc/firmware/iwn-2000
+.It Pa /etc/firmware/iwn-135
+.It Pa /etc/firmware/iwn-105
 .El
 .Pp
 These firmware files are not free because Intel refuses to grant

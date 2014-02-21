@@ -1,4 +1,4 @@
-.\"	$OpenBSD: pci.4,v 1.319 2014/01/21 03:15:46 schwarze Exp $
+.\"	$OpenBSD: pci.4,v 1.325 2014/02/14 13:37:23 jmatthew Exp $
 .\"	$NetBSD: pci.4,v 1.29 2000/04/01 00:32:23 tsarna Exp $
 .\"
 .\" Copyright (c) 2000 Theo de Raadt.  All rights reserved.
@@ -31,7 +31,7 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd $Mdocdate: January 21 2014 $
+.Dd $Mdocdate: February 14 2014 $
 .Dt PCI 4
 .Os
 .Sh NAME
@@ -117,6 +117,10 @@ LSI Logic Fusion-MPT Message Passing Interface
 LSI Logic Fusion-MPT Message Passing Interface II
 .It Xr pcscp 4
 Advanced Micro Devices Am53c974 PCscsi-PCI SCSI interface
+.It Xr qla 4
+QLogic ISP2100/ISP2200/ISP2300 Fibre Channel controller
+.It Xr qle 4
+QLogic ISP2400/ISP2500 Fibre Channel controller
 .It Xr siop 4
 LSI/Symbios Logic/NCR 53c8xx SCSI interface
 .It Xr sli 4
@@ -292,8 +296,7 @@ Intel PRO/Wireless 2100 IEEE 802.11b wireless network device
 Intel
 PRO/Wireless 2200BG/2225BG/2915ABG IEEE 802.11a/b/g wireless network device
 .It Xr iwn 4
-Intel WiFi Link 4965/5000/1000/6000
-IEEE 802.11a/g/n wireless network devices
+Intel WiFi Link and Centrino IEEE 802.11a/g/n wireless network devices
 .It Xr malo 4
 Marvell Libertas IEEE 802.11b/g wireless network device
 .It Xr pgt 4
