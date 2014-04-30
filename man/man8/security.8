@@ -1,8 +1,8 @@
-.\" $OpenBSD: security.8,v 1.21 2012/07/08 21:48:38 schwarze Exp $
+.\" $OpenBSD: security.8,v 1.24 2014/04/22 16:58:20 tedu Exp $
 .\"
 .\" David Leonard, 2001. Public Domain.
 .\"
-.Dd $Mdocdate: July 8 2012 $
+.Dd $Mdocdate: April 22 2014 $
 .Dt SECURITY 8
 .Os
 .Sh NAME
@@ -37,15 +37,10 @@ Check root's home directory and login environment for
 insecure permissions, suspicious paths, and umask commands in the
 dotfiles.
 .It
-Check that root and uucp are in
-.Pa /etc/ftpusers .
-.It
 Check for suspicious commands in
 .Pa /etc/mail/aliases .
 .It
-Check for insecurities in various trust files such as
-.Pa /etc/hosts.equiv , /etc/shosts.equiv ,
-and
+Check for insecurities in
 .Pa /etc/hosts.lpd .
 .It
 Check user
@@ -89,7 +84,7 @@ to protect the programs in
 .Pp
 .Sy Note:
 These checks do not provide complete protection against
-Trojan horsed binaries, as
+Trojan horse binaries, as
 the miscreant can modify the tree specification to match the replaced binary.
 For details on really protecting yourself against modified binaries, see
 .Xr mtree 8 .

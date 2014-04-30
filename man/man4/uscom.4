@@ -1,6 +1,6 @@
-.\"	$OpenBSD: cl.4,v 1.1 2013/05/18 17:45:38 miod Exp $
+.\"	$OpenBSD: uscom.4,v 1.2 2014/03/25 07:10:34 jmc Exp $
 .\"
-.\" Copyright (c) 2013 Miodrag Vallat.
+.\" Copyright (c) 2006 Jonathan Gray <jsg@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,33 +14,34 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 18 2013 $
-.Dt CL 4 mvme68k
+.Dd $Mdocdate: March 25 2014 $
+.Dt USCOM 4
 .Os
 .Sh NAME
-.Nm cl
-.Nd Cirrus Logic CD2401 serial controller
+.Nm uscom
+.Nd simple USB serial adapters
 .Sh SYNOPSIS
-.Cd "cl0 at pcctwo0 offset 0x45000 ipl 3"
+.Cd "uscom* at uhub?"
+.Cd "ucom* at uscom?"
 .Sh DESCRIPTION
 The
 .Nm
-driver provides support for the CD2401 serial controller found on
-MVME167 and MVME177 systems.
+driver supports simple USB serial adapters that don't need a custom driver.
 .Pp
-Each CD2401 controller supports four serial ports with a 16-character buffer.
-.Pp
-The following link speeds are supported by the
+The following devices should work with the
 .Nm
 driver:
-50, 110, 150, 300, 600, 1200, 2401, 3600, 4800, 7200, 9600, 19200, 38400,
-56000 and 64000 bps,
-with an error margin smaller than 0.25%
-(except for 56000 bps, where the error margin is 0.80%).
-.Sh FILES
-.Bl -tag -width Pa -compact
-.It Pa /dev/tty[0-3]
-.El
+.Bd -literal -offset indent
+HP 39G
+HP 49G
+.Ed
 .Sh SEE ALSO
-.Xr intro 4 ,
-.Xr tty 4
+.Xr tty 4 ,
+.Xr ucom 4 ,
+.Xr uhub 4 ,
+.Xr usb 4
+.Sh HISTORY
+The
+.Nm
+device driver first appeared in
+.Ox 5.6 .

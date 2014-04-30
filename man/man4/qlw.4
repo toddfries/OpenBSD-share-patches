@@ -1,6 +1,6 @@
-.\"	$OpenBSD: memc.4,v 1.1 2013/05/18 17:20:45 miod Exp $
+.\"	$OpenBSD: qlw.4,v 1.4 2014/03/15 21:54:26 kettenis Exp $
 .\"
-.\" Copyright (c) 2013 Miodrag Vallat.
+.\" Copyright (c) 2014 Mark Kettenis <kettenis@openbsd.org>
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,33 +14,43 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 18 2013 $
-.Dt MEMC 4 mvme88k
+.Dd $Mdocdate: March 15 2014 $
+.Dt QLW 4
 .Os
 .Sh NAME
-.Nm memc
-.Nd MVME187 memory controller
+.Nm qlw
+.Nd QLogic ISP1000/1020/1x40/1x80/1x160 SCSI controller
 .Sh SYNOPSIS
-.Cd "memc0           at pcctwo0 offset 0x43000"
-.Cd "memc1           at pcctwo0 offset 0x43100"
+.Cd "qlw* at pci?"
+.Cd "qlw* at sbus?"
 .Sh DESCRIPTION
-MVME187 boards support up to two memory mezzanine boards.
-Each board contains its own memory controller, of which two flavours exist:
-.Pp
-.Bl -tag -compact -width 8n
-.It MEMC040
-Memory Controller with parity memory
-.It MCECC
-Memory Controller with ECC memory
-.El
-.Pp
 The
 .Nm
-driver recognizes both.
+driver provides support for QLogic Ultra Wide SCSI host bus adapters
+using the ISP1000, ISP1020/1040, ISP1080/1240/1280 and ISP10160/12160 chips.
+.Pp
+.Nm
+provides no ability to configure an adapter's parameters at runtime;
+all configuration must be done prior to booting
+.Ox .
 .Sh SEE ALSO
 .Xr intro 4 ,
-.Xr pcctwo 4
-.Sh BUGS
+.Xr pci 4 ,
+.Xr qla 4 ,
+.Xr sbus 4 ,
+.Xr scsi 4
+.Sh HISTORY
 The
 .Nm
-driver does not report corrected ECC memory errors.
+driver first appeared in
+.Ox 5.6 .
+.Sh AUTHORS
+.An -nosplit
+The
+.Nm
+driver was written by
+.An Mark Kettenis Aq Mt kettenis@openbsd.org ,
+based on the
+.Xr qla 4
+driver written by
+.An Jonathan Matthew Aq Mt jmatthew@openbsd.org .

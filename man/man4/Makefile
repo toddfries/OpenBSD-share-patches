@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.569 2014/02/12 23:08:58 jmatthew Exp $
+#	$OpenBSD: Makefile,v 1.575 2014/03/25 03:29:23 jsg Exp $
 
 MAN=	aac.4 ac97.4 acphy.4 \
 	acpi.4 acpiac.4 acpiasus.4 acpibat.4 acpibtn.4 acpicpu.4 acpidock.4 \
@@ -45,7 +45,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	pcfiic.4 pciide.4 pckbc.4 pckbd.4 pcmcia.4 pcn.4 pcppi.4 pcscp.4 \
 	pf.4 pflog.4 pflow.4 pfsync.4 pgt.4 piixpm.4 pim.4 pipex.4 \
 	pms.4 ppb.4 ppp.4 pppoe.4 pppx.4 pty.4 puc.4 pwdog.4 \
-	qla.4 qle.4 qsphy.4 radio.4 \
+	qla.4 qle.4 qlw.4 qsphy.4 radio.4 \
 	ral.4 random.4 rd.4 rdac.4 re.4 rdcphy.4 rgephy.4 ricohrtc.4 \
 	rl.4 rlphy.4 route.4 rsu.4 rt.4 rtsx.4 rum.4 run.4 \
 	rtfps.4 rtii.4 rtw.4 safe.4 safte.4 san.4 sbt.4 sbus.4 schsio.4 \
@@ -61,9 +61,9 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	uftdi.4 ugen.4 ugl.4 ugold.4 uguru.4 uhci.4 uhid.4 uhidev.4 uipaq.4 \
 	uk.4 ukbd.4 \
 	ukphy.4 ulpt.4 umass.4 umbg.4 umct.4 umidi.4 umodem.4 ums.4 umsm.4 \
-	unix.4 uow.4 uoaklux.4 uoakrh.4 uoakv.4 \
+	unix.4 uow.4 uoaklux.4 uoakrh.4 uoakv.4 upd.4 \
 	upgt.4 upl.4 uplcom.4 ural.4 urio.4 url.4 urlphy.4 \
-	urndis.4 urtw.4 urtwn.4 usb.4  usbf.4 uslcom.4 usps.4 \
+	urndis.4 urtw.4 urtwn.4 usb.4  usbf.4 uscom.4 uslcom.4 usps.4 \
 	uthum.4 uticom.4 utpms.4 utwitch.4 utrh.4 uts.4 uvideo.4 uvisor.4 \
 	uvscom.4 uyap.4 \
 	vether.4 vga.4 vgafb.4 vge.4 \
@@ -73,7 +73,7 @@ MAN=	aac.4 ac97.4 acphy.4 \
 	vscsi.4 vte.4 vxlan.4 \
 	watchdog.4 wb.4 wbenv.4 wbng.4 wbsd.4 wbsio.4 wd.4 wdc.4 wdsc.4 we.4 \
 	wi.4 wpi.4 wscons.4 wsdisplay.4 wskbd.4 wsmouse.4 wsmux.4 \
-	xe.4 xf86.4 xge.4 xl.4 xmphy.4 yds.4 ym.4 zero.4 zyd.4
+	xe.4 xf86.4 xge.4 xhci.4 xl.4 xmphy.4 yds.4 ym.4 zero.4 zyd.4
 
 MLINKS+=adv.4 advansys.4 adv.4 adw.4
 MLINKS+=art.4 musycc.4
@@ -97,9 +97,9 @@ MLINKS+=usb.4 uhub.4
 MLINKS+=vlan.4 svlan.4
 
 # man4.hppa64
-SUBDIR=	man4.alpha man4.amd64 man4.armish man4.armv7 man4.aviion man4.hp300 \
+SUBDIR=	man4.alpha man4.amd64 man4.armish man4.armv7 man4.aviion \
 	man4.hppa man4.i386 man4.landisk man4.loongson man4.luna88k \
-	man4.macppc man4.mvme68k man4.mvme88k \
+	man4.macppc man4.octeon \
 	man4.sgi man4.socppc man4.sparc man4.sparc64 man4.vax man4.zaurus
 
 CLEANFILES+= wi.4

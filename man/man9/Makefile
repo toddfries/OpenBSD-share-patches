@@ -1,13 +1,13 @@
-#	$OpenBSD: Makefile,v 1.201 2014/02/09 15:40:24 jmc Exp $
+#	$OpenBSD: Makefile,v 1.209 2014/04/19 11:38:13 henning Exp $
 #	$NetBSD: Makefile,v 1.4 1996/01/09 03:23:01 thorpej Exp $
 
 #	Makefile for section 9 (kernel function and variable) manual pages.
 
-MAN=	altq.9 aml_evalnode.9 atomic_add_int.9 atomic_cas_uint.9 \
+MAN=	aml_evalnode.9 atomic_add_int.9 atomic_cas_uint.9 \
 	atomic_dec_int.9 atomic_inc_int.9 atomic_setbits_int.9 \
 	atomic_sub_int.9 atomic_swap_uint.9 \
 	audio.9 autoconf.9 \
-	bio_register.9 boot.9 buffercache.9 bus_dma.9 bus_space.9 \
+	bemtoh32.9 bio_register.9 boot.9 buffercache.9 bus_dma.9 bus_space.9 \
 	copy.9 crypto.9 delay.9 \
 	disk.9 disklabel.9 dma_alloc.9 dohooks.9 dopowerhooks.9 \
 	domountroothooks.9 doshutdownhooks.9 dostartuphooks.9 \
@@ -25,7 +25,8 @@ MAN=	altq.9 aml_evalnode.9 atomic_add_int.9 atomic_cas_uint.9 \
 	panic.9 pci_conf_read.9 pci_intr_map.9 pfind.9 physio.9 pmap.9 \
 	pool.9 powerhook_establish.9 ppsratecheck.9 printf.9 psignal.9 \
 	radio.9 arc4random.9 rasops.9 ratecheck.9 resettodr.9 rssadapt.9 \
-	route.9 rwlock.9 sensor_attach.9 \
+	rt_ifa_add.9 rt_timer_add.9 route.9 rtable_add.9 rtlabel_id2name.9 \
+	rtrequest1.9 rwlock.9 sensor_attach.9 \
 	shutdownhook_establish.9 tsleep.9 spl.9 startuphook_establish.9 \
 	socreate.9 sosplice.9 style.9 syscall.9 systrace.9 sysctl_int.9 \
 	task_add.9 tc_init.9 time.9 timeout.9 tvtohz.9 uiomove.9 uvm.9 \
@@ -61,6 +62,10 @@ MLINKS+=autoconf.9 config_init.9 autoconf.9 config_search.9 \
 	autoconf.9 config_attach.9 autoconf.9 config_detach.9 \
 	autoconf.9 config_activate.9 autoconf.9 config_deactivate.9 \
 	autoconf.9 config_defer.9
+MLINKS+=bemtoh32.9 bemtoh16.9 bemtoh32.9 bemtoh64.9 \
+	bemtoh32.9 htobem16.9 bemtoh32.9 htobem32.9 bemtoh32.9 htobem64.9 \
+	bemtoh32.9 lemtoh16.9 bemtoh32.9 lemtoh32.9 bemtoh32.9 lemtoh64.9 \
+	bemtoh32.9 htolem16.9 bemtoh32.9 htolem32.9 bemtoh32.9 htolem64.9
 MLINKS+=bio_register.9 bio_unregister.9
 MLINKS+=buffercache.9 bread.9 buffercache.9 breadn.9 \
 	buffercache.9 bwrite.9 buffercache.9 bawrite.9 \
@@ -225,10 +230,7 @@ MLINKS+=kthread.9 kthread_create.9 kthread.9 kthread_exit.9 \
 MLINKS+=ktrace.9 ktrcsw.9 ktrace.9 ktremul.9 ktrace.9 ktrgenio.9 \
 	ktrace.9 ktrnamei.9 ktrace.9 ktrpsig.9 ktrace.9 ktrsyscall.9 \
 	ktrace.9 ktrsysret.9 ktrace.9 KTRPOINT.9
-MLINKS+=lock.9 lockinit.9 lock.9 lockmgr.9 lock.9 lockstatus.9 \
-	lock.9 lockmgr_printinfo.9 \
-	lock.9 simple_lock_init.9 lock.9 simple_lock.9 \
-	lock.9 simple_lock_try.9 lock.9 simple_unlock.9
+MLINKS+=lock.9 lockinit.9 lock.9 lockmgr.9 lock.9 lockstatus.9
 MLINKS+=log.9 addlog.9
 MLINKS+=malloc.9 free.9
 MLINKS+=membar_sync.9 membar_enter.9 membar_sync.9 membar_exit.9 \
@@ -305,18 +307,20 @@ MLINKS+=rssadapt.9 ieee80211_rssadapt_choose.9 \
 	rssadapt.9 ieee80211_rssadapt_lower_rate.9 \
 	rssadapt.9 ieee80211_rssadapt_raise_rate.9 \
 	rssadapt.9 ieee80211_rssadapt_updatestats.9
-MLINKS+=route.9 rt_lookup.9 route.9 rtalloc.9 \
-	route.9 rtalloc_noclone.9 route.9 rtalloc1.9 \
-	route.9 rtfree.9 route.9 rtrequest1.9 \
-	route.9 rt_setgate.9 route.9 rtredirect.9 \
-	route.9 rtdeletemsg.9 route.9 rtable_exists.9 \
-	route.9 rtable_add.9 route.9 rtable_l2.9 \
-	route.9 rtable_l2set.9 route.9 rt_gettable.9 \
-	route.9 rt_timer_queue_create.9 route.9 rt_timer_add.9 \
-	route.9 rt_timer_queue_change.9 route.9 rt_timer_queue_destroy.9 \
-	route.9 rt_timer_count.9 route.9 rt_timer_remove_all.9 \
-	route.9 rtlabel_name2id.9 route.9 rtlabel_id2name.9 \
-	route.9 rtlabel_id2sa.9 route.9 rtlabel_unref.9
+MLINKS+=route.9 rt_lookup.9 route.9 rtalloc.9 route.9 rtalloc_noclone.9 \
+	route.9 rtalloc1.9 route.9 rtfree.9 route.9 rt_setgate.9 \
+	route.9 rtredirect.9 route.9 rtdeletemsg.9
+MLINKS+=rt_ifa_add.9 rt_ifa_del.9 rt_ifa_add.9 rt_ifa_addloop.9 \
+	rt_ifa_add.9 rt_ifa_delloop.9
+MLINKS+=rt_timer_add.9 rt_timer_queue_create.9 \
+	rt_timer_add.9 rt_timer_queue_count.9 \
+	rt_timer_add.9 rt_timer_queue_change.9 \
+	rt_timer_add.9 rt_timer_queue_destroy.9 \
+	rt_timer_add.9 rt_timer_remove_all.9
+MLINKS+=rtable_add.9 rtable_exists.9 rtable_add.9 rtable_get.9 \
+	rtable_add.9 rtable_l2.9 rtable_add.9 rtable_l2set.9
+MLINKS+=rtlabel_id2name.9 rtlabel_name2id.9 \
+	rtlabel_id2name.9 rtlabel_id2sa.9 rtlabel_id2name.9 rtlabel_unref.9
 MLINKS+=rwlock.9 rw_init.9 rwlock.9 rw_enter.9 rwlock.9 rw_exit.9 \
 	rwlock.9 rw_enter_read.9 rwlock.9 rw_enter_write.9 \
 	rwlock.9 rw_exit_read.9 rwlock.9 rw_exit_write.9 \

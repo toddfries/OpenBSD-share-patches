@@ -1,4 +1,4 @@
-.\"	$OpenBSD: options.4,v 1.234 2014/02/18 11:26:51 sthen Exp $
+.\"	$OpenBSD: options.4,v 1.236 2014/04/18 11:19:45 henning Exp $
 .\"	$NetBSD: options.4,v 1.21 1997/06/25 03:13:00 thorpej Exp $
 .\"
 .\" Copyright (c) 1998 Theo de Raadt
@@ -34,7 +34,7 @@
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
 .\"
-.Dd $Mdocdate: February 18 2014 $
+.Dd $Mdocdate: April 18 2014 $
 .Dt OPTIONS 4
 .Os
 .Sh NAME
@@ -115,7 +115,7 @@ to fail.
 .It Cd option DDB_STRUCT
 Compiles in symbolic information about the various data structures used by the
 kernel, for use within the kernel debugger.
-This option is currently not supported on alpha, m68k, m88k and vax based
+This option is currently not supported on alpha, m88k and vax based
 platforms.
 .It Cd option DEBUG
 Turns on miscellaneous kernel debugging.
@@ -454,25 +454,6 @@ for details.
 .El
 .Sh NETWORKING OPTIONS
 .Bl -ohang
-.It Cd option ALTQ
-Enables ALTQ (Alternate Queuing).
-See
-.Xr pfctl 8
-and
-.Xr pf.conf 5
-to set up the interface transmission rate and queueing disciplines.
-.Em ALTQ_CBQ ,
-.Em ALTQ_RED ,
-.Em ALTQ_PRIQ
-and
-.Em ALTQ_HFSC
-are enabled by default with option
-.Em ALTQ
-in
-.Ox .
-See
-.Xr altq 9
-for details on ALTQ.
 .It Cd option ENCDEBUG
 This option enables debugging information to be conditionally logged
 in case IPSEC encounters errors.

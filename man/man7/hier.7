@@ -1,4 +1,4 @@
-.\"	$OpenBSD: hier.7,v 1.114 2014/01/20 05:07:49 schwarze Exp $
+.\"	$OpenBSD: hier.7,v 1.122 2014/04/24 18:52:11 jmc Exp $
 .\"	$NetBSD: hier.7,v 1.7 1994/11/30 19:07:10 jtc Exp $
 .\"
 .\" Copyright (c) 1990, 1993
@@ -30,7 +30,7 @@
 .\"
 .\"	@(#)hier.7	8.1 (Berkeley) 6/5/93
 .\"
-.Dd $Mdocdate: January 20 2014 $
+.Dd $Mdocdate: April 24 2014 $
 .Dt HIER 7
 .Os
 .Sh NAME
@@ -110,9 +110,6 @@ Configuration files for
 .It isakmpd/
 Configuration files for
 .Xr isakmpd 8 .
-.It kerberosV/
-Configuration files for the Kerberos version V subsystem (see
-.Xr kerberos 8 ) .
 .It ldap/
 Certificates and schema definition files for
 .Xr ldapd 8 .
@@ -184,7 +181,7 @@ Periodically cleaned by
 .It /usr/
 Contains the majority of user utilities and applications.
 .Pp
-.Bl -tag -width "libdata/" -compact
+.Bl -tag -width "xenocara/" -compact
 .It X11R6/
 Files required for the X11 window system.
 .Pp
@@ -221,10 +218,7 @@ Useful and semi-frivolous programs.
 .It include/
 Standard C include files.
 .Pp
-.Bl -tag -width "kerberosV/" -compact
-.It altq/
-C include files for the altq subsystem (see
-.Xr pf.conf 5 ) .
+.Bl -tag -width "libmilter/" -compact
 .It arpa/
 C include files for Internet service protocols.
 .It crypto/
@@ -238,9 +232,6 @@ Device-specific C include files.
 Include files for the GNU C++ compiler.
 .It isofs/
 C include files for the ISO standard file systems (currently only cd9660).
-.It kerberosV/
-C include files for the KerberosV authentication subsystem (see
-.Xr kerberos 8 ) .
 .It libmilter/
 C include files for the
 .Xr sendmail 8
@@ -358,7 +349,7 @@ System daemons and utilities (executed by users).
 .It share/
 Architecture independent data files.
 .Pp
-.Bl -tag -width "calendar/" -compact
+.Bl -tag -width "vi/catalog/" -compact
 .It calendar/
 Variety of pre-fab calendar files (see
 .Xr calendar 1 ) .
@@ -496,7 +487,7 @@ Time zone configuration information (see
 .Bx
 and/or local source files.
 .Pp
-.Bl -tag -width "kerberosV/" -compact
+.Bl -tag -width "usr.sbin/" -compact
 .It bin/
 Source for files in
 .Pa /bin .
@@ -513,8 +504,6 @@ Source for files under GPL or other restrictive licenses.
 .It include/
 Source for files in
 .Pa /usr/include .
-.It kerberosV/
-Source for Kerberos version V.
 .It lib/
 Source for files in
 .Pa /usr/lib .
@@ -550,7 +539,7 @@ tree.
 .It /var/
 Multi-purpose log, temporary, transient, and spool files.
 .Pp
-.Bl -tag -width "preserve/" -compact
+.Bl -tag -width "account" -compact
 .It account/
 System accounting files.
 .Pp
@@ -596,9 +585,6 @@ Generic
 directory.
 .It games/
 Miscellaneous game status and log files.
-.It kerberosV
-Kerberos database, key and ACL files (see
-.Xr kerberos 8 ) .
 .It log/
 Miscellaneous system log files.
 .Pp
@@ -634,13 +620,6 @@ Timestamps for
 .Xr sudo 8 .
 .El
 .Pp
-.It rwho/
-Data files for
-.Xr rwho 1
-(also see
-.Xr rwhod 8
-and
-.Xr ruptime 1 ) .
 .It spool/
 Miscellaneous printer and mail system spooling directories.
 .Pp
@@ -653,9 +632,7 @@ task (see
 Commonly ~ftp; the anonymous ftp root directory.
 .It lock/
 Lock files for utilities such as
-.Xr cu 1 ,
-.Xr tip 1 ,
-and uucp.
+.Xr tip 1 .
 .It mqueue/
 Undelivered mail queue (see
 .Xr sendmail 8 ) .
@@ -674,9 +651,12 @@ Commonly ~uucp; public uucp temporary directory.
 Temporary files that are kept between system reboots.
 Periodically cleaned by
 .Xr daily 8 .
+.It unbound/
+Configuration files for
+.Xr unbound 8 .
 .It www/
 ServerRoot point for
-.Xr httpd 8 .
+.Xr nginx 8 .
 .It yp/
 Files for the
 .Xr yp 8

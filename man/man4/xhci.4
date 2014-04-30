@@ -1,6 +1,6 @@
-.\"	$OpenBSD: angelfire.4,v 1.4 2013/05/24 07:02:53 jmc Exp $
+.\" $OpenBSD: xhci.4,v 1.1 2014/03/10 12:18:18 mpi Exp $
 .\"
-.\" Copyright (c) 2013 Miodrag Vallat.
+.\" Copyright (c) 2014 Martin Pieuchot
 .\"
 .\" Permission to use, copy, modify, and distribute this software for any
 .\" purpose with or without fee is hereby granted, provided that the above
@@ -14,34 +14,36 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 24 2013 $
-.Dt ANGELFIRE 4 mvme88k
+.Dd $Mdocdate: March 10 2014 $
+.Dt XHCI 4
 .Os
 .Sh NAME
-.Nm angelfire
-.Nd MVME181 system controller
+.Nm xhci
+.Nd USB eXtensible Host Controller Interface
 .Sh SYNOPSIS
-.Cd "angelfire0 at mainbus0 addr 0xff800000"
-.Cd "dart0      at angelfire0 offset 0x640000 ipl 5"
-.Cd "dsrtc0     at angelfire0 offset 0x10000"
-.Cd "vme0       at angelfire0 offset 0x680000"
+.Cd "xhci* at pci?"
+.Cd "usb*  at xhci?"
 .Sh DESCRIPTION
 The
 .Nm
-driver provides an interface to the interrupt controller and VME bus controller
-found on MVME180 and MVME181 systems.
+driver provides support for the USB eXtensible Host Controller Interface,
+which provides an interface to
+.Xr usb 4
+devices.
 .Pp
-The devices connected to
-.Nm
-are:
-.Pp
-.Bl -tag -compact -width 8n -offset indent
-.It Xr dart 4
-MC68681 or MC68692 dual UART
-.It Xr dsrtc 4
-DS1216 SmartWatch ROM
-.It Xr vme 4
-VMEbus interface
-.El
+xHCI controllers support all USB 3.0, 2.0 and 1.x device speeds.
 .Sh SEE ALSO
-.Xr intro 4
+.Xr pci 4 ,
+.Xr usb 4
+.Sh HISTORY
+The
+.Nm
+driver
+appeared in
+.Ox 5.6 .
+.Sh AUTHORS
+.An -nosplit
+The
+.Nm
+driver was written by
+.An Martin Pieuchot Aq Mt mpi@openbsd.org .
